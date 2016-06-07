@@ -1,0 +1,132 @@
+@font-face {
+    font-family: 'BigNoodle';
+    src: url('Assets/big_noodle_titling_oblique.woff') format('woff'), url('Assets/big_noodle_titling_oblique.ttf') format('truetype');
+}
+
+html {
+    /*background-size: cover;
+    animation: shuffling 200s infinite;
+    -webkit-animation: shuffling 200s infinite;*/
+    background-image: url(Assets/light_honeycomb.png);
+    background-repeat: repeat;
+    font-family: "BigNoodle", sans-serif;
+    font-size: 2.2em;
+}
+
+button {
+    display: inline-block;
+
+}
+
+
+#iconContainer {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background: rgba(255, 255, 255, .60);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+/*
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);;
+
+/*
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+*/
+}
+
+.greyedOut {
+    -webkit-filter: grayscale(1);
+    filter: gray;
+}
+
+.heroIcon,
+.TeamIcon,
+.enemyTeamIcon {
+    height: 104px;
+    width: 92px;
+    display: inline-block;
+}
+
+
+#headerContainer {
+    background: orange;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+#Header {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#Subheader {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+
+p {
+    display: block;
+    margin: 0px 0px 0px 0px;
+}
+
+.TeamIcon,
+.enemyTeamIcon {
+    border: 1px solid lightgrey;
+}
+
+
+
+@-webkit-keyframes shuffling {
+0%  {background-image: url(Assets/Screenshots/background1.jpeg)}
+5%  {background-image: url(Assets/Screenshots/background2.jpeg)}
+10% {background-image: url(Assets/Screenshots/background3.jpeg)}
+15% {background-image: url(Assets/Screenshots/background4.jpeg)}
+20% {background-image: url(Assets/Screenshots/background5.jpeg)}
+25% {background-image: url(Assets/Screenshots/background6.jpeg)}
+30% {background-image: url(Assets/Screenshots/background7.jpeg)}
+35% {background-image: url(Assets/Screenshots/background8.jpeg)}
+40% {background-image: url(Assets/Screenshots/background9.jpeg)}
+45% {background-image: url(Assets/Screenshots/background10.jpeg)}
+50% {background-image: url(Assets/Screenshots/background11.jpeg)}
+55% {background-image: url(Assets/Screenshots/background12.jpeg)}
+60% {background-image: url(Assets/Screenshots/background13.jpeg)}
+70% {background-image: url(Assets/Screenshots/background14.jpeg)}
+75% {background-image: url(Assets/Screenshots/background15.jpeg)}
+80% {background-image: url(Assets/Screenshots/background16.jpeg)}
+85% {background-image: url(Assets/Screenshots/background17.jpeg)}
+90% {background-image: url(Assets/Screenshots/background18.jpeg)}
+95% {background-image: url(Assets/Screenshots/background19.jpeg)}
+100%{background-image: url(Assets/Screenshots/background1.jpeg)}
+}
+
+/* Standard syntax */
+@keyframes shuffling {
+0%  {background-image: url(Assets/Screenshots/background1.jpeg)}
+5%  {background-image: url(Assets/Screenshots/background2.jpeg)}
+10% {background-image: url(Assets/Screenshots/background3.jpeg)}
+15% {background-image: url(Assets/Screenshots/background4.jpeg)}
+20% {background-image: url(Assets/Screenshots/background5.jpeg)}
+25% {background-image: url(Assets/Screenshots/background6.jpeg)}
+30% {background-image: url(Assets/Screenshots/background7.jpeg)}
+35% {background-image: url(Assets/Screenshots/background8.jpeg)}
+40% {background-image: url(Assets/Screenshots/background9.jpeg)}
+45% {background-image: url(Assets/Screenshots/background10.jpeg)}
+50% {background-image: url(Assets/Screenshots/background11.jpeg)}
+55% {background-image: url(Assets/Screenshots/background12.jpeg)}
+60% {background-image: url(Assets/Screenshots/background13.jpeg)}
+70% {background-image: url(Assets/Screenshots/background14.jpeg)}
+75% {background-image: url(Assets/Screenshots/background15.jpeg)}
+80% {background-image: url(Assets/Screenshots/background16.jpeg)}
+85% {background-image: url(Assets/Screenshots/background17.jpeg)}
+90% {background-image: url(Assets/Screenshots/background18.jpeg)}
+95% {background-image: url(Assets/Screenshots/background19.jpeg)}
+100%{background-image: url(Assets/Screenshots/background1.jpeg)}
+}

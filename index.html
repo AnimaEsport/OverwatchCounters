@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="scripts.js" type="text/javascript"></script>
+    <link href=style.css type="text/css" rel="stylesheet">
+    <link href="balloon.css" type="text/css" rel="stylesheet">
+    <title>Overwatch Team Generator</title>
+</head>
+
+<body>
+    <div id="iconContainer">
+        <div id="headerContainer">
+            <h1 id="Header">Overwatch Team Generator</h1>
+        </div>
+        <div id="SubContainer">
+            <p id="Subheader">Enter your enemy team comp (click to add)</p>
+            <img class="heroIcon" enemy="Bastion" src="Assets/CharacterIcons/Bastion.png">
+            <img class="heroIcon" enemy="Dva" src="Assets/CharacterIcons/Dva.png">
+            <img class="heroIcon" enemy="Genji" src="Assets/CharacterIcons/Genji.png">
+            <img class="heroIcon" enemy="Hanzo" src="Assets/CharacterIcons/Hanzo.png">
+            <img class="heroIcon" enemy="Junkrat" src="Assets/CharacterIcons/Junkrat.png">
+            <img class="heroIcon" enemy="Lucio" src="Assets/CharacterIcons/Lucio.png">
+            <img class="heroIcon" enemy="McCree" src="Assets/CharacterIcons/McCree.png">
+            <img class="heroIcon" enemy="Mei" src="Assets/CharacterIcons/Mei.png">
+            <img class="heroIcon" enemy="Mercy" src="Assets/CharacterIcons/Mercy.png">
+            <img class="heroIcon" enemy="Pharah" src="Assets/CharacterIcons/Pharah.png">
+            <img class="heroIcon" enemy="Reaper" src="Assets/CharacterIcons/Reaper.png">
+            <img class="heroIcon" enemy="Reinhardt" src="Assets/CharacterIcons/Reinhardt.png">
+            <img class="heroIcon" enemy="Roadhog" src="Assets/CharacterIcons/Roadhog.png">
+            <img class="heroIcon" enemy="Soldier76" src="Assets/CharacterIcons/Soldier76.png">
+            <img class="heroIcon" enemy="Symmetra" src="Assets/CharacterIcons/Symmetra.png">
+            <img class="heroIcon" enemy="Torbjorn" src="Assets/CharacterIcons/Torbjorn.png">
+            <img class="heroIcon" enemy="Tracer" src="Assets/CharacterIcons/Tracer.png">
+            <img class="heroIcon" enemy="Widowmaker" src="Assets/CharacterIcons/Widowmaker.png">
+            <img class="heroIcon" enemy="Winston" src="Assets/CharacterIcons/Winston.png">
+            <img class="heroIcon" enemy="Zarya" src="Assets/CharacterIcons/Zarya.png">
+            <img class="heroIcon" enemy="Zenyatta" src="Assets/CharacterIcons/Zenyatta.png">
+            <p>Enemy Team (click to remove):</p>
+            <div id="enemyTeamList">
+                <div id="enemyTeam1" hero="" class="enemyTeamIcon empty" src=""></div>
+                <div id="enemyTeam2" hero="" class="enemyTeamIcon empty" src=""></div>
+                <div id="enemyTeam3" hero="" class="enemyTeamIcon empty" src=""></div>
+                <div id="enemyTeam4" hero="" class="enemyTeamIcon empty" src=""></div>
+                <div id="enemyTeam5" hero="" class="enemyTeamIcon empty" src=""></div>
+                <div id="enemyTeam6" hero="" class="enemyTeamIcon empty" src=""></div>
+            </div>
+            <p>Recommend Team:</p>
+            <div id="recommendTeamList">
+                <div type="button" id="recommendTeam1" data-balloon="" data-balloon-pos="top" hero="" class="TeamIcon" src=""></div>
+                <div type="button" id="recommendTeam2" data-balloon="" data-balloon-pos="top" hero="" class="TeamIcon" src=""></div>
+                <div type="button" id="recommendTeam3" data-balloon="" data-balloon-pos="top" hero="" class="TeamIcon" background-image=""></div>
+                <div type="button" id="recommendTeam4" data-balloon="" data-balloon-pos="top" hero="" class="TeamIcon" src=""></div>
+                <div type="button" id="recommendTeam5" data-balloon="" data-balloon-pos="top" hero="" class="TeamIcon" src=""></div>
+                <div type="button" id="recommendTeam6" data-balloon="" data-balloon-pos="top" hero="" class="TeamIcon" src=""></div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
