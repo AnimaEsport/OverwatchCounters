@@ -1,6 +1,6 @@
 # Overwatch Counters
 ##### To Do
-- [x] Backgrounds from blizzards press kit
+- [x] Backgrounds
 - [x] Integrate Front and Backend
 - [ ] AI
 	- [x] Doubles of enemy team
@@ -14,12 +14,8 @@
 	- [ ] Alternates for heros
 	- [ ] Gametype
 - [x] Tool tips and hovers - list who counters who
-- [ ] onlywat.ch
 	- [ ] Smooth.js
 	- [ ] disclaimer
 	- [ ] Support text
 - [ ] Minimize and optimize
-- [ ] Test with friends
-- [ ] Post to reddit under new account
-
-Ruby on Rails Version and Github pages?
+- [ ] Test
