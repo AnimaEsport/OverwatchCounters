@@ -1,0 +1,117 @@
+@font-face {
+    font-family: 'BigNoodle';
+    src: url('../fonts/big_noodle_titling_oblique.woff') format('woff'), url('../fonts/big_noodle_titling_oblique.ttf') format('truetype');
+}
+
+html {
+    background-image: url(../images/light_honeycomb.png);
+    background-repeat: repeat;
+    font-family: "BigNoodle", sans-serif;
+    font-size: 2.2em;
+}
+
+p {
+    display: inline-block;
+    margin: 0px 0px 1.5em 0px;
+    font-size: .55em;
+    display: block;
+}
+
+a {
+    color: orange;
+    text-decoration: none;
+}
+
+.metaLabel {
+    display: inline-block;
+    margin: 10px 0px 30px 0px;
+}
+
+.attackDefenseLabel,
+button,
+form {
+    display: inline-block;
+}
+
+.teamLabel {
+    margin-bottom: 0px;
+    font-size: .9em
+}
+
+.MapContainer,
+.heroIcon,
+.recommendedTeamIcon,
+.mapIcon,
+.enemyTeamIcon {
+    display: inline-block;
+    margin: 0px 2.5px 0px 2.5px;
+    height: 80px; /* Original: 100 */
+    width: 90px;  /* Original: 112 */
+    display: inline-block;
+    background-size: cover;
+}
+
+.mapIcon {
+    height: 83px;
+    -webkit-filter: grayscale(1);
+    filter: gray;
+    border-radius: 16px;
+}
+
+.selected {
+    -webkit-filter: grayscale(0);
+    filter: gray;
+}
+
+input {
+    display: block;
+    margin: auto;
+}
+
+.inputContainer {
+    display: inline-block;
+    margin: 0px 15px 0px 15px;
+}
+
+.recommendedTeamIcon,
+.enemyTeamIcon {
+    border: 1px solid lightgrey;
+}
+
+#headerContainer {
+    background: orange;
+    font-size: 1.4em;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+#iconContainer {
+    width: 66%;
+    margin: auto;
+    text-align: center;
+    background: rgba(255, 255, 255, .60);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+#Subheader {
+    margin: 0px;
+}
+
+#heart {
+    color: #E71D36;
+}
+
+#AttackDefenseSelect {
+    display: none;
+}
+
+#Header {
+    margin: 0px;
+    font-size: 1em;
+}
+
+#footer {
+    font-size: .4em;
+    font-family: sans-serif;
+}

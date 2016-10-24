@@ -21,18 +21,30 @@
     - [x] Double check Data and spelling
     - [x] Debug
     - [x] Comment, Minimize, and optimize
-    - [x] Make sure code is pretty
+    - [ ] Make sure code is pretty
     - [ ] Responsive
-    - [ ] Rename function
-    - [ ] Attack/defense for min roles
     - [ ] Test with friends
     - [ ] Post to reddit and Forums
 - [x] Sources
     - [x] Wikia
 
+#### Bugs
+- McCree Error
 
 #### Sources
 - [Combos](https://www.youtube.com/watch?v=KNtKdOLxilU) Removed, might add back in
 - [Heroes](http://overwatch.gamepedia.com/)
 - [Maps](http://overwatch.metabomb.net/gameplay-guides/overwatch-map-guides)
-- [Meta Report](https://www.overbuff.com)
+
+#### Links
+- http://www.mikerezl.com/overwatch/
+
+#### Notes
+- Port to mobile App?
+- Follow Tournoment Meta
+    - A: 3
+    - B: 2
+    - C: 0
+    - D: -2
+    - F: -3
+- Attack Defense for roles
