@@ -138,14 +138,22 @@ input {
         width: 100%;
         height: auto;
         position: absolute;
-        top: 0; right: 0; bottom: 0; left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
         margin: 0px;
         border-radius: 0px;
-    background: rgba(255, 255, 255, 0);
+        background: rgba(255, 255, 255, 0);
+    }
 
+    #Header {
+        margin-top: 0;
+        font-size: .65em;
     }
 
     html {
+        min-width: 100%;
         font-size: 3em;
         font-size: 3em;
     }
@@ -156,8 +164,14 @@ input {
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
     }
-    img {
-        width: auto;
+    .enemyTeamIcon:active,
+    .heroIcon:active {
+        background-color: red;
+    }
+    .recommendedTeamIcon,
+    .enemyTeamIcon {
+        border: black 1px solid;
+        border-radius: 16px;
     }
     .MapContainer,
     .heroIcon,
@@ -167,4 +181,9 @@ input {
         height: 75px;
         width: 84px;
     }
+    .recommendedTeamIcon,
+    .enemyTeamIcon {
+        margin: 0px 7.5px 0px 7.5px;
+    }
+}
 }

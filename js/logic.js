@@ -17,7 +17,7 @@ var classesMap = new Object(), Tank = 0, Support = 0, Offense = 0, Defense = 0;
 //Adds the selected CSS class to the clicked map and if the map is not control show the attack/defense options
 function mapClicked(e) {
     var map = $(e).attr("map");
-    var mapType = getMapType(map);
+    var mapType = getMapTypeByName(map);
 
     //If the clicked map is not selected, remove the selected class, then add it to the clicked map
     if (!$("#" + map).hasClass("selected")) {
@@ -101,40 +101,39 @@ function determineTeamCounters() {
             enemyTeam.push(enemyHero);
 
             //Factor in who on the enemy team counters your team
-            getHeroStrengths(enemyHero).forEach(function (_hero, index) {
-                decrementHero(_hero);
+            getHeroStrengthsByName(enemyHero).forEach(function (_hero, index) {
+                decrementHeroByName(_hero);
             });
 
             //Factor in who your team counters
-            getHeroWeaknesses(enemyHero).forEach(function (_hero, index) {
-                incrementHero(_hero);
+            getHeroWeaknessesByName(enemyHero).forEach(function (_hero, index) {
+                incrementHeroByName(_hero);
             });
         }
     });
 
     //Factor in what heroes are good on the selected map, if a map is selected
     var map = $(".selected").attr('map');
-    if (map != undefined) var mapType = getMapType(map);
-    var mapHeroes = getMapHeroes(map);
+    if (map != undefined) var mapType = getMapTypeByName(map);
+    var mapHeroes = getMapHeroesByName(map);
     if ($(".selected").length == 1) {
         mapHeroes.forEach(function (mapHero, index) {
-            incrementHero(mapHero);
+            incrementHeroByName(mapHero);
         });
     }
 
     //Once all the data is factored in set the recommended team to the top six heroes
-    recommendedTeam = getTopSixHeroes();
+    recommendedTeam = getTopSixHeroesArray();
 
     //Adjust the recommended composition to fit the meta
     adjustForMeta();
 
     //Load the recommended team to the UI
     pushRecommendedTeamtoUI();
-    printEachHeroScore();
 }
 
 //Build a team based on the two tank, two offense, and two healer meta
-function twoTwoTwoMeta(){
+function adjustforTwoTwoTwoMeta(){
     var tankCount = 0;
     var supportCount = 0;
     var offenseCount = 0;
@@ -143,7 +142,7 @@ function twoTwoTwoMeta(){
     recommendedTeam = [];
 
     //Gets all heroes sorted by score from highest to lowest
-    var sortedAllHeroes = getAllHeroes();
+    var sortedAllHeroes = getAllHeroesArray();
 
     //Loop through the sorted heroes then return the tanks, offense, and healers with the highest score
     sortedAllHeroes.forEach(function (hero, index) {
@@ -161,7 +160,7 @@ function twoTwoTwoMeta(){
 }
 
 //Build a team based on the three tanks and three healer meta
-function ThreeThreeMeta(){
+function adjustForThreeThreeMeta(){
     var tankCount = 0;
     var supportCount = 0;
 
@@ -169,7 +168,7 @@ function ThreeThreeMeta(){
     recommendedTeam = [];
 
     //Gets all heroes sorted by score from highest to lowest
-    var sortedAllHeroes = getAllHeroes();
+    var sortedAllHeroes = getAllHeroesArray();
 
     //Loop through the sorted heroes then return the tanks and healers with the highest score
     sortedAllHeroes.forEach(function (hero, index) {
@@ -194,15 +193,15 @@ function adjustForMeta() {
     var selectedMeta = e.options[e.selectedIndex].value;
     //If no meta is selected, and there are missing roles
     if (selectedMeta == "NoMeta" && !(classesMap['Tank'] != 0 && classesMap['Support'] != 0 && classesMap['Offense'] != 0 && classesMap['Defense'] != 0))
-        verifyOneOfEachRole();
+        verifyOneOfEachRoleInRecommendedTeam();
 
     //If the two tank, two offense, and two healer meta is selected
     else if (selectedMeta == "TwoTwoTwoMeta")
-        twoTwoTwoMeta();
+        adjustforTwoTwoTwoMeta();
 
     //If the three tank and three healer meta is selected
     else if (selectedMeta == "TankMeta")
-        ThreeThreeMeta();
+        adjustForThreeThreeMeta();
     //No else clause is needed. The team is valid if none of the previous if statements are true
 }
 
@@ -223,7 +222,7 @@ function pushRecommendedTeamtoUI() {
 }
 
 //Verifies that there is one of each role in the recommended team
-function verifyOneOfEachRole(){
+function verifyOneOfEachRoleInRecommendedTeam(){
     //Figure out what roles are missing
     var rolesToBeAdded = new Array();
     for (var i in classesMap)
@@ -234,9 +233,9 @@ function verifyOneOfEachRole(){
     rolesToBeAdded.forEach(function (role, index) {
         for (i = 5; i >= 0; i--) {
             var potentialHeroToReplace = recommendedTeam[i];
-            var roleHeroes = getSortedRole(role);
+            var roleHeroes = getSortedRoleByName(role);
             if (classesMap[potentialHeroToReplace.role] > 1) {
-                recommendedTeam[i] = getHero(roleHeroes[0].name)
+                recommendedTeam[i] = getHeroByName(roleHeroes[0].name)
                 i = -1; //Kill the loop since the missing role has been filed
             }
         }
@@ -260,7 +259,7 @@ function generateCounterString(counterStringHero) {
 
     //Creates the string and add "Good on map" if the hero is listed as good on the map
     var map = $(".selected").attr('map');
-    var mapHeroes = getMapHeroes(map);
+    var mapHeroes = getMapHeroesByName(map);
     if (mapHeroes.indexOf(counterStringHero.actualName) != -1) {
         counterString += "Good on map";
         if (countersArray.length > 0)

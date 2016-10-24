@@ -339,7 +339,7 @@ var mapData = [
 ];
 
 //Increments by 1 the Hero by the counterWeight
-function incrementHero(_hero) {
+function incrementHeroByName(_hero) {
     heroData.filter(function (val, index, array) {
         return val.name === _hero;
     })[0].score = heroData.filter(function (val, index, array) {
@@ -348,7 +348,7 @@ function incrementHero(_hero) {
 }
 
 //Decrements by 1 the hero by the counterWeight
-function decrementHero(_hero) {
+function decrementHeroByName(_hero) {
     heroData.filter(function (val, index, array) {
         return val.name === _hero;
     })[0].score = heroData.filter(function (val, index, array) {
@@ -357,30 +357,30 @@ function decrementHero(_hero) {
 }
 
 //Returns an array of strings of all the hero weaknesses
-function getHeroWeaknesses(_hero) {
+function getHeroWeaknessesByName(_hero) {
     return heroData.filter(function (val, index, array) {
         return val.name === _hero;
     })[0].weaknesses;
 }
 
 //Returns an array of strings of all the hero strengths
-function getHeroStrengths(_hero) {
+function getHeroStrengthsByName(_hero) {
     return heroData.filter(function (val, index, array) {
         return val.name === _hero;
     })[0].strengths;
 }
 
 //Returns the mapType as a string
-function getMapType(_map) {
+function getMapTypeByName(_map) {
     return mapData.filter(function (val, index, array) {
         return val.name === _map;
     })[0].mapType;
 }
 
 //Get all the heroes good on the map
-function getMapHeroes(_map) {
+function getMapHeroesByName(_map) {
     if (_map != null) {
-        var mapType = getMapType(_map);
+        var mapType = getMapTypeByName(_map);
         var attackOrDefense = document.getElementById("attack").checked;
         if (mapType == 'Control' || attackOrDefense)
             var mapHeroesToReturn = mapData.filter(function (val, index, array) {
@@ -396,28 +396,28 @@ function getMapHeroes(_map) {
 }
 
 //Returns an array of six heroes as objects sorted by score
-function getTopSixHeroes() {
+function getTopSixHeroesArray() {
     return heroData.sort(function (a, b) {
         return a.score - b.score;
     }).reverse().slice(0, 6);
 }
 
 //Returns an array of objects filled with all heroes sorted by score from highest to lowest
-function getAllHeroes() {
+function getAllHeroesArray() {
     return heroData.sort(function (a, b) {
         return a.score - b.score;
     }).reverse();
 }
 
 //Returns an object of the selected hero
-function getHero(_hero) {
+function getHeroByName(_hero) {
     return heroData.filter(function (val, index, array) {
         return val.name === _hero;
     })[0];
 }
 
 //Returns all heroes of a given role as an array of objects
-function getSortedRole(roleToSearch){
+function getSortedRoleByName(roleToSearch){
     var tempArray = new Array();
     if (roleToSearch)
         heroData.forEach(function (hero, index){
@@ -428,7 +428,7 @@ function getSortedRole(roleToSearch){
 }
 
 //Returns an array of objects of all heroes marked as healers
-function getHealers() {
+function getHealersArray() {
     var tempArray = new Array();
     heroData.forEach(function (hero, index){
         if(hero.healer)
