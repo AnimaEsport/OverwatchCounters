@@ -19,6 +19,9 @@ function mapClicked(e) {
     var map = $(e).attr("map");
     var mapType = getMapTypeByName(map);
 
+    $('#subMapDropdown').empty();
+    $("#subMapDropdown").append("<option value=\"NoSubMap\">Average of all maps</option>");
+
     //If the clicked map is not selected, remove the selected class, then add it to the clicked map
     if (!$("#" + map).hasClass("selected")) {
         $(".mapIcon.selected").removeClass("selected");
@@ -62,6 +65,9 @@ function removeRecommendations() {
         $(obj).attr("data-balloon", "")
         $(obj).addClass("empty");
     });
+
+    //Hide Submap select
+    $('#subMapDropdownContainer').css("display", "none");
 
     //Hides the balloons
     $("[data-balloon]:hover:before, [data-balloon]:hover:after").css("-khtml-opacity", 1);
@@ -107,7 +113,7 @@ function determineTeamCounters() {
 
             //Factor in who your team counters
             getHeroWeaknessesByName(enemyHero).forEach(function (_hero, index) {
-                incrementHeroByName(_hero);
+                incrementHeroByName(_hero, 1);
             });
         }
     });
@@ -117,9 +123,9 @@ function determineTeamCounters() {
     if (map != undefined) var mapType = getMapTypeByName(map);
     var mapHeroes = getMapHeroesByName(map);
     if ($(".selected").length == 1) {
-        mapHeroes.forEach(function (mapHero, index) {
-            incrementHeroByName(mapHero);
-        });
+        //mapHeroes.forEach(function (mapHero, index) {incrementHeroByName(mapHero);});
+        for(hero in mapHeroes)
+            incrementHeroByName(hero, mapHeroes[hero]);
     }
 
     //Once all the data is factored in set the recommended team to the top six heroes
@@ -127,7 +133,7 @@ function determineTeamCounters() {
 
     //Adjust the recommended composition to fit the meta
     adjustForMeta();
-
+    printEachHeroScore()
     //Load the recommended team to the UI
     pushRecommendedTeamtoUI();
 }
@@ -188,7 +194,6 @@ function adjustForMeta() {
     recommendedTeam.forEach(function (hero, index) {
         classesMap[hero.role] = classesMap[hero.role] + 1;;
     });
-    console.log(classesMap)
     var e = document.getElementById("metaDropdown");
     var selectedMeta = e.options[e.selectedIndex].value;
     //If no meta is selected, and there are missing roles
@@ -256,15 +261,6 @@ function generateCounterString(counterStringHero) {
             if (countersArray.indexOf(enemy) == -1 && heroStrengths.indexOf(enemy) != -1)
                 countersArray.push(enemy);
     });
-
-    //Creates the string and add "Good on map" if the hero is listed as good on the map
-    var map = $(".selected").attr('map');
-    var mapHeroes = getMapHeroesByName(map);
-    if (mapHeroes.indexOf(counterStringHero.actualName) != -1) {
-        counterString += "Good on map";
-        if (countersArray.length > 0)
-            counterString += " & ";
-    }
 
     //Appends the counters to the end of the string
     if (countersArray.length != 0)

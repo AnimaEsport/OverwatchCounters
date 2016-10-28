@@ -5,6 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script type="application/javascript" src="js/data.js"></script>
+    <script type="application/javascript" src="js/newData.js"></script>
     <script type="application/javascript" src="js/logic.js"></script>
     <link href=css/style.css type="text/css" rel="stylesheet">
     <link href="css/balloon.css" type="text/css" rel="stylesheet">
@@ -28,11 +29,16 @@
                     <p>{{map.name}}</p>
                 </div>
                 <div id="checkboxContainer">
-                    <p class="metaDropdown">Select a meta:
+                    <p id="metaDropdownContainer">Select a meta:
                         <select id="metaDropdown" onchange="determineTeamCounters()">
                             <option value="NoMeta">No Meta</option>
                             <option value="TwoTwoTwoMeta">Tank, Healer, Offense</option>
                             <option value="TankMeta">Tank Support</option>
+                        </select>
+                    </p>
+                    <p id="subMapDropdownContainer">Select the submap:
+                        <select id="subMapDropdown" onchange="determineTeamCounters()">
+                            <option value="NoSubMap">Average of all maps</option>
                         </select>
                     </p>
                     <p class="attackDefenseLabel">
@@ -60,7 +66,7 @@
                 <div ng-repeat="i in [1,2,3,4,5,6]" type="button" id="{{ 'recommendTeam' + i }}" data-balloon="" data-balloon-pos="top" hero="" class="recommendedTeamIcon empty" src=""></div>
             </div>
             <div id="footer">
-                <p>Tournament data from <a href="https://www.overbuff.com">Overbuff</a> | Hero weakness data from <a href="http://overwatch.gamepedia.com/">Overwatch Gamepedia</a> | Map data from <a href="http://overwatch.metabomb.net/gameplay-guides/overwatch-map-guides">Metabomb</a>
+                <p>Tournament data from <a href="https://www.overbuff.com">Overbuff</a> | Hero weakness data from <a href="http://overwatch.gamepedia.com/">Overwatch Gamepedia</a> | Map data from <a href="http://overwatchcountersguide.com">/u/foxbarrington</a>
                     <br> An unofficial fan project built with <span id="heart">&hearts;</span> by <a href="https://andrewkar.ch/">Andrew</a></p>
             </div>
         </div>

@@ -127,10 +127,14 @@ input {
     font-family: sans-serif;
 }
 
+#subMapDropdown,
 #metaDropdown {
     vertical-align: middle;
     display: block;
     margin: auto;
+}
+#subMapDropdownContainer {
+    display: none;
 }
 
 @media only screen and (max-width: 1024px) {

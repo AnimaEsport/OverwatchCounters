@@ -1,4 +1,4 @@
-//File contains all the data used for the front end. Any new Maps or Heroes added here will automatically be added to the page
+//File contains all the data used for the front end. Any new maps or heroes added here will automatically be added to the page
 //File also contains all functions used to retrieve and manipulate the data data.
 var mapWeight = 1; //Amount of points to give to a hero that's good on the map.
 var counterWeight = 1; //Amount of points to give to each hero that counters a hero on the enemy team
@@ -244,107 +244,838 @@ var heroData = [
 //attackHeroes: Heroes that are good on attack, Control maps use this for map heroes
 //defenseHeroes: Heroes that are good on defense, Control maps don't use this (There is no defense on control, both teams attack)
 //icon: Location of the icon used to represent the map.
+//A = 2, B = 1, C = 0, D = -1, F = -2
 var mapData = [
     {
         name: "Dorado",
         actualName: "Dorado",
         mapType: "Escort",
-        attackHeroes: ["Dva", "Reinhardt", "Lucio", "Mercy", "Genji", "Pharah", "Tracer"],
-        defenseHeroes: ["Dva", "Reinhardt", "Lucio", "Mercy", "Hanzo", "Mei", "Widowmaker"]
+        subMaps: {},
+        attackHeroes: {
+            Pharah: 2,
+            Torbjorn: 0,
+            McCree: 2,
+            Widowmaker: 1,
+            Junkrat: 2,
+            Bastion: 0,
+            Genji: 0,
+            Zenyatta: 2,
+            Lucio: 2,
+            Zarya: 2,
+            Mei: 1,
+            Hanzo: 2,
+            Roadhog: 2,
+            Dva: 1,
+            Mercy: 2,
+            Reinhardt: 2,
+            Reaper: 2,
+            Tracer: 1,
+            Ana: 2,
+            Winston: 2,
+            Soldier76: 1,
+            Symmetra: 1
+        },
+        defenseHeroes: {
+            Pharah: 1,
+            Torbjorn: -2,
+            McCree: 2,
+            Widowmaker: 0,
+            Junkrat: 0,
+            Bastion: -1,
+            Genji: 1,
+            Zenyatta: 2,
+            Lucio: 2,
+            Zarya: 2,
+            Mei: 1,
+            Hanzo: 0,
+            Roadhog: 1,
+            Dva: 2,
+            Mercy: 2,
+            Reinhardt: 2,
+            Reaper: 2,
+            Tracer: 2,
+            Ana: 2,
+            Winston: 2,
+            Soldier76: 1,
+            Symmetra: -1
+        }
     },
     {
         name: "Eichenwalde",
         actualName: "Eichenwalde",
         mapType: "Hybrid",
-        attackHeroes: ["Dva", "Reinhardt", "Lucio", "Mercy", "Pharah", "Reaper", "Tracer"],
-        defenseHeroes: ["Dva", "Reinhardt", "Lucio", "Mercy", "Mei", "Symmetra", "Widowmaker"]
+        subMaps: {},
+        attackHeroes: {
+            Pharah: 2,
+            Torbjorn: 1,
+            McCree: 2,
+            Widowmaker: 1,
+            Junkrat: 2,
+            Bastion: 1,
+            Genji: 0,
+            Zenyatta: 2,
+            Lucio: 2,
+            Zarya: 2,
+            Mei: 2,
+            Hanzo: 2,
+            Roadhog: 2,
+            Dva: 1,
+            Mercy: 2,
+            Reinhardt: 2,
+            Reaper: 2,
+            Tracer: 1,
+            Ana: 2,
+            Winston: 1,
+            Soldier76: 1,
+            Symmetra: 2
+        },
+        defenseHeroes: {
+            Pharah: 2,
+            Torbjorn: -1,
+            McCree: 2,
+            Widowmaker: 1,
+            Junkrat: 0,
+            Bastion: 0,
+            Genji: 1,
+            Zenyatta: 2,
+            Lucio: 2,
+            Zarya: 2,
+            Mei: 1,
+            Hanzo: 1,
+            Roadhog: 2,
+            Dva: 1,
+            Mercy: 2,
+            Reinhardt: 2,
+            Reaper: 2,
+            Tracer: 2,
+            Ana: 2,
+            Winston: 2,
+            Soldier76: 2,
+            Symmetra: -1
+        }
+
     },
     {
         name: "Hanamura",
         actualName: "Hanamura",
         mapType: "Assault",
-        attackHeroes: ["Dva", "Reinhardt", "Lucio", "Mercy", "Genji", "Reaper", "Soldier76", "Tracer"],
-        defenseHeroes: ["Dva", "Reinhardt", "Lucio", "Mercy", "Symmetra", "Junkrat", "Mei", "Soldier76"]
+        subMaps: {},
+        attackHeroes: {
+            Pharah: 1,
+            Junkrat: 2,
+            Winston: 0,
+            Ana: 2,
+            Torbjorn: 1,
+            Lucio: 2,
+            Bastion: 1,
+            Widowmaker: 1,
+            McCree: 2,
+            Mei: 2,
+            Soldier76: 1,
+            Zarya: 2,
+            Reaper: 1,
+            Hanzo: 1,
+            Mercy: 2,
+            Roadhog: 2,
+            Symmetra: 2,
+            Zenyatta: 2,
+            Tracer: 0,
+            Reinhardt: 2,
+            Dva: 1
+        },
+        defenseHeroes: {
+            'Pharah': 1,
+            'Junkrat': 0,
+            'Winston': 2,
+            'Ana': 2,
+            'Torbjorn': -2,
+            'Lucio': 2,
+            'Bastion': -1,
+            'Widowmaker': 0,
+            'McCree': 2,
+            'Mei': 2,
+            'Soldier76': 1,
+            'Zarya': 2,
+            'Reaper': 1,
+            'Hanzo': 0,
+            'Mercy': 1,
+            'Roadhog': 1,
+            'Symmetra': -2,
+            'Zenyatta': 2,
+            'Tracer': 1,
+            'Reinhardt': 2,
+            'Dva': 2
+        }
+
     },
     {
         name: "Hollywood",
         actualName: "Hollywood",
         mapType: "Hybrid",
-        attackHeroes: ["Dva", "Reinhardt", "Lucio", "Mercy", "Genji", "Pharah", "Tracer"],
-        defenseHeroes: ["Dva", "Reinhardt", "Lucio", "Mercy", "Hanzo", "Widowmaker", "McCree", "Pharah", "Tracer"]
+        subMaps: {},
+        attackHeroes: {
+            Pharah: 1,
+            Torbjorn: 1,
+            McCree: 2,
+            Widowmaker: 0,
+            Junkrat: 2,
+            Bastion: 0,
+            Genji: 0,
+            Zenyatta: 2,
+            Lucio: 2,
+            Zarya: 2,
+            Mei: 2,
+            Hanzo: 1,
+            Roadhog: 2,
+            Dva: 2,
+            Mercy: 2,
+            Reinhardt: 2,
+            Reaper: 2,
+            Tracer: 1,
+            Ana: 2,
+            Winston: 2,
+            Soldier76: 1,
+            Symmetra: 1
+        },
+        defenseHeroes: {
+            Pharah: 2,
+            Torbjorn: -2,
+            McCree: 1,
+            Widowmaker: 0,
+            Junkrat: 1,
+            Bastion: 0,
+            Genji: 1,
+            Zenyatta: 2,
+            Lucio: 2,
+            Zarya: 2,
+            Mei: 1,
+            Hanzo: 1,
+            Roadhog: 2,
+            Dva: 2,
+            Mercy: 2,
+            Reinhardt: 2,
+            Reaper: 2,
+            Tracer: 1,
+            Ana: 2,
+            Winston: 2,
+            Soldier76: 1,
+            Symmetra: -2
+        }
+
     },
     {
         name: "Ilios",
         actualName: "Ilios",
         mapType: "Control",
-        attackHeroes: ["Dva", "Reinhardt", "Winston", "Lucio", "Mercy", "Junkrat", "McCree", "Pharah", "Reaper", "Soldier76"],
-        defenseHeroes: [], //NOT NEEDE
+        subMaps: {
+            Lighthouse: {
+                name: "Lighthouse",
+                subActualName: "Lighthouse",
+                heroes: {
+                    Pharah: 2,
+                    Torbjorn: -2,
+                    McCree: 2,
+                    Widowmaker: 0,
+                    Junkrat: 0,
+                    Bastion: 0,
+                    Genji: 1,
+                    Zenyatta: 2,
+                    Lucio: 2,
+                    Zarya: 2,
+                    Mei: 1,
+                    Hanzo: 1,
+                    Roadhog: 1,
+                    Dva: 2,
+                    Mercy: 2,
+                    Reinhardt: 2,
+                    Reaper: 1,
+                    Tracer: 2,
+                    Ana: 2,
+                    Winston: 2,
+                    Soldier76: 1,
+                    Symmetra: -2
+                }
+            },
+            Ruins: {
+                name: "Ruins",
+                subActualName: "Ruins",
+                heroes: {
+                    Pharah: 1,
+                    Torbjorn: -2,
+                    McCree: 1,
+                    Widowmaker: -1,
+                    Junkrat: 1,
+                    Bastion: -1,
+                    Genji: 1,
+                    Zenyatta: 2,
+                    Lucio: 2,
+                    Zarya: 2,
+                    Mei: 2,
+                    Hanzo: 0,
+                    Roadhog: 1,
+                    Dva: 2,
+                    Mercy: 1,
+                    Reinhardt: 1,
+                    Reaper: 2,
+                    Tracer: 2,
+                    Ana: 2,
+                    Winston: 2,
+                    Soldier76: 1,
+                    Symmetra: -1
+                }
+            },
+            Well: {
+                name: "Well",
+                subActualName: "Well",
+                heroes: {
+                    Pharah: 1,
+                    Torbjorn: -1,
+                    McCree: 2,
+                    Widowmaker: 1,
+                    Junkrat: 1,
+                    Bastion: 0,
+                    Genji: 1,
+                    Zenyatta: 2,
+                    Lucio: 2,
+                    Zarya: 2,
+                    Mei: 2,
+                    Hanzo: 0,
+                    Roadhog: 2,
+                    Dva: 2,
+                    Mercy: 0,
+                    Reinhardt: 2,
+                    Reaper: 2,
+                    Tracer: 2,
+                    Ana: 2,
+                    Winston: 2,
+                    Soldier76: 1,
+                    Symmetra: -2
+                }
+            }
+        },
+        attackHeroes: {},
+        defenseHeroes: {}
     },
     {
         name: "KingsRow",
         actualName: "King's Row",
         mapType: "Hybrid",
-        attackHeroes: ["Dva", "Reinhardt", "Lucio", "Mercy", "Pharah", "Reaper", "Tracer"],
-        defenseHeroes: ["Dva", "Reinhardt", "Lucio", "Mercy", "Mei", "Symmetra", "Widowmaker"]
+        subMaps: {},
+        attackHeroes: {
+            Pharah: 1,
+            Torbjorn: 0,
+            McCree: 2,
+            Widowmaker: 1,
+            Junkrat: 2,
+            Bastion: 0,
+            Genji: 0,
+            Zenyatta: 2,
+            Lucio: 2,
+            Zarya: 2,
+            Mei: 2,
+            Hanzo: 2,
+            Roadhog: 2,
+            Dva: 1,
+            Mercy: 2,
+            Reinhardt: 2,
+            Reaper: 2,
+            Tracer: 2,
+            Ana: 2,
+            Winston: 2,
+            Soldier76: 1,
+            Symmetra: 1
+        },
+        defenseHeroes: {
+            Pharah: 2,
+            Torbjorn: -2,
+            McCree: 2,
+            Widowmaker: 1,
+            Junkrat: 1,
+            Bastion: -1,
+            Genji: 1,
+            Zenyatta: 2,
+            Lucio: 2,
+            Zarya: 2,
+            Mei: 1,
+            Hanzo: 1,
+            Roadhog: 1,
+            Dva: 2,
+            Mercy: 1,
+            Reinhardt: 2,
+            Reaper: 2,
+            Tracer: 2,
+            Ana: 2,
+            Winston: 2,
+            Soldier76: 1,
+            Symmetra: -1
+        }
     },
     {
         name: "LijiangTower",
         actualName: "Lijiang Tower",
         mapType: "Control",
-        attackHeroes: ["Dva", "Reinhardt", "Winston", "Lucio", "Mercy", "Junkrat", "Genji", "McCree", "Pharah", "Reaper", "Soldier76"],
-        defenseHeroes: [], //Not Needed
+        subMaps: {
+            ControlCenter: {
+                name: "ControlCenter",
+                subActualName: "Control Center",
+                heroes: {
+                    Pharah: 2,
+                    Torbjorn: -2,
+                    McCree: 2,
+                    Widowmaker: -1,
+                    Junkrat: 0,
+                    Bastion: -1,
+                    Genji: 1,
+                    Zenyatta: 2,
+                    Lucio: 2,
+                    Zarya: 2,
+                    Mei: 1,
+                    Hanzo: 0,
+                    Roadhog: 2,
+                    Dva: 2,
+                    Mercy: 1,
+                    Reinhardt: 2,
+                    Reaper: 2,
+                    Tracer: 2,
+                    Ana: 2,
+                    Winston: 2,
+                    Soldier76: 1,
+                    Symmetra: -2
+                }
+            },
+            Garden: {
+                name: "Garden",
+                subActualName: "Garden",
+                heroes: {
+                    Pharah: 1,
+                    Torbjorn: -1,
+                    McCree: 2,
+                    Widowmaker: -1,
+                    Junkrat: 0,
+                    Bastion: 0,
+                    Genji: 1,
+                    Zenyatta: 2,
+                    Lucio: 2,
+                    Zarya: 2,
+                    Mei: 2,
+                    Hanzo: 0,
+                    Roadhog: 2,
+                    Dva: 1,
+                    Mercy: 1,
+                    Reinhardt: 2,
+                    Reaper: 2,
+                    Tracer: 2,
+                    Ana: 2,
+                    Winston: 1,
+                    Soldier76: 1,
+                    Symmetra: -2
+                }
+            },
+            NightMarket: {
+                name: "NightMarket",
+                subActualName: "Night Market",
+                heroes: {
+                    Pharah: 2,
+                    Torbjorn: -1,
+                    McCree: 1,
+                    Widowmaker: -1,
+                    Junkrat: 1,
+                    Bastion: -1,
+                    Genji: 1,
+                    Zenyatta: 1,
+                    Lucio: 2,
+                    Zarya: 2,
+                    Mei: 2,
+                    Hanzo: 0,
+                    Roadhog: 2,
+                    Dva: 1,
+                    Mercy: 0,
+                    Reinhardt: 1,
+                    Reaper: 2,
+                    Tracer: 2,
+                    Ana: 2,
+                    Winston: 2,
+                    Soldier76: 1,
+                    Symmetra: -2
+                }
+            }
+        },
+        attackHeroes: {},
+        defenseHeroes: {}
     },
     {
         name: "Nepal",
         actualName: "Nepal",
         mapType: "Control",
-        attackHeroes: ["Dva", "Reinhardt", "Lucio", "Junkrat", "Mei", "Soldier76"],
-        defenseHeroes: [],
+        subMaps: {
+            Sanctum: {
+                name: "Sanctum",
+                subActualName: "Sanctum",
+                heroes: {
+                    Pharah: 2,
+                    Torbjorn: -2,
+                    McCree: 1,
+                    Widowmaker: -1,
+                    Junkrat: 2,
+                    Bastion: -1,
+                    Genji: 1,
+                    Zenyatta: 1,
+                    Lucio: 2,
+                    Zarya: 2,
+                    Mei: 2,
+                    Hanzo: 0,
+                    Roadhog: 2,
+                    Dva: 2,
+                    Mercy: 1,
+                    Reinhardt: 1,
+                    Reaper: 2,
+                    Tracer: 2,
+                    Ana: 2,
+                    Winston: 2,
+                    Soldier76: 1,
+                    Symmetra: -2
+                }
+            },
+            Temple: {
+                name: "Temple",
+                subActualName: "Temple",
+                heroes: {
+                    Pharah: 1,
+                    Torbjorn: -1,
+                    McCree: 2,
+                    Widowmaker: 0,
+                    Junkrat: 1,
+                    Bastion: 0,
+                    Genji: 1,
+                    Zenyatta: 2,
+                    Lucio: 2,
+                    Zarya: 2,
+                    Mei: 2,
+                    Hanzo: 0,
+                    Roadhog: 2,
+                    Dva: 2,
+                    Mercy: 0,
+                    Reinhardt: 1,
+                    Reaper: 2,
+                    Tracer: 2,
+                    Ana: 2,
+                    Winston: 2,
+                    Soldier76: 1,
+                    Symmetra: -2
+                }
+            },
+            Village: {
+                name: "Village",
+                subActualName: "Village",
+                heroes: {
+                    Pharah: 1,
+                    Torbjorn: -1,
+                    McCree: 2,
+                    Widowmaker: -1,
+                    Junkrat: 2,
+                    Bastion: -1,
+                    Genji: 1,
+                    Zenyatta: 2,
+                    Lucio: 2,
+                    Zarya: 2,
+                    Mei: 2,
+                    Hanzo: 0,
+                    Roadhog: 2,
+                    Dva: 2,
+                    Mercy: 1,
+                    Reinhardt: 2,
+                    Reaper: 2,
+                    Tracer: 2,
+                    Ana: 2,
+                    Winston: 2,
+                    Soldier76: 1,
+                    Symmetra: -1
+                }
+            }
+        },
+        attackHeroes: {},
+        defenseHeroes: {}
     },
     {
         name: "Numbani",
         actualName: "Numbani",
         mapType: "Hybrid",
-        attackHeroes: ["Dva", "Reinhardt", "Winston", "Lucio", "Mercy", "Genji", "Pharah", "Tracer"],
-        defenseHeroes: ["Dva", "Reinhardt", "Lucio", "Mercy", "Hanzo", "Mei", "Junkrat", "Widowmaker"],
+        subMaps: {},
+        attackHeroes: {
+            Pharah: 1,
+            Torbjorn: 0,
+            McCree: 2,
+            Widowmaker: 1,
+            Junkrat: 2,
+            Bastion: 1,
+            Genji: 0,
+            Zenyatta: 2,
+            Lucio: 2,
+            Zarya: 2,
+            Mei: 2,
+            Hanzo: 2,
+            Roadhog: 2,
+            Dva: 1,
+            Mercy: 2,
+            Reinhardt: 2,
+            Reaper: 1,
+            Tracer: 1,
+            Ana: 2,
+            Winston: 2,
+            Soldier76: 1,
+            Symmetra: 1
+        },
+        defenseHeroes: {
+            Pharah: 2,
+            Torbjorn: -1,
+            McCree: 2,
+            Widowmaker: 2,
+            Junkrat: 1,
+            Bastion: 0,
+            Genji: 1,
+            Zenyatta: 2,
+            Lucio: 2,
+            Zarya: 2,
+            Mei: 1,
+            Hanzo: 1,
+            Roadhog: 1,
+            Dva: 2,
+            Mercy: 2,
+            Reinhardt: 2,
+            Reaper: 2,
+            Tracer: 2,
+            Ana: 2,
+            Winston: 2,
+            Soldier76: 1,
+            Symmetra: -1
+        }
     },
     {
         name: "Route66",
         actualName: "Route 66",
         mapType: "Escort",
-        attackHeroes: ["Dva", "Reinhardt", "Winston", "Lucio", "Mercy", "Genji", "Pharah", "Tracer"],
-        defenseHeroes: ["Dva", "Reinhardt", "Winston", "Lucio", "Mercy", "Hanzo", "Junkrat", "Mei"],
+        subMaps: {},
+        attackHeroes: {
+            Pharah: 1,
+            Torbjorn: 1,
+            McCree: 2,
+            Widowmaker: 1,
+            Junkrat: 1,
+            Bastion: 0,
+            Genji: 0,
+            Zenyatta: 2,
+            Lucio: 2,
+            Zarya: 2,
+            Mei: 2,
+            Hanzo: 2,
+            Roadhog: 2,
+            Dva: 2,
+            Mercy: 2,
+            Reinhardt: 2,
+            Reaper: 2,
+            Tracer: 1,
+            Ana: 2,
+            Winston: 2,
+            Soldier76: 1,
+            Symmetra: 0
+        },
+        defenseHeroes: {
+            Pharah: 2,
+            Torbjorn: -1,
+            McCree: 2,
+            Widowmaker: 0,
+            Junkrat: 1,
+            Bastion: 0,
+            Genji: 1,
+            Zenyatta: 2,
+            Lucio: 2,
+            Zarya: 2,
+            Mei: 1,
+            Hanzo: 2,
+            Roadhog: 2,
+            Dva: 1,
+            Mercy: 1,
+            Reinhardt: 2,
+            Reaper: 2,
+            Tracer: 1,
+            Ana: 2,
+            Winston: 2,
+            Soldier76: 1,
+            Symmetra: -1
+        }
     },
     {
         name: "Anubis",
         actualName: "Temple of Anubis",
         mapType: "Assault",
-        attackHeroes: ["Dva", "Reinhardt", "Winston", "Lucio", "Mercy", "Reaper", "Pharah", "Tracer"],
-        defenseHeroes: ["Dva", "Reinhardt", "Lucio", "Mercy", "Symmetra", "Hanzo", "Junkrat", "Mei"],
+        subMaps: {},
+        attackHeroes: {
+            Pharah: 1,
+            Torbjorn: 1,
+            McCree: 2,
+            Widowmaker: 1,
+            Junkrat: 2,
+            Bastion: 1,
+            Genji: 0,
+            Zenyatta: 2,
+            Lucio: 2,
+            Zarya: 2,
+            Mei: 1,
+            Hanzo: 1,
+            Roadhog: 2,
+            Dva: 2,
+            Mercy: 2,
+            Reinhardt: 2,
+            Reaper: 1,
+            Tracer: 0,
+            Ana: 2,
+            Winston: 1,
+            Soldier76: 1,
+            Symmetra: 1
+        },
+        defenseHeroes: {
+            Pharah: 1,
+            Torbjorn: -2,
+            McCree: 2,
+            Widowmaker: 0,
+            Junkrat: 0,
+            Bastion: -1,
+            Genji: 1,
+            Zenyatta: 2,
+            Lucio: 2,
+            Zarya: 2,
+            Mei: 2,
+            Hanzo: 0,
+            Roadhog: 1,
+            Dva: 2,
+            Mercy: 1,
+            Reinhardt: 2,
+            Reaper: 1,
+            Tracer: 1,
+            Ana: 2,
+            Winston: 2,
+            Soldier76: 1,
+            Symmetra: -2
+        }
     },
     {
         name: "Volskaya",
         actualName: "Volskaya Industries",
         mapType: "Assault",
-        attackHeroes: ["Dva", "Reinhardt", "Winston", "Lucio", "Mercy", "Genji", "Reaper", "Soldier76"],
-        defenseHeroes: ["Dva", "Reinhardt", "Lucio", "Mercy", "Symmetra", "Hanzo", "Mei", "Widowmaker"],
+        subMaps: {},
+        attackHeroes: {
+            Pharah: 1,
+            Torbjorn: 1,
+            McCree: 2,
+            Widowmaker: 1,
+            Junkrat: 2,
+            Bastion: 1,
+            Genji: 0,
+            Zenyatta: 2,
+            Lucio: 2,
+            Zarya: 2,
+            Mei: 2,
+            Hanzo: 2,
+            Roadhog: 2,
+            Dva: 1,
+            Mercy: 2,
+            Reinhardt: 2,
+            Reaper: 1,
+            Tracer: 0,
+            Ana: 2,
+            Winston: 2,
+            Soldier76: 1,
+            Symmetra: 1
+        },
+        defenseHeroes: {
+            Pharah: 1,
+            Torbjorn: -2,
+            McCree: 1,
+            Widowmaker: 1,
+            Junkrat: 1,
+            Bastion: -2,
+            Genji: 1,
+            Zenyatta: 2,
+            Lucio: 2,
+            Zarya: 2,
+            Mei: 1,
+            Hanzo: 0,
+            Roadhog: 1,
+            Dva: 2,
+            Mercy: 2,
+            Reinhardt: 2,
+            Reaper: 2,
+            Tracer: 1,
+            Ana: 2,
+            Winston: 2,
+            Soldier76: 1,
+            Symmetra: -2
+        }
     },
     {
         name: "Gibraltar",
         actualName: "Watchpoint: Gibraltar",
         mapType: "Escort",
-        attackHeroes: ["Dva", "Reinhardt", "Lucio", "Mercy", "Genji", "Pharah", "Tracer"],
-        defenseHeroes: ["Dva", "Reinhardt", "Lucio", "Mercy", "Hanzo", "Junkrat", "Mei", "Widowmaker", "Pharah", "Tracer"]
+        subMaps: {},
+        attackHeroes: {
+            Pharah: 1,
+            Torbjorn: 1,
+            McCree: 2,
+            Widowmaker: 1,
+            Junkrat: 2,
+            Bastion: 1,
+            Genji: 0,
+            Zenyatta: 2,
+            Lucio: 2,
+            Zarya: 2,
+            Mei: 1,
+            Hanzo: 2,
+            Roadhog: 1,
+            Dva: 1,
+            Mercy: 2,
+            Reinhardt: 2,
+            Reaper: 2,
+            Tracer: 0,
+            Ana: 2,
+            Winston: 1,
+            Soldier76: 1,
+            Symmetra: 0
+        },
+        defenseHeroes: {
+            Pharah: 1,
+            Torbjorn: -1,
+            McCree: 2,
+            Widowmaker: 0,
+            Junkrat: 0,
+            Bastion: 0,
+            Genji: 1,
+            Zenyatta: 2,
+            Lucio: 2,
+            Zarya: 2,
+            Mei: 1,
+            Hanzo: 1,
+            Roadhog: 2,
+            Dva: 2,
+            Mercy: 1,
+            Reinhardt: 2,
+            Reaper: 2,
+            Tracer: 2,
+            Ana: 2,
+            Winston: 2,
+            Soldier76: 1,
+            Symmetra: -2
+        }
     }
 ];
 
+
 //Increments by 1 the Hero by the counterWeight
-function incrementHeroByName(_hero) {
+function incrementHeroByName(_hero, amount) {
     heroData.filter(function (val, index, array) {
         return val.name === _hero;
     })[0].score = heroData.filter(function (val, index, array) {
         return val.name === _hero;
-    })[0].score + counterWeight;
+    })[0].score + amount;
 }
 
 //Decrements by 1 the hero by the counterWeight
@@ -377,12 +1108,51 @@ function getMapTypeByName(_map) {
     })[0].mapType;
 }
 
+var previousMap = ""
 //Get all the heroes good on the map
 function getMapHeroesByName(_map) {
     if (_map != null) {
         var mapType = getMapTypeByName(_map);
-        var attackOrDefense = document.getElementById("attack").checked;
-        if (mapType == 'Control' || attackOrDefense)
+        var mapIsAttack = document.getElementById("attack").checked;
+        var subMaps = mapData.filter(function (val, index, array) {return val.name === _map;})[0].subMaps;
+        var subMapLength = document.getElementById("subMapDropdown").length;
+        var e = document.getElementById("subMapDropdown");
+        var selectedSubMap = e.options[e.selectedIndex].value;
+
+        if (previousMap != _map || previousMap == "")
+            for(var subMap in subMaps) {
+                var option = document.createElement("option");
+                option.value = subMaps[subMap].name;
+                option.text = subMaps[subMap].subActualName;
+                document.getElementById("subMapDropdown").add(option);
+            }
+
+        previousMap = _map
+
+        if (mapType == "Control") {
+            $("#subMapDropdownContainer").css("display", "block");
+            if (selectedSubMap != "NoSubMap")
+                return subMaps[selectedSubMap].heroes;
+            else {
+                var averageArray = subMaps[e.options[1].value].heroes;
+                var first = true;
+                for (subMap in subMaps) {
+                    console.log(subMap)
+                    if (!first){
+                        var tempArray = subMaps[subMap].heroes;
+                        for (hero in tempArray) {
+                            averageArray[hero] += tempArray[hero]
+                        }
+                    }
+                    first = false;
+                }
+                for(score in averageArray)
+                    averageArray[score] = averageArray[score]/3
+                return averageArray;
+            }
+        }
+
+        if (mapIsAttack)
             var mapHeroesToReturn = mapData.filter(function (val, index, array) {
                 return val.name === _map;
             })[0].attackHeroes;
