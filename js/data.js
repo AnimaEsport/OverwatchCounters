@@ -1079,12 +1079,17 @@ function incrementHeroByName(_hero, amount) {
 }
 
 //Decrements by 1 the hero by the counterWeight
-function decrementHeroByName(_hero) {
+function decrementHeroByName(_hero, amount) {
     heroData.filter(function (val, index, array) {
         return val.name === _hero;
     })[0].score = heroData.filter(function (val, index, array) {
         return val.name === _hero;
-    })[0].score - counterWeight;
+    })[0].score - amount;
+
+    var heroScore = heroData.filter(function (val, index, array) {
+        return val.name === _hero;
+    })[0].score;
+    console.log(heroScore)
 }
 
 //Returns an array of strings of all the hero weaknesses
@@ -1109,36 +1114,39 @@ function getMapTypeByName(_map) {
 }
 
 var previousMap = ""
-//Get all the heroes good on the map
+    //Get all the heroes good on the map
 function getMapHeroesByName(_map) {
-    if (_map != null) {
+    if (_map != null) { //If map is not null
         var mapType = getMapTypeByName(_map);
         var mapIsAttack = document.getElementById("attack").checked;
-        var subMaps = mapData.filter(function (val, index, array) {return val.name === _map;})[0].subMaps;
+        var subMaps = mapData.filter(function (val, index, array) {
+            return val.name === _map;
+        })[0].subMaps;
         var subMapLength = document.getElementById("subMapDropdown").length;
-        var e = document.getElementById("subMapDropdown");
-        var selectedSubMap = e.options[e.selectedIndex].value;
+        var subMapDropdown = document.getElementById("subMapDropdown");
+        var selectedSubMap = subMapDropdown.options[subMapDropdown.selectedIndex].value;
 
-        if (previousMap != _map || previousMap == "")
-            for(var subMap in subMaps) {
+        if (previousMap != _map || previousMap == "") { //If the selected is new, add the options to the dropdown
+            for (var subMap in subMaps) {
                 var option = document.createElement("option");
                 option.value = subMaps[subMap].name;
                 option.text = subMaps[subMap].subActualName;
-                document.getElementById("subMapDropdown").add(option);
+                subMapDropdown.add(option);
             }
+        }
 
         previousMap = _map
 
-        if (mapType == "Control") {
+        if (mapType == "Control") { //If map is control return the heroes for the subtype
             $("#subMapDropdownContainer").css("display", "block");
             if (selectedSubMap != "NoSubMap")
                 return subMaps[selectedSubMap].heroes;
-            else {
-                var averageArray = subMaps[e.options[1].value].heroes;
+            else { //Figure out the average score for each hero
+                var averageArray = subMaps[subMapDropdown.options[1].value].heroes;
                 var first = true;
                 for (subMap in subMaps) {
                     console.log(subMap)
-                    if (!first){
+                    if (!first) {
                         var tempArray = subMaps[subMap].heroes;
                         for (hero in tempArray) {
                             averageArray[hero] += tempArray[hero]
@@ -1146,21 +1154,19 @@ function getMapHeroesByName(_map) {
                     }
                     first = false;
                 }
-                for(score in averageArray)
-                    averageArray[score] = averageArray[score]/3
+                for (score in averageArray)
+                    averageArray[score] = averageArray[score] / 3
                 return averageArray;
             }
         }
-
-        if (mapIsAttack)
-            var mapHeroesToReturn = mapData.filter(function (val, index, array) {
+        else if (mapIsAttack) //If attack is selected
+            return mapData.filter(function (val, index, array) {
                 return val.name === _map;
             })[0].attackHeroes;
-        else
-            var mapHeroesToReturn = mapData.filter(function (val, index, array) {
+        else //If defense.
+            return mapData.filter(function (val, index, array) {
                 return val.name === _map;
             })[0].defenseHeroes;
-        return mapHeroesToReturn;
     } else
         return [];
 }

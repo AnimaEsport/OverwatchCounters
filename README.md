@@ -5,6 +5,3 @@
 - [Heroes](http://overwatch.gamepedia.com/)
 - [Maps](http://overwatchcountersguide.com/maps)
 - [Meta Report](https://www.overbuff.com)
--
-
-- Check for Errors

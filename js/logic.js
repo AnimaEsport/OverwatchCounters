@@ -108,7 +108,7 @@ function determineTeamCounters() {
 
             //Factor in who on the enemy team counters your team
             getHeroStrengthsByName(enemyHero).forEach(function (_hero, index) {
-                decrementHeroByName(_hero);
+                decrementHeroByName(_hero, 1);
             });
 
             //Factor in who your team counters
@@ -124,7 +124,7 @@ function determineTeamCounters() {
     var mapHeroes = getMapHeroesByName(map);
     if ($(".selected").length == 1) {
         //mapHeroes.forEach(function (mapHero, index) {incrementHeroByName(mapHero);});
-        for(hero in mapHeroes)
+        for(hero in mapHeroes )
             incrementHeroByName(hero, mapHeroes[hero]);
     }
 
@@ -133,9 +133,9 @@ function determineTeamCounters() {
 
     //Adjust the recommended composition to fit the meta
     adjustForMeta();
-    printEachHeroScore()
     //Load the recommended team to the UI
-    pushRecommendedTeamtoUI();
+    if ($(".enemyTeamIcon.empty").length != 6 || $(".mapIcon.selected").length == 1)
+        pushRecommendedTeamtoUI();
 }
 
 //Build a team based on the two tank, two offense, and two healer meta
