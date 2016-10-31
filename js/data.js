@@ -1089,7 +1089,6 @@ function decrementHeroByName(_hero, amount) {
     var heroScore = heroData.filter(function (val, index, array) {
         return val.name === _hero;
     })[0].score;
-    console.log(heroScore)
 }
 
 //Returns an array of strings of all the hero weaknesses
@@ -1125,27 +1124,25 @@ function getMapHeroesByName(_map) {
         var subMapLength = document.getElementById("subMapDropdown").length;
         var subMapDropdown = document.getElementById("subMapDropdown");
         var selectedSubMap = subMapDropdown.options[subMapDropdown.selectedIndex].value;
-
-        if (previousMap != _map || previousMap == "") { //If the selected is new, add the options to the dropdown
-            for (var subMap in subMaps) {
-                var option = document.createElement("option");
-                option.value = subMaps[subMap].name;
-                option.text = subMaps[subMap].subActualName;
-                subMapDropdown.add(option);
-            }
+        $('#subMapDropdown').empty();
+        $("#subMapDropdown").append("<option value=\"NoSubMap\">Average of all maps</option>");
+        for (var subMap in subMaps) {
+            var option = document.createElement("option");
+            option.value = subMaps[subMap].name;
+            option.text = subMaps[subMap].subActualName;
+            subMapDropdown.add(option);
         }
 
         previousMap = _map
-
         if (mapType == "Control") { //If map is control return the heroes for the subtype
             $("#subMapDropdownContainer").css("display", "block");
             if (selectedSubMap != "NoSubMap")
                 return subMaps[selectedSubMap].heroes;
             else { //Figure out the average score for each hero
+                console.log(subMapDropdown.options)
                 var averageArray = subMaps[subMapDropdown.options[1].value].heroes;
                 var first = true;
                 for (subMap in subMaps) {
-                    console.log(subMap)
                     if (!first) {
                         var tempArray = subMaps[subMap].heroes;
                         for (hero in tempArray) {

@@ -1,7 +1,7 @@
 //This file contains all functions used to control logic and actions on the webpage
 var recommendedTeam = new Array();
 var enemyTeam = new Array();
-var classesMap = new Object(), Tank = 0, Support = 0, Offense = 0, Defense = 0;
+var classesMap = new Object(), Tank = 0, Healer = 0, Offense = 0, Defense = 0;
 
 //AngularJS functions
 (function () {
@@ -54,7 +54,7 @@ function removeRecommendations() {
     enemyTeam = [];
     recommendedTeam = [];
     classesMap["Tank"] = 0;
-    classesMap["Support"] = 0;
+    classesMap["Healer"] = 0;
     classesMap["Offense"] = 0;
     classesMap["Defense"] = 0;
 
@@ -141,9 +141,8 @@ function determineTeamCounters() {
 //Build a team based on the two tank, two offense, and two healer meta
 function adjustforTwoTwoTwoMeta(){
     var tankCount = 0;
-    var supportCount = 0;
+    var healerCount = 0;
     var offenseCount = 0;
-
     //Reset the recommended team
     recommendedTeam = [];
 
@@ -155,9 +154,9 @@ function adjustforTwoTwoTwoMeta(){
         if (hero.role == "Tank" && tankCount < 2) {
             recommendedTeam.push(hero);
             tankCount++;
-        } else if (hero.healer && supportCount < 2) { //Don't check for a support role, the meta favors Healers
+        } else if (hero.healer && healerCount < 2) { //Don't check for a support role, the meta favors healers
             recommendedTeam.push(hero);
-            supportCount++;
+            healerCount++;
         } else if (hero.role == "Offense" && offenseCount < 2) {
             recommendedTeam.push(hero);
             offenseCount++;
@@ -168,7 +167,7 @@ function adjustforTwoTwoTwoMeta(){
 //Build a team based on the three tanks and three healer meta
 function adjustForThreeThreeMeta(){
     var tankCount = 0;
-    var supportCount = 0;
+    var healerCount = 0;
 
     //Reset the recommended team
     recommendedTeam = [];
@@ -181,9 +180,9 @@ function adjustForThreeThreeMeta(){
         if (hero.role == "Tank" && tankCount < 3) {
             recommendedTeam.push(hero);
             tankCount++;
-        } else if (hero.healer && supportCount < 3) { //Don't check for a support role, the meta favors Healers
+        } else if (hero.healer && healerCount < 3) { //Don't check for a support role, the meta favors healers
             recommendedTeam.push(hero);
-            supportCount++;
+            healerCount++;
         }
     });
 }
@@ -192,12 +191,15 @@ function adjustForThreeThreeMeta(){
 function adjustForMeta() {
     //Count how many of each role is in the recommended team
     recommendedTeam.forEach(function (hero, index) {
-        classesMap[hero.role] = classesMap[hero.role] + 1;;
+        if (hero.healer)
+            classesMap["Healer"] += 1;
+        else
+            classesMap[hero.role] = classesMap[hero.role] + 1;
     });
     var e = document.getElementById("metaDropdown");
     var selectedMeta = e.options[e.selectedIndex].value;
     //If no meta is selected, and there are missing roles
-    if (selectedMeta == "NoMeta" && !(classesMap['Tank'] != 0 && classesMap['Support'] != 0 && classesMap['Offense'] != 0 && classesMap['Defense'] != 0))
+    if (selectedMeta == "NoMeta" && !(classesMap["Tank"] != 0 && classesMap["Healer"] != 0 && classesMap["Offense"] != 0 && classesMap["Defense"] != 0))
         verifyOneOfEachRoleInRecommendedTeam();
 
     //If the two tank, two offense, and two healer meta is selected
@@ -238,7 +240,10 @@ function verifyOneOfEachRoleInRecommendedTeam(){
     rolesToBeAdded.forEach(function (role, index) {
         for (i = 5; i >= 0; i--) {
             var potentialHeroToReplace = recommendedTeam[i];
-            var roleHeroes = getSortedRoleByName(role);
+            if (role == "Healer")
+                var roleHeroes = getHealersArray();
+            else
+                var roleHeroes = getSortedRoleByName(role);
             if (classesMap[potentialHeroToReplace.role] > 1) {
                 recommendedTeam[i] = getHeroByName(roleHeroes[0].name)
                 i = -1; //Kill the loop since the missing role has been filed

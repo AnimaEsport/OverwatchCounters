@@ -30,9 +30,9 @@
                 <div id="checkboxContainer">
                     <p id="metaDropdownContainer">Select a meta:
                         <select id="metaDropdown" onchange="determineTeamCounters()">
-                            <option value="NoMeta">No Meta</option>
                             <option value="TwoTwoTwoMeta">Tank, Healer, Offense</option>
                             <option value="TankMeta">Tank Support</option>
+                            <option value="NoMeta">No Meta</option>
                         </select>
                     </p>
                     <p id="subMapDropdownContainer">Select the submap:
@@ -46,11 +46,8 @@
                     </p>
                     <div id="AttackDefenseSelect">
                         <div class="inputContainer">
-                            <p class="attackDefenseLabel">Attack
-                                <input id="attack" onchange="determineTeamCounters()" type="radio" name="attackDefense" value="attack" checked>
-                            </p>
-                            <p class="attackDefenseLabel">Defense
-                                <input id="defense" onchange="determineTeamCounters()" type="radio" name="attackDefense" value="defense">
+                            <p class="attackDefenseLabel">Is your team attacking?
+                                <input id="attack" onchange="determineTeamCounters()" type="checkbox" name="attackDefense" value="attack" checked>
                             </p>
                         </div>
                     </div>

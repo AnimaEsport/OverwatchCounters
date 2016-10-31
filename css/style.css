@@ -38,7 +38,6 @@ button {
 }
 
 .heroIcon {
-    border-radius: 16px;
     background-color: orange;
 }
 
@@ -47,6 +46,7 @@ button {
 .recommendedTeamIcon,
 .mapIcon,
 .enemyTeamIcon {
+    border-radius: 16px;
     display: inline-block;
     margin: 0px 2.5px 0px 2.5px;
     height: 80px;
