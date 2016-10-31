@@ -139,10 +139,10 @@ function determineTeamCounters() {
 }
 
 //Build a team based on the two tank, two offense, and two healer meta
-function adjustforTwoTwoTwoMeta(){
+function adjustforTwoTwoTwoMeta(thirdRole){
     var tankCount = 0;
     var healerCount = 0;
-    var offenseCount = 0;
+    var thirdRoleCount = 0;
     //Reset the recommended team
     recommendedTeam = [];
 
@@ -157,9 +157,9 @@ function adjustforTwoTwoTwoMeta(){
         } else if (hero.healer && healerCount < 2) { //Don't check for a support role, the meta favors healers
             recommendedTeam.push(hero);
             healerCount++;
-        } else if (hero.role == "Offense" && offenseCount < 2) {
+        } else if (hero.role == thirdRole && thirdRoleCount < 2) {
             recommendedTeam.push(hero);
-            offenseCount++;
+            thirdRoleCount++;
         }
     });
 }
@@ -199,16 +199,24 @@ function adjustForMeta() {
     var e = document.getElementById("metaDropdown");
     var selectedMeta = e.options[e.selectedIndex].value;
     //If no meta is selected, and there are missing roles
-    if (selectedMeta == "NoMeta" && !(classesMap["Tank"] != 0 && classesMap["Healer"] != 0 && classesMap["Offense"] != 0 && classesMap["Defense"] != 0))
+    if (selectedMeta == "oneOfEachMeta" && !(classesMap["Tank"] != 0 && classesMap["Healer"] != 0 && classesMap["Offense"] != 0 && classesMap["Defense"] != 0))
         verifyOneOfEachRoleInRecommendedTeam();
 
     //If the two tank, two offense, and two healer meta is selected
     else if (selectedMeta == "TwoTwoTwoMeta")
-        adjustforTwoTwoTwoMeta();
+        adjustforTwoTwoTwoMeta("Offense");
 
     //If the three tank and three healer meta is selected
     else if (selectedMeta == "TankMeta")
         adjustForThreeThreeMeta();
+    else if (selectedMeta == "attackDefenseMeta") {
+        var mapIsAttack = document.getElementById("attack").checked;
+        if (mapIsAttack)
+            adjustforTwoTwoTwoMeta("Offense");
+        else
+            adjustforTwoTwoTwoMeta("Defense");
+    }
+
     //No else clause is needed. The team is valid if none of the previous if statements are true
 }
 

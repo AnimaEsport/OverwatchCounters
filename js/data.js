@@ -71,7 +71,7 @@ var heroData = [
         role: 'Defense',
         healer: false,
         strengths: ["Mei", "Reinhardt", "Symmetra", "Torbjorn"],
-        weaknesses: ["Pharah", "Reinhardt", "Widowmaker"],
+        weaknesses: ["Pharah", "Reinhardt", "Widowmaker", "Zarya"],
         score: 0,
         proScore: -2
     },

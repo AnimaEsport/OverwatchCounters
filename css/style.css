@@ -61,7 +61,6 @@ button {
     height: 83px;
     -webkit-filter: grayscale(1);
     filter: gray;
-    border-radius: 16px;
 }
 
 .selected {
@@ -175,7 +174,6 @@ input {
     .recommendedTeamIcon,
     .enemyTeamIcon {
         border: black 1px solid;
-        border-radius: 16px;
     }
     .MapContainer,
     .heroIcon,
