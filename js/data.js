@@ -23,6 +23,7 @@ var heroData = [
         strengths: ["Dva", "McCree", "Pharah"],
         weaknesses: ["Genji", "Tracer", "Reaper", "Reinhardt"],
         score: 0,
+        sniper: true,
         proScore: 1
     },
     {
@@ -33,6 +34,7 @@ var heroData = [
         strengths: ["Lucio", "McCree", "Pharah", "Tracer", "Winston"],
         weaknesses: ["Dva", "Genji", "Hanzo", "Pharah", "Roadhog", "Tracer", "Widowmaker"],
         score: 0,
+        sniper: false,
         proScore: -2
     },
     {
@@ -43,6 +45,7 @@ var heroData = [
         strengths: ["Bastion", "Hanzo", "Roadhog", "Widowmaker"],
         weaknesses: ["Reaper", "Tracer", "Pharah", "Zenyatta", "Zarya", "Ana", "Mei", "Genji"],
         score: 0,
+        sniper: false,
         proScore: -1
     },
     {
@@ -53,6 +56,7 @@ var heroData = [
         strengths: ["Ana", "Bastion", "Dva", "Hanzo", "Mercy", "Roadhog", "Tracer", "Widowmaker", "Zenyatta"],
         weaknesses: ["McCree", "Mei", "Symmetra", "Winston", "Zarya"],
         score: 0,
+        sniper: false,
         proScore: 0
     },
     {
@@ -63,6 +67,7 @@ var heroData = [
         strengths: ["Bastion", "Hanzo", "Soldier76", "Torbjorn", "Widowmaker"],
         weaknesses: ["Genji", "Tracer", "Winston", "Dva", "Hanzo"],
         score: 0,
+        sniper: true,
         proScore: -1
     },
     {
@@ -73,6 +78,7 @@ var heroData = [
         strengths: ["Mei", "Reinhardt", "Symmetra", "Torbjorn"],
         weaknesses: ["Pharah", "Reinhardt", "Widowmaker", "Zarya"],
         score: 0,
+        sniper: false,
         proScore: -2
     },
     {
@@ -83,6 +89,7 @@ var heroData = [
         strengths: ["Reaper"],
         weaknesses: ["Pharah", "Reaper", "Bastion", "Roadhog"],
         score: 0,
+        sniper: false,
         proScore: 2
     },
     {
@@ -93,6 +100,7 @@ var heroData = [
         strengths: ["Genji", "Mei", "Pharah", "Reaper", "Torbjorn", "Tracer"],
         weaknesses: ["Bastion", "Widowmaker", "Zarya", "Reinhardt", "Winston", "Ana"],
         score: 0,
+        sniper: false,
         proScore: 0
     },
     {
@@ -103,6 +111,7 @@ var heroData = [
         strengths: ["Dva", "Genji", "Roadhog", "Soldier76", "Torbjorn", "Widowmaker", "Zarya"],
         weaknesses: ["Junkrat", "McCree", "Pharah", "Widowmaker", "Reaper", "Zarya"],
         score: 0,
+        sniper: false,
         proScore: 0
     },
     {
@@ -113,6 +122,7 @@ var heroData = [
         strengths: [],
         weaknesses: ["Tracer", "Genji", "Widowmaker", "Winston", "Roadhog"],
         score: 0,
+        sniper: false,
         proScore: -1
     },
     {
@@ -123,6 +133,7 @@ var heroData = [
         strengths: ["Bastion", "Dva", "Junkrat", "Lucio", "Mei", "Reaper", "Reinhardt", "Symmetra"],
         weaknesses: ["Bastion", "McCree", "Soldier76", "Widowmaker", "Roadhog", "Ana"],
         score: 0,
+        sniper: false,
         proScore: -1
     },
     {
@@ -133,6 +144,7 @@ var heroData = [
         strengths: ["Ana", "Dva", "Lucio", "Mei", "Reinhardt", "Widowmaker", "Winston", "Zarya", "Zenyatta"],
         weaknesses: ["Lucio", "Roadhog", "McCree", "Pharah", "Zarya"],
         score: 0,
+        sniper: false,
         proScore: 0
     },
     {
@@ -143,6 +155,7 @@ var heroData = [
         strengths: ["Ana", "Junkrat", "McCree", "Roadhog", "Soldier76", "Widowmaker", "Winston", "Zenyatta"],
         weaknesses: ["Junkrat", "McCree", "Pharah", "Reaper", "Symmetra", "Winston", "Torbjorn"],
         score: 0,
+        sniper: false,
         proScore: 1
     },
     {
@@ -153,6 +166,7 @@ var heroData = [
         strengths: ["Bastion", "Lucio", "Mercy", "Pharah", "Reaper", "Torbjorn", "Tracer", "Widowmaker"],
         weaknesses: ["Mei", "Zarya", "Reinhardt", "Genji", "Tracer", "Dva"],
         score: 0,
+        sniper: false,
         proScore: 0
     },
     {
@@ -163,6 +177,7 @@ var heroData = [
         strengths: ["Pharah", "Widowmaker"],
         weaknesses: ["Mei", "Hanzo", "Reinhardt", "Zenyatta"],
         score: 0,
+        sniper: false,
         proScore: -2
     },
     {
@@ -173,6 +188,7 @@ var heroData = [
         strengths: ["Genji", "Reinhardt"],
         weaknesses: ["Tracer", "Winston", "Junkrat", "Pharah"],
         score: 0,
+        sniper: false,
         proScore: -2
     },
     {
@@ -183,6 +199,7 @@ var heroData = [
         strengths: ["Tracer"],
         weaknesses: ["Widowmaker", "Reinhardt", "McCree", "Mei", "Junkrat", "Pharah", "Roadhog", "Hanzo"],
         score: 0,
+        sniper: false,
         proScore: -2
     },
     {
@@ -193,6 +210,7 @@ var heroData = [
         strengths: ["Ana", "Bastion", "Dva", "Hanzo", "Mercy", "Roadhog", "Symmetra", "Widowmaker", "Zarya", "Zenyatta"],
         weaknesses: ["Genji", "McCree", "Torbjorn", "Bastion", "Roadhog"],
         score: 0,
+        sniper: false,
         proScore: 0
     },
     {
@@ -203,6 +221,7 @@ var heroData = [
         strengths: ["Bastion", "Junkrat", "McCree", "Mei", "Mercy", "Pharah", "Torbjorn", "Zarya", "Zenyatta"],
         weaknesses: ["Mei", "Hanzo", "Genji", "Tracer", "Reaper", "Soldier76", "Dva", "Winston", "Roadhog", "Reinhardt"],
         score: 0,
+        sniper: true,
         proScore: -2
     },
     {
@@ -213,6 +232,7 @@ var heroData = [
         strengths: ["Genji", "Hanzo", "McCree", "Mercy", "Reinhardt", "Symmetra", "Widowmaker", "Zenyatta"],
         weaknesses: ["Reaper", "Bastion", "Reinhardt", "Zenyatta"],
         score: 0,
+        sniper: false,
         proScore: 0
     },
     {
@@ -220,9 +240,10 @@ var heroData = [
         actualName: "Zarya",
         role: 'Tank',
         healer: false,
-        strengths: ["Dva", "Genji", "McCree", "Mei", "Reaper", "Roadhog"],
+        strengths: ["Dva", "Genji", "Junkrat", "McCree", "Mei", "Reaper", "Roadhog"],
         weaknesses: ["Tracer", "Reaper", "Mei", "Widowmaker"],
         score: 0,
+        sniper: false,
         proScore: 2
     },
     {
@@ -230,6 +251,7 @@ var heroData = [
         actualName: "Zenyatta",
         role: 'Support',
         healer: true,
+        sniper: false,
         strengths: ["Dva", "Soldier76", "Winston"],
         weaknesses: ["Genji", "Tracer", "Reaper", "Reinhardt", "Widowmaker", "Winston"],
         score: 0,

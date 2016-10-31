@@ -18,10 +18,10 @@
 - [x] Add Zarya as counter for Junkrat
 - [x] Minimize icon CSS
 - [x] Factor in attack and defense
+- [x] Min one meta + Best heros meta
 - [ ] Add a sniper property to make sure there is only one sniper
 - [ ] Add who on your team is countered by the enemy team
 - [ ] Use FoxBarrington's Synergy and Counter Data
-- [ ] Min one meta + Best heros meta
 
 #### New Features
 - [ ] Manual option entry
