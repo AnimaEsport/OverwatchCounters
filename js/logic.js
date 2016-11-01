@@ -1,7 +1,6 @@
-//This file contains all functions used to control logic and actions on the webpage
-var recommendedTeam = new Array();
-var enemyTeam = new Array();
-var classesMap = new Object(), Tank = 0, Healer = 0, Offense = 0, Defense = 0;
+//This file contains all functions used to control logic and actions on the web page
+var recommendedTeam, enemyTeam = [];
+var classesMap = {Tank: 0, Healer: 0, Offense: 0, Defense: 0};
 
 //AngularJS functions
 (function () {
@@ -86,12 +85,59 @@ function removeRecommendations() {
 //Removes the enemy from an enemyTeamIcon when it is clicked
 function removeEnemy(clickedEnemy) {
     if (!($(clickedEnemy).hasClass('empty'))) {
-        var enemy = $(clickedEnemy).attr("hero");
         $(clickedEnemy).css("background-image", "");
         $(clickedEnemy).attr("hero", "");
         $(clickedEnemy).addClass("empty");
         determineTeamCounters();
     }
+}
+
+
+
+//Displays the recommended team and sets the data balloon to be visible
+function pushRecommendedTeamtoUI() {
+    //Loads the heroes in to the recommendedTeamIcon elements
+    recommendedTeam.forEach(function (hero, index) {
+        var firstRecommendedTeamIcon = $(".recommendedTeamIcon.empty").first()
+        firstRecommendedTeamIcon.css("background-image", "url(images/CharacterIcons/" + hero.name + ".png)");
+        firstRecommendedTeamIcon.attr("hero", hero.name);
+        firstRecommendedTeamIcon.attr("data-balloon", generateCounterString(hero));
+        firstRecommendedTeamIcon.removeClass("empty");
+    });
+
+    //Sets the balloons to be visible
+    $("[data-balloon]:hover:before, [data-balloon]:hover:after").css("-khtml-opacity", 1);
+    $("[data-balloon]:hover:before, [data-balloon]:hover:after").css("-moz-opacity", 1);
+    $("[data-balloon]:hover:before, [data-balloon]:hover:after").css("opacity", 1);
+}
+
+//Generates the Balloon.css string to appear when the recommended hero is moused over
+function generateCounterString(counterStringHero) {
+    var counterString = "";
+
+    //Build an array of all the heroes the recommended hero is good against.
+    var countersArray = new Array();
+    var heroStrengths = counterStringHero.strengths;
+    heroStrengths.forEach(function (strength, index) {
+        var indexOfEnemy = enemyTeam.indexOf(strength)
+        if (indexOfEnemy != -1)
+            var enemy = enemyTeam[indexOfEnemy]
+            if (countersArray.indexOf(enemy) == -1 && heroStrengths.indexOf(enemy) != -1)
+                countersArray.push(enemy);
+    });
+
+    //Appends the counters to the end of the string
+    if (countersArray.length != 0)
+        counterString += "Counters ";
+    if (countersArray.length == 1)
+        counterString += countersArray[0]
+    else if (countersArray.length == 2) {
+        counterString += countersArray.join(" & ")
+    } else if (countersArray.length >= 3) {
+        counterString += countersArray.join(", ")
+        counterString = counterString.substring(0, counterString.lastIndexOf(', ')) + ", & " + counterString.substring(counterString.lastIndexOf(', ') + 1)
+    }
+    return counterString;
 }
 
 //Determine the team counters, this is the main function of the site
@@ -138,55 +184,6 @@ function determineTeamCounters() {
         pushRecommendedTeamtoUI();
 }
 
-//Build a team based on the two tank, two offense, and two healer meta
-function adjustforTwoTwoTwoMeta(thirdRole){
-    var tankCount = 0;
-    var healerCount = 0;
-    var thirdRoleCount = 0;
-    //Reset the recommended team
-    recommendedTeam = [];
-
-    //Gets all heroes sorted by score from highest to lowest
-    var sortedAllHeroes = getAllHeroesArray();
-
-    //Loop through the sorted heroes then return the tanks, offense, and healers with the highest score
-    sortedAllHeroes.forEach(function (hero, index) {
-        if (hero.role == "Tank" && tankCount < 2) {
-            recommendedTeam.push(hero);
-            tankCount++;
-        } else if (hero.healer && healerCount < 2) { //Don't check for a support role, the meta favors healers
-            recommendedTeam.push(hero);
-            healerCount++;
-        } else if (hero.role == thirdRole && thirdRoleCount < 2) {
-            recommendedTeam.push(hero);
-            thirdRoleCount++;
-        }
-    });
-}
-
-//Build a team based on the three tanks and three healer meta
-function adjustForThreeThreeMeta(){
-    var tankCount = 0;
-    var healerCount = 0;
-
-    //Reset the recommended team
-    recommendedTeam = [];
-
-    //Gets all heroes sorted by score from highest to lowest
-    var sortedAllHeroes = getAllHeroesArray();
-
-    //Loop through the sorted heroes then return the tanks and healers with the highest score
-    sortedAllHeroes.forEach(function (hero, index) {
-        if (hero.role == "Tank" && tankCount < 3) {
-            recommendedTeam.push(hero);
-            tankCount++;
-        } else if (hero.healer && healerCount < 3) { //Don't check for a support role, the meta favors healers
-            recommendedTeam.push(hero);
-            healerCount++;
-        }
-    });
-}
-
 //Adjusts the recommended team to make sure there is one of each role
 function adjustForMeta() {
     //Count how many of each role is in the recommended team
@@ -204,36 +201,18 @@ function adjustForMeta() {
 
     //If the two tank, two offense, and two healer meta is selected
     else if (selectedMeta == "TwoTwoTwoMeta")
-        adjustforTwoTwoTwoMeta("Offense");
+        adjustTeamforMeta({"Offense": 2, "Tank": 3, "Support": 1});
 
     //If the three tank and three healer meta is selected
     else if (selectedMeta == "TankMeta")
-        adjustForThreeThreeMeta();
+        adjustTeamforMeta({"Tank": 3, "Support": 3});
     else if (selectedMeta == "attackDefenseMeta") {
-        var mapIsAttack = document.getElementById("attack").checked;
-        if (mapIsAttack)
-            adjustforTwoTwoTwoMeta("Offense");
+        if (document.getElementById("attack").checked)
+            adjustTeamforMeta({"Offense": 2, "Tank": 2, "Support": 2});
         else
-            adjustforTwoTwoTwoMeta("Defense");
+            adjustTeamforMeta({"Defense": 2, "Tank": 2, "Support": 2});
     }
-
     //No else clause is needed. The team is valid if none of the previous if statements are true
-}
-
-//Displays the recommended team and sets the data balloon to be visible
-function pushRecommendedTeamtoUI() {
-    //Loads the heroes in to the recommendedTeamIcon elements
-    recommendedTeam.forEach(function (hero, index) {
-        $(".recommendedTeamIcon.empty").first().css("background-image", "url(images/CharacterIcons/" + hero.name + ".png)");
-        $(".recommendedTeamIcon.empty").first().attr("hero", hero.name);
-        $(".recommendedTeamIcon.empty").first().attr("data-balloon", generateCounterString(hero));
-        $(".recommendedTeamIcon.empty").first().removeClass("empty");
-    });
-
-    //Sets the balloons to be visible
-    $("[data-balloon]:hover:before, [data-balloon]:hover:after").css("-khtml-opacity", 1);
-    $("[data-balloon]:hover:before, [data-balloon]:hover:after").css("-moz-opacity", 1);
-    $("[data-balloon]:hover:before, [data-balloon]:hover:after").css("opacity", 1);
 }
 
 //Verifies that there is one of each role in the recommended team
@@ -260,32 +239,29 @@ function verifyOneOfEachRoleInRecommendedTeam(){
     });
 }
 
-//Generates the Balloon.css string to appear when the recommended hero is moused over
-function generateCounterString(counterStringHero) {
-    var counterString = "";
-
-    //Build an array of all the heroes the recommended hero is good against.
-    var countersArray = new Array();
-    var heroStrengths = counterStringHero.strengths;
-    heroStrengths.forEach(function (strength, index) {
-        var indexOfEnemy = enemyTeam.indexOf(strength)
-        if (indexOfEnemy != -1)
-            var enemy = enemyTeam[indexOfEnemy]
-            if (countersArray.indexOf(enemy) == -1 && heroStrengths.indexOf(enemy) != -1)
-                countersArray.push(enemy);
-    });
-
-    //Appends the counters to the end of the string
-    if (countersArray.length != 0)
-        counterString += "Counters ";
-    if (countersArray.length == 1)
-        counterString += countersArray[0]
-    else if (countersArray.length == 2) {
-        counterString += countersArray.join(" & ")
-    } else if (countersArray.length >= 3) {
-        counterString += countersArray.join(", ")
-        counterString = counterString.substring(0, counterString.lastIndexOf(', ')) + ", & " + counterString.substring(counterString.lastIndexOf(', ') + 1)
+function adjustTeamforMeta(roles) {
+    //Reset the recommended team
+    recommendedTeam = [];
+    //Gets all heroes sorted by score from highest to lowest
+    var sortedAllHeroes = getAllHeroesArray();
+    var hasHealer = false;
+    var supportCount = roles["Support"];
+    var replacementHero;
+    var hasSniper = false;
+    //Loop through the sorted heroes then return the tanks and healers with the highest score
+    sortedAllHeroes.forEach(function (hero, index) {
+        if (recommendedTeam.length < 6) {
+                recommendedTeam.push(getHeroByName(hero.name));
+                roles[hero.role]--;
+            }});
+    if(supportCount == 1) {
+        sortedAllHeroes.forEach(function(hero, index){
+            if (hero.healer && replacementHero == undefined){
+                replacementHero = hero;
+            }
+        });
+        for ( i = recommendedTeam.length-1; i >= 0; i--)
+            if (recommendedTeam[i].role == "Support")
+                recommendedTeam[i] = replacementHero;
     }
-    return counterString;
 }
-
