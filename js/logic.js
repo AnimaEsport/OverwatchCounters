@@ -28,7 +28,7 @@ function mapClicked(e) {
     }
 
     //If the clicked map is not control show the attack & defense radio buttons
-    if (mapType != 'Control')
+    if (mapType !== 'Control')
         $("#AttackDefenseSelect").css("display", "inline-block");
     else
         $("#AttackDefenseSelect").css("display", "none");
@@ -77,8 +77,7 @@ function removeRecommendations() {
     heroData.forEach(function (obj, index) {
         if (document.getElementById("tournamentCheckbox").checked)
             obj.score = obj.proScore;
-        else
-            obj.score = 0;
+        else obj.score = 0;
     });
 }
 
@@ -120,14 +119,14 @@ function generateCounterString(counterStringHero) {
     var heroStrengths = counterStringHero.strengths;
     heroStrengths.forEach(function (strength, index) {
         var indexOfEnemy = enemyTeam.indexOf(strength)
-        if (indexOfEnemy != -1)
+        if (indexOfEnemy !== -1)
             var enemy = enemyTeam[indexOfEnemy]
-            if (countersArray.indexOf(enemy) == -1 && heroStrengths.indexOf(enemy) != -1)
+            if (countersArray.indexOf(enemy) == -1 && heroStrengths.indexOf(enemy) !== -1)
                 countersArray.push(enemy);
     });
 
     //Appends the counters to the end of the string
-    if (countersArray.length != 0)
+    if (countersArray.length !== 0)
         counterString += "Counters ";
     if (countersArray.length == 1)
         counterString += countersArray[0]
@@ -148,7 +147,7 @@ function determineTeamCounters() {
     //For each enemy given, adjust the score to determine the recommended team
     $(".enemyTeamIcon").each(function (index, obj) {
         var enemyHero = $(obj).attr("hero");
-        if (enemyHero != "" && enemyHero != null) {
+        if (enemyHero !== "" && enemyHero !== null) {
             //Add the hero to the enemy team Array
             enemyTeam.push(enemyHero);
 
@@ -166,7 +165,7 @@ function determineTeamCounters() {
 
     //Factor in what heroes are good on the selected map, if a map is selected
     var map = $(".selected").attr('map');
-    if (map != undefined) var mapType = getMapTypeByName(map);
+    if (map !== undefined) var mapType = getMapTypeByName(map);
     var mapHeroes = getMapHeroesByName(map);
     if ($(".selected").length == 1) {
         //mapHeroes.forEach(function (mapHero, index) {incrementHeroByName(mapHero);});
@@ -180,7 +179,7 @@ function determineTeamCounters() {
     //Adjust the recommended composition to fit the meta
     adjustForMeta();
     //Load the recommended team to the UI
-    if ($(".enemyTeamIcon.empty").length != 6 || $(".mapIcon.selected").length == 1)
+    if ($(".enemyTeamIcon.empty").length !== 6 || $(".mapIcon.selected").length == 1)
         pushRecommendedTeamtoUI();
 }
 
@@ -196,12 +195,12 @@ function adjustForMeta() {
     var e = document.getElementById("metaDropdown");
     var selectedMeta = e.options[e.selectedIndex].value;
     //If no meta is selected, and there are missing roles
-    if (selectedMeta == "oneOfEachMeta" && !(classesMap["Tank"] != 0 && classesMap["Healer"] != 0 && classesMap["Offense"] != 0 && classesMap["Defense"] != 0))
+    if (selectedMeta == "oneOfEachMeta" && !(classesMap["Tank"] !== 0 && classesMap["Healer"] !== 0 && classesMap["Offense"] !== 0 && classesMap["Defense"] !== 0))
         verifyOneOfEachRoleInRecommendedTeam();
 
     //If the two tank, two offense, and two healer meta is selected
     else if (selectedMeta == "TwoTwoTwoMeta")
-        adjustTeamforMeta({"Offense": 2, "Tank": 3, "Support": 1});
+        adjustTeamforMeta({"Offense": 2, "Tank": 2, "Support": 2});
 
     //If the three tank and three healer meta is selected
     else if (selectedMeta == "TankMeta")
@@ -250,7 +249,7 @@ function adjustTeamforMeta(roles) {
     var hasSniper = false;
     //Loop through the sorted heroes then return the tanks and healers with the highest score
     sortedAllHeroes.forEach(function (hero, index) {
-        if (recommendedTeam.length < 6) {
+        if (recommendedTeam.length < 6 && roles[hero.role] > 0) {
                 recommendedTeam.push(getHeroByName(hero.name));
                 roles[hero.role]--;
             }});

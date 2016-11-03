@@ -20,10 +20,11 @@ var heroData = [
         actualName: "Ana",
         role: 'Support',
         healer: true,
+        sniper: true,
+        builder: false,
         strengths: ["Dva", "McCree", "Pharah"],
         weaknesses: ["Genji", "Tracer", "Reaper", "Reinhardt"],
         score: 0,
-        sniper: true,
         proScore: 1
     },
     {
@@ -31,10 +32,11 @@ var heroData = [
         actualName: "Bastion",
         role: 'Defense',
         healer: false,
+        sniper: false,
+        builder: false,
         strengths: ["Lucio", "McCree", "Pharah", "Tracer", "Winston"],
         weaknesses: ["Dva", "Genji", "Hanzo", "Pharah", "Roadhog", "Tracer", "Widowmaker"],
         score: 0,
-        sniper: false,
         proScore: -2
     },
     {
@@ -42,10 +44,11 @@ var heroData = [
         actualName: "Dva",
         role: 'Tank',
         healer: false,
+        sniper: false,
+        builder: false,
         strengths: ["Bastion", "Hanzo", "Roadhog", "Widowmaker"],
         weaknesses: ["Reaper", "Tracer", "Pharah", "Zenyatta", "Zarya", "Ana", "Mei", "Genji"],
         score: 0,
-        sniper: false,
         proScore: -1
     },
     {
@@ -53,10 +56,11 @@ var heroData = [
         actualName: "Genji",
         role: 'Offense',
         healer: false,
+        sniper: false,
+        builder: false,
         strengths: ["Ana", "Bastion", "Dva", "Hanzo", "Mercy", "Roadhog", "Tracer", "Widowmaker", "Zenyatta"],
         weaknesses: ["McCree", "Mei", "Symmetra", "Winston", "Zarya"],
         score: 0,
-        sniper: false,
         proScore: 0
     },
     {
@@ -64,10 +68,11 @@ var heroData = [
         actualName: "Hanzo",
         role: 'Defense',
         healer: false,
+        sniper: true,
+        builder: false,
         strengths: ["Bastion", "Hanzo", "Soldier76", "Torbjorn", "Widowmaker"],
         weaknesses: ["Genji", "Tracer", "Winston", "Dva", "Hanzo"],
         score: 0,
-        sniper: true,
         proScore: -1
     },
     {
@@ -75,10 +80,11 @@ var heroData = [
         actualName: "Junkrat",
         role: 'Defense',
         healer: false,
+        sniper: false,
+        builder: false,
         strengths: ["Mei", "Reinhardt", "Symmetra", "Torbjorn"],
         weaknesses: ["Pharah", "Reinhardt", "Widowmaker", "Zarya"],
         score: 0,
-        sniper: false,
         proScore: -2
     },
     {
@@ -86,10 +92,11 @@ var heroData = [
         actualName: "Lucio",
         role: 'Support',
         healer: true,
+        sniper: false,
+        builder: false,
         strengths: ["Reaper"],
         weaknesses: ["Pharah", "Reaper", "Bastion", "Roadhog"],
         score: 0,
-        sniper: false,
         proScore: 2
     },
     {
@@ -97,10 +104,11 @@ var heroData = [
         actualName: "McCree",
         role: 'Offense',
         healer: false,
+        sniper: false,
+        builder: false,
         strengths: ["Genji", "Mei", "Pharah", "Reaper", "Torbjorn", "Tracer"],
         weaknesses: ["Bastion", "Widowmaker", "Zarya", "Reinhardt", "Winston", "Ana"],
         score: 0,
-        sniper: false,
         proScore: 0
     },
     {
@@ -108,10 +116,11 @@ var heroData = [
         actualName: "Mei",
         role: 'Defense',
         healer: false,
+        sniper: false,
+        builder: false,
         strengths: ["Dva", "Genji", "Roadhog", "Soldier76", "Torbjorn", "Widowmaker", "Zarya"],
         weaknesses: ["Junkrat", "McCree", "Pharah", "Widowmaker", "Reaper", "Zarya"],
         score: 0,
-        sniper: false,
         proScore: 0
     },
     {
@@ -119,10 +128,11 @@ var heroData = [
         actualName: "Mercy",
         role: 'Support',
         healer: true,
+        sniper: false,
+        builder: false,
         strengths: [],
         weaknesses: ["Tracer", "Genji", "Widowmaker", "Winston", "Roadhog"],
         score: 0,
-        sniper: false,
         proScore: -1
     },
     {
@@ -130,10 +140,11 @@ var heroData = [
         actualName: "Pharah",
         role: 'Offense',
         healer: false,
+        sniper: false,
+        builder: false,
         strengths: ["Bastion", "Dva", "Junkrat", "Lucio", "Mei", "Reaper", "Reinhardt", "Symmetra"],
         weaknesses: ["Bastion", "McCree", "Soldier76", "Widowmaker", "Roadhog", "Ana"],
         score: 0,
-        sniper: false,
         proScore: -1
     },
     {
@@ -141,10 +152,11 @@ var heroData = [
         actualName: "Reaper",
         role: 'Offense',
         healer: false,
+        sniper: false,
+        builder: false,
         strengths: ["Ana", "Dva", "Lucio", "Mei", "Reinhardt", "Widowmaker", "Winston", "Zarya", "Zenyatta"],
         weaknesses: ["Lucio", "Roadhog", "McCree", "Pharah", "Zarya"],
         score: 0,
-        sniper: false,
         proScore: 0
     },
     {
@@ -152,10 +164,11 @@ var heroData = [
         actualName: "Reinhardt",
         role: 'Tank',
         healer: false,
+        sniper: false,
+        builder: false,
         strengths: ["Ana", "Junkrat", "McCree", "Roadhog", "Soldier76", "Widowmaker", "Winston", "Zenyatta"],
         weaknesses: ["Junkrat", "McCree", "Pharah", "Reaper", "Symmetra", "Winston", "Torbjorn"],
         score: 0,
-        sniper: false,
         proScore: 1
     },
     {
@@ -163,10 +176,11 @@ var heroData = [
         actualName: "Roadhog",
         role: 'Tank',
         healer: false,
+        sniper: false,
+        builder: false,
         strengths: ["Bastion", "Lucio", "Mercy", "Pharah", "Reaper", "Torbjorn", "Tracer", "Widowmaker"],
         weaknesses: ["Mei", "Zarya", "Reinhardt", "Genji", "Tracer", "Dva"],
         score: 0,
-        sniper: false,
         proScore: 0
     },
     {
@@ -174,10 +188,11 @@ var heroData = [
         actualName: "Soldier: 76",
         role: 'Offense',
         healer: false,
+        sniper: false,
+        builder: false,
         strengths: ["Pharah", "Widowmaker"],
         weaknesses: ["Mei", "Hanzo", "Reinhardt", "Zenyatta"],
         score: 0,
-        sniper: false,
         proScore: -2
     },
     {
@@ -185,10 +200,11 @@ var heroData = [
         actualName: "Symmetra",
         role: 'Support',
         healer: false,
+        sniper: false,
+        builder: true,
         strengths: ["Genji", "Reinhardt"],
         weaknesses: ["Tracer", "Winston", "Junkrat", "Pharah"],
         score: 0,
-        sniper: false,
         proScore: -2
     },
     {
@@ -196,10 +212,11 @@ var heroData = [
         actualName: "Torbjorn",
         role: 'Defense',
         healer: false,
+        sniper: false,
+        builder: true,
         strengths: ["Tracer"],
         weaknesses: ["Widowmaker", "Reinhardt", "McCree", "Mei", "Junkrat", "Pharah", "Roadhog", "Hanzo"],
         score: 0,
-        sniper: false,
         proScore: -2
     },
     {
@@ -207,10 +224,11 @@ var heroData = [
         actualName: "Tracer",
         role: 'Offense',
         healer: false,
+        sniper: false,
+        builder: false,
         strengths: ["Ana", "Bastion", "Dva", "Hanzo", "Mercy", "Roadhog", "Symmetra", "Widowmaker", "Zarya", "Zenyatta"],
         weaknesses: ["Genji", "McCree", "Torbjorn", "Bastion", "Roadhog"],
         score: 0,
-        sniper: false,
         proScore: 0
     },
     {
@@ -218,10 +236,11 @@ var heroData = [
         actualName: "Widowmaker",
         role: 'Defense',
         healer: false,
+        sniper: true,
+        builder: false,
         strengths: ["Bastion", "Junkrat", "McCree", "Mei", "Mercy", "Pharah", "Torbjorn", "Zarya", "Zenyatta"],
         weaknesses: ["Mei", "Hanzo", "Genji", "Tracer", "Reaper", "Soldier76", "Dva", "Winston", "Roadhog", "Reinhardt"],
         score: 0,
-        sniper: true,
         proScore: -2
     },
     {
@@ -229,10 +248,11 @@ var heroData = [
         actualName: "Winston",
         role: 'Tank',
         healer: false,
+        sniper: false,
+        builder: false,
         strengths: ["Genji", "Hanzo", "McCree", "Mercy", "Reinhardt", "Symmetra", "Widowmaker", "Zenyatta"],
         weaknesses: ["Reaper", "Bastion", "Reinhardt", "Zenyatta"],
         score: 0,
-        sniper: false,
         proScore: 0
     },
     {
@@ -240,10 +260,11 @@ var heroData = [
         actualName: "Zarya",
         role: 'Tank',
         healer: false,
+        sniper: false,
+        builder: false,
         strengths: ["Dva", "Genji", "Junkrat", "McCree", "Mei", "Reaper", "Roadhog"],
         weaknesses: ["Tracer", "Reaper", "Mei", "Widowmaker"],
         score: 0,
-        sniper: false,
         proScore: 2
     },
     {
