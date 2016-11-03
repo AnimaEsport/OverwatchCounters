@@ -232,7 +232,10 @@ function verifyOneOfEachRoleInRecommendedTeam(){
             else
                 var roleHeroes = getSortedRoleByName(role);
             if (classesMap[potentialHeroToReplace.role] > 1) {
-                recommendedTeam[i] = getHeroByName(roleHeroes[0].name)
+                console.log("Replacing " + recommendedTeam[i].name + " with " + getHeroByName(roleHeroes[0].name).name)
+                recommendedTeam.splice(i, 1);
+                recommendedTeam.push(getHeroByName(roleHeroes[0].name))
+                //recommendedTeam[i] = getHeroByName(roleHeroes[0].name);
                 i = -1; //Kill the loop since the missing role has been filed
             }
         }
@@ -263,15 +266,5 @@ function adjustTeamforMeta(roles) {
 
         }
     });
-    if (supportCount == 1) {
-        sortedAllHeroes.forEach(function (hero, index) {
-            if (hero.healer && replacementHero == undefined) {
-                replacementHero = hero;
-            }
-        });
-        for (i = recommendedTeam.length - 1; i >= 0; i--)
-            if (recommendedTeam[i].role == "Support")
-                recommendedTeam[i] = replacementHero;
-    }
 }
 
