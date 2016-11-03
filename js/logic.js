@@ -119,10 +119,11 @@ function generateCounterString(counterStringHero) {
     var heroStrengths = counterStringHero.strengths;
     heroStrengths.forEach(function (strength, index) {
         var indexOfEnemy = enemyTeam.indexOf(strength)
-        if (indexOfEnemy !== -1)
+        if (indexOfEnemy !== -1) {
             var enemy = enemyTeam[indexOfEnemy]
             if (countersArray.indexOf(enemy) == -1 && heroStrengths.indexOf(enemy) !== -1)
                 countersArray.push(enemy);
+        }
     });
 
     //Appends the counters to the end of the string
@@ -247,20 +248,30 @@ function adjustTeamforMeta(roles) {
     var supportCount = roles["Support"];
     var replacementHero;
     var hasSniper = false;
+    var hasBuilder = false;
     //Loop through the sorted heroes then return the tanks and healers with the highest score
     sortedAllHeroes.forEach(function (hero, index) {
         if (recommendedTeam.length < 6 && roles[hero.role] > 0) {
+            if (hero.sniper && !hasSniper) {
+                hasSniper=true;
                 recommendedTeam.push(getHeroByName(hero.name));
                 roles[hero.role]--;
-            }});
-    if(supportCount == 1) {
-        sortedAllHeroes.forEach(function(hero, index){
-            if (hero.healer && replacementHero == undefined){
+            } else if (!hero.sniper) {
+                recommendedTeam.push(getHeroByName(hero.name));
+                roles[hero.role]--;
+            }
+
+        }
+    });
+    if (supportCount == 1) {
+        sortedAllHeroes.forEach(function (hero, index) {
+            if (hero.healer && replacementHero == undefined) {
                 replacementHero = hero;
             }
         });
-        for ( i = recommendedTeam.length-1; i >= 0; i--)
+        for (i = recommendedTeam.length - 1; i >= 0; i--)
             if (recommendedTeam[i].role == "Support")
                 recommendedTeam[i] = replacementHero;
     }
 }
+
