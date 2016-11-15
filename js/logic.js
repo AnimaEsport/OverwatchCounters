@@ -79,6 +79,11 @@ function removeRecommendations() {
             obj.score = obj.proScore;
         else obj.score = 0;
     });
+    heroData.forEach(function (obj, index) {
+        if (document.getElementById("tournamentCheckbox").checked)
+            obj.score = obj.proScore;
+        else obj.score = 0;
+    });
 }
 
 //Removes the enemy from an enemyTeamIcon when it is clicked
@@ -91,8 +96,6 @@ function removeEnemy(clickedEnemy) {
     }
 }
 
-
-
 //Displays the recommended team and sets the data balloon to be visible
 function pushRecommendedTeamtoUI() {
     //Loads the heroes in to the recommendedTeamIcon elements
@@ -100,10 +103,17 @@ function pushRecommendedTeamtoUI() {
         var firstRecommendedTeamIcon = $(".recommendedTeamIcon.empty").first()
         firstRecommendedTeamIcon.css("background-image", "url(images/CharacterIcons/" + hero.name + ".png)");
         firstRecommendedTeamIcon.attr("hero", hero.name);
-        firstRecommendedTeamIcon.attr("data-balloon", generateCounterString(hero));
+        //firstRecommendedTeamIcon.attr("data-balloon", generateCounterString(hero));
         firstRecommendedTeamIcon.removeClass("empty");
     });
 
+    recommendedTeam.forEach(function (hero, index) {
+        var firstRecommendedTeamIcon = $(".recommendedTeamIcon.empty").first();
+        firstRecommendedTeamIcon.css("background-image", "url(images/CharacterIcons/" + hero.name + ".png)");
+        firstRecommendedTeamIcon.attr("hero", hero.name);
+        //firstRecommendedTeamIcon.attr("data-balloon", generateCounterString(hero));
+        firstRecommendedTeamIcon.removeClass("empty");
+    });
     //Sets the balloons to be visible
     $("[data-balloon]:hover:before, [data-balloon]:hover:after").css("-khtml-opacity", 1);
     $("[data-balloon]:hover:before, [data-balloon]:hover:after").css("-moz-opacity", 1);
@@ -151,16 +161,9 @@ function determineTeamCounters() {
         if (enemyHero !== "" && enemyHero !== null) {
             //Add the hero to the enemy team Array
             enemyTeam.push(enemyHero);
-
-            //Factor in who on the enemy team counters your team
-            getHeroStrengthsByName(enemyHero).forEach(function (_hero, index) {
-                decrementHeroByName(_hero, 1);
-            });
-
-            //Factor in who your team counters
-            getHeroWeaknessesByName(enemyHero).forEach(function (_hero, index) {
-                incrementHeroByName(_hero, 1);
-            });
+            var newEnemy = getHeroByName(enemyHero);
+            for (var counter in newEnemy.counterScores)
+                incrementHeroByName(counter, newEnemy.counterScores[counter]);
         }
     });
 
@@ -232,7 +235,6 @@ function verifyOneOfEachRoleInRecommendedTeam(){
             else
                 var roleHeroes = getSortedRoleByName(role);
             if (classesMap[potentialHeroToReplace.role] > 1) {
-                console.log("Replacing " + recommendedTeam[i].name + " with " + getHeroByName(roleHeroes[0].name).name)
                 recommendedTeam.splice(i, 1);
                 recommendedTeam.push(getHeroByName(roleHeroes[0].name))
                 //recommendedTeam[i] = getHeroByName(roleHeroes[0].name);

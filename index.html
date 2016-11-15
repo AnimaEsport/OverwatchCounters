@@ -8,6 +8,7 @@
     <script type="application/javascript" src="js/logic.js"></script>
     <link href=css/style.css type="text/css" rel="stylesheet">
     <link href="css/balloon.css" type="text/css" rel="stylesheet">
+    <link href="css/font-awesome.css" type="text/css" rel="stylesheet">
     <title>Overwatch Team Generator</title>
     <meta name="viewport" content="width=device-width">
 </head>
@@ -57,14 +58,14 @@
             </div>
             <h4 class="teamLabel">Enemy Team (click to remove):</h4>
             <div id="enemyTeamList">
-                <div ng-repeat="i in [1,2,3,4,5,6]" id="{{'enemyTeam' + i}}" hero="" class="enemyTeamIcon empty" src="" onclick="removeEnemy(this)"></div>
+                <div ng-repeat="i in [1,2,3,4,5,6]" id="{{'enemyTeam' + i}}" data-balloon="" data-balloon-pos="top" hero="" class="enemyTeamIcon empty" src="" onclick="removeEnemy(this)"></div>
             </div>
             <h4 class="teamLabel">Recommend Team:</h4>
             <div id="recommendTeamList">
                 <div ng-repeat="i in [1,2,3,4,5,6]" type="button" id="{{ 'recommendTeam' + i }}" data-balloon="" data-balloon-pos="top" hero="" class="recommendedTeamIcon empty" src=""></div>
             </div>
             <div id="footer">
-                <p>Tournament data from <a href="https://www.overbuff.com">Overbuff</a> | Hero weakness data from <a href="http://overwatch.gamepedia.com/">Overwatch Gamepedia</a> | Map data from <a href="http://overwatchcountersguide.com">/u/foxbarrington</a>
+                <p>Tournament data from <a href="https://www.overbuff.com">Overbuff</a> | Hero weakness and map data from <a href="http://overwatchcountersguide.com">/u/foxbarrington</a>
                     <br> An unofficial fan project built with <span id="heart">&hearts;</span> by <a href="https://andrewkar.ch/">Andrew</a></p>
             </div>
         </div>

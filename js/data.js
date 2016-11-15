@@ -2,283 +2,827 @@
 //File also contains all functions used to retrieve and manipulate the data data.
 var mapWeight = 1; //Amount of points to give to a hero that's good on the map.
 var counterWeight = 1; //Amount of points to give to each hero that counters a hero on the enemy team
-var weaknessWeight = 1;  //Amount of points to give to each hero that counters a hero on hte recommended team
+var weaknessWeight = 1; //Amount of points to give to each hero that counters a hero on hte recommended team
 
 //Hero data, all data for each hero is stored
 //name: string - Name of the hero with no spaces or special character, for use in logic.js
 //actualName: string - Display name of the hero, contains spaces and special characters
 //role: string - That role the hero filles, can be Attack, Defense, Tank, or support
 //healer: Boolean - Is the hero a healer
-//strengths: Array of strings - Who the hero is strong against
-//weaknesses: Array of strings - Who the hero is weak against
+//sniper: Boolean - Is the hero a sniper
+//builder: Boolean - Is the hero a builder
+//counterScores: Associative Array - How well each hero does against the hero
 //score: Int - The current score of the hero based on counters, weaknesses, and map data
 //proScorew: Int - the score based on where the hero is in the current tournoment meta.  Heroes are graded A to F and get a score from 2 to -2 where A = 2 and F = -2
-//icon: string - Where the hero icon is stored
+
 var heroData = [
     {
         name: "Ana",
         actualName: "Ana",
-        role: 'Support',
+        role: "Support",
         healer: true,
         sniper: true,
         builder: false,
-        strengths: ["Dva", "McCree", "Pharah"],
-        weaknesses: ["Genji", "Tracer", "Reaper", "Reinhardt"],
+        counterScores: {
+            Ana: 0,
+            Bastion: -1,
+            Dva: 1,
+            Genji: 2,
+            Hanzo: 1,
+            Junkrat: 0,
+            Lucio: 1,
+            McCree: 1,
+            Mei: 1,
+            Mercy: -2,
+            Pharah: 0,
+            Reaper: 1,
+            Reinhardt: 0,
+            Roadhog: 2,
+            Soldier76: 0,
+            Sombra: 0,
+            Symmetra: -1,
+            Torbjorn: 0,
+            Tracer: 1,
+            Widowmaker: 0,
+            Winston: 1,
+            Zarya: 0,
+            Zenyatta: 0
+        },
         score: 0,
-        proScore: 1
+        proScore: 3
     },
     {
         name: "Bastion",
         actualName: "Bastion",
-        role: 'Defense',
+        role: "Defense",
         healer: false,
         sniper: false,
         builder: false,
-        strengths: ["Lucio", "McCree", "Pharah", "Tracer", "Winston"],
-        weaknesses: ["Dva", "Genji", "Hanzo", "Pharah", "Roadhog", "Tracer", "Widowmaker"],
+        counterScores: {
+            Ana: 1,
+            Bastion: 0,
+            Dva: 1,
+            Genji: 2,
+            Hanzo: 2,
+            Junkrat: 2,
+            Lucio: -1,
+            McCree: 1,
+            Mei: 1,
+            Mercy: -1,
+            Pharah: 2,
+            Reaper: 0,
+            Reinhardt: -1,
+            Roadhog: 1,
+            Soldier76: 1,
+            Sombra: 0,
+            Symmetra: 0,
+            Torbjorn: -2,
+            Tracer: 2,
+            Widowmaker: 2,
+            Winston: -1,
+            Zarya: 0,
+            Zenyatta: 1
+        },
         score: 0,
         proScore: -2
     },
     {
         name: "Dva",
         actualName: "Dva",
-        role: 'Tank',
+        role: "Tank",
         healer: false,
         sniper: false,
         builder: false,
-        strengths: ["Bastion", "Hanzo", "Roadhog", "Widowmaker"],
-        weaknesses: ["Reaper", "Tracer", "Pharah", "Zenyatta", "Zarya", "Ana", "Mei", "Genji"],
+        counterScores: {
+            Ana: 0,
+            Bastion: 0,
+            Dva: 0,
+            Genji: 0,
+            Hanzo: 0,
+            Junkrat: 1,
+            Lucio: 0,
+            McCree: 0,
+            Mei: 2,
+            Mercy: -1,
+            Pharah: -1,
+            Reaper: 1,
+            Reinhardt: 1,
+            Roadhog: 1,
+            Soldier76: 1,
+            Sombra: 0,
+            Symmetra: 0,
+            Torbjorn: -2,
+            Tracer: 0,
+            Widowmaker: -1,
+            Winston: -1,
+            Zarya: 2,
+            Zenyatta: 2
+        },
         score: 0,
-        proScore: -1
+        proScore: -2
     },
     {
         name: "Genji",
         actualName: "Genji",
-        role: 'Offense',
+        role: "Offense",
         healer: false,
         sniper: false,
         builder: false,
-        strengths: ["Ana", "Bastion", "Dva", "Hanzo", "Mercy", "Roadhog", "Tracer", "Widowmaker", "Zenyatta"],
-        weaknesses: ["McCree", "Mei", "Symmetra", "Winston", "Zarya"],
+        counterScores: {
+            Ana: 1,
+            Bastion: -1,
+            Dva: 0,
+            Genji: 0,
+            Hanzo: -1,
+            Junkrat: 0,
+            Lucio: 0,
+            McCree: 1,
+            Mei: 2,
+            Mercy: -1,
+            Pharah: 0,
+            Reaper: 0,
+            Reinhardt: 0,
+            Roadhog: 2,
+            Soldier76: 1,
+            Sombra: 0,
+            Symmetra: 2,
+            Torbjorn: 1,
+            Tracer: 1,
+            Widowmaker: 0,
+            Winston: 2,
+            Zarya: 1,
+            Zenyatta: 1
+        },
         score: 0,
         proScore: 0
     },
     {
         name: "Hanzo",
         actualName: "Hanzo",
-        role: 'Defense',
+        role: "Defense",
         healer: false,
         sniper: true,
         builder: false,
-        strengths: ["Bastion", "Hanzo", "Soldier76", "Torbjorn", "Widowmaker"],
-        weaknesses: ["Genji", "Tracer", "Winston", "Dva", "Hanzo"],
+        counterScores: {
+            Ana: 1,
+            Bastion: -1,
+            Dva: 1,
+            Genji: 1,
+            Hanzo: 0,
+            Junkrat: -1,
+            Lucio: 0,
+            McCree: 0,
+            Mei: 1,
+            Mercy: -2,
+            Pharah: 0,
+            Reaper: 0,
+            Reinhardt: 1,
+            Roadhog: 1,
+            Soldier76: 1,
+            Sombra: 0,
+            Symmetra: 1,
+            Torbjorn: -1,
+            Tracer: 1,
+            Widowmaker: 1,
+            Winston: 2,
+            Zarya: 0,
+            Zenyatta: -1
+        },
         score: 0,
-        proScore: -1
+        proScore: -2
     },
     {
         name: "Junkrat",
         actualName: "Junkrat",
-        role: 'Defense',
+        role: "Defense",
         healer: false,
         sniper: false,
         builder: false,
-        strengths: ["Mei", "Reinhardt", "Symmetra", "Torbjorn"],
-        weaknesses: ["Pharah", "Reinhardt", "Widowmaker", "Zarya"],
+        counterScores: {
+            Ana: 0,
+            Bastion: -1,
+            Dva: 1,
+            Genji: 0,
+            Hanzo: 2,
+            Junkrat: 0,
+            Lucio: 0,
+            McCree: 1,
+            Mei: 1,
+            Mercy: -1,
+            Pharah: 2,
+            Reaper: 0,
+            Reinhardt: -1,
+            Roadhog: 1,
+            Soldier76: 1,
+            Sombra: 0,
+            Symmetra: -1,
+            Torbjorn: 1,
+            Tracer: 1,
+            Widowmaker: 2,
+            Winston: 0,
+            Zarya: 1,
+            Zenyatta: 0
+        },
         score: 0,
         proScore: -2
     },
     {
         name: "Lucio",
         actualName: "Lucio",
-        role: 'Support',
+        role: "Support",
         healer: true,
         sniper: false,
         builder: false,
-        strengths: ["Reaper"],
-        weaknesses: ["Pharah", "Reaper", "Bastion", "Roadhog"],
+        counterScores: {
+            Ana: 1,
+            Bastion: 1,
+            Dva: 1,
+            Genji: 1,
+            Hanzo: 1,
+            Junkrat: 1,
+            Lucio: 0,
+            McCree: 2,
+            Mei: 2,
+            Mercy: -1,
+            Pharah: 1,
+            Reaper: 0,
+            Reinhardt: 1,
+            Roadhog: 2,
+            Soldier76: 1,
+            Sombra: 0,
+            Symmetra: 1,
+            Torbjorn: 0,
+            Tracer: 1,
+            Widowmaker: 1,
+            Winston: 2,
+            Zarya: 1,
+            Zenyatta: 0
+        },
         score: 0,
         proScore: 2
     },
     {
         name: "McCree",
         actualName: "McCree",
-        role: 'Offense',
+        role: "Offense",
         healer: false,
         sniper: false,
         builder: false,
-        strengths: ["Genji", "Mei", "Pharah", "Reaper", "Torbjorn", "Tracer"],
-        weaknesses: ["Bastion", "Widowmaker", "Zarya", "Reinhardt", "Winston", "Ana"],
+        counterScores: {
+            Ana: 0,
+            Bastion: 1,
+            Dva: 1,
+            Genji: 1,
+            Hanzo: 1,
+            Junkrat: 0,
+            Lucio: 0,
+            McCree: 0,
+            Mei: 1,
+            Mercy: -2,
+            Pharah: -1,
+            Reaper: -1,
+            Reinhardt: 0,
+            Roadhog: 1,
+            Soldier76: 0,
+            Sombra: 0,
+            Symmetra: -1,
+            Torbjorn: 0,
+            Tracer: -1,
+            Widowmaker: 1,
+            Winston: 0,
+            Zarya: 0,
+            Zenyatta: -1
+        },
         score: 0,
         proScore: 0
     },
     {
         name: "Mei",
         actualName: "Mei",
-        role: 'Defense',
+        role: "Defense",
         healer: false,
         sniper: false,
         builder: false,
-        strengths: ["Dva", "Genji", "Roadhog", "Soldier76", "Torbjorn", "Widowmaker", "Zarya"],
-        weaknesses: ["Junkrat", "McCree", "Pharah", "Widowmaker", "Reaper", "Zarya"],
+        counterScores: {
+            Ana: 1,
+            Bastion: 0,
+            Dva: -1,
+            Genji: -2,
+            Hanzo: 1,
+            Junkrat: 1,
+            Lucio: 0,
+            McCree: 1,
+            Mei: 0,
+            Mercy: -2,
+            Pharah: 1,
+            Reaper: 1,
+            Reinhardt: 0,
+            Roadhog: 0,
+            Soldier76: 0,
+            Sombra: 0,
+            Symmetra: -1,
+            Torbjorn: 0,
+            Tracer: 2,
+            Widowmaker: 1,
+            Winston: 0,
+            Zarya: 1,
+            Zenyatta: 0
+        },
         score: 0,
         proScore: 0
     },
     {
         name: "Mercy",
         actualName: "Mercy",
-        role: 'Support',
+        role: "Support",
         healer: true,
         sniper: false,
         builder: false,
-        strengths: [],
-        weaknesses: ["Tracer", "Genji", "Widowmaker", "Winston", "Roadhog"],
+        counterScores: {
+            Ana: 2,
+            Bastion: 2,
+            Dva: 2,
+            Genji: 2,
+            Hanzo: 2,
+            Junkrat: 2,
+            Lucio: 0,
+            McCree: 2,
+            Mei: 2,
+            Mercy: 0,
+            Pharah: 2,
+            Reaper: 2,
+            Reinhardt: 2,
+            Roadhog: 2,
+            Soldier76: 2,
+            Sombra: 0,
+            Symmetra: 1,
+            Torbjorn: 1,
+            Tracer: 2,
+            Widowmaker: 2,
+            Winston: 2,
+            Zarya: 2,
+            Zenyatta: 2
+        },
         score: 0,
-        proScore: -1
+        proScore: -2
     },
     {
         name: "Pharah",
         actualName: "Pharah",
-        role: 'Offense',
+        role: "Offense",
         healer: false,
         sniper: false,
         builder: false,
-        strengths: ["Bastion", "Dva", "Junkrat", "Lucio", "Mei", "Reaper", "Reinhardt", "Symmetra"],
-        weaknesses: ["Bastion", "McCree", "Soldier76", "Widowmaker", "Roadhog", "Ana"],
+        counterScores: {
+            Ana: 1,
+            Bastion: 0,
+            Dva: 1,
+            Genji: 0,
+            Hanzo: 1,
+            Junkrat: -2,
+            Lucio: -2,
+            McCree: 2,
+            Mei: -1,
+            Mercy: -2,
+            Pharah: 0,
+            Reaper: -1,
+            Reinhardt: 0,
+            Roadhog: 1,
+            Soldier76: 2,
+            Sombra: 0,
+            Symmetra: -2,
+            Torbjorn: 0,
+            Tracer: 0,
+            Widowmaker: 1,
+            Winston: 0,
+            Zarya: -1,
+            Zenyatta: 1
+        },
         score: 0,
-        proScore: -1
+        proScore: 0
     },
     {
         name: "Reaper",
         actualName: "Reaper",
-        role: 'Offense',
+        role: "Offense",
         healer: false,
         sniper: false,
         builder: false,
-        strengths: ["Ana", "Dva", "Lucio", "Mei", "Reinhardt", "Widowmaker", "Winston", "Zarya", "Zenyatta"],
-        weaknesses: ["Lucio", "Roadhog", "McCree", "Pharah", "Zarya"],
+        counterScores: {
+            Ana: 0,
+            Bastion: 1,
+            Dva: 1,
+            Genji: 0,
+            Hanzo: 0,
+            Junkrat: 1,
+            Lucio: 2,
+            McCree: 1,
+            Mei: 1,
+            Mercy: -2,
+            Pharah: 2,
+            Reaper: 0,
+            Reinhardt: 0,
+            Roadhog: 0,
+            Soldier76: 0,
+            Sombra: 0,
+            Symmetra: -1,
+            Torbjorn: 0,
+            Tracer: 1,
+            Widowmaker: 1,
+            Winston: -2,
+            Zarya: -1,
+            Zenyatta: 0
+        },
         score: 0,
         proScore: 0
     },
     {
         name: "Reinhardt",
         actualName: "Reinhardt",
-        role: 'Tank',
+        role: "Tank",
         healer: false,
         sniper: false,
         builder: false,
-        strengths: ["Ana", "Junkrat", "McCree", "Roadhog", "Soldier76", "Widowmaker", "Winston", "Zenyatta"],
-        weaknesses: ["Junkrat", "McCree", "Pharah", "Reaper", "Symmetra", "Winston", "Torbjorn"],
+        counterScores: {
+            Ana: 0,
+            Bastion: 2,
+            Dva: 0,
+            Genji: -1,
+            Hanzo: 0,
+            Junkrat: 2,
+            Lucio: 1,
+            McCree: 1,
+            Mei: 1,
+            Mercy: -2,
+            Pharah: 1,
+            Reaper: 2,
+            Reinhardt: 0,
+            Roadhog: 2,
+            Soldier76: 0,
+            Sombra: 0,
+            Symmetra: 1,
+            Torbjorn: -1,
+            Tracer: 2,
+            Widowmaker: -2,
+            Winston: 1,
+            Zarya: 0,
+            Zenyatta: 1
+        },
         score: 0,
         proScore: 1
     },
     {
         name: "Roadhog",
         actualName: "Roadhog",
-        role: 'Tank',
+        role: "Tank",
         healer: false,
         sniper: false,
         builder: false,
-        strengths: ["Bastion", "Lucio", "Mercy", "Pharah", "Reaper", "Torbjorn", "Tracer", "Widowmaker"],
-        weaknesses: ["Mei", "Zarya", "Reinhardt", "Genji", "Tracer", "Dva"],
+        counterScores: {
+            Ana: 2,
+            Bastion: 2,
+            Dva: 1,
+            Genji: 0,
+            Hanzo: 1,
+            Junkrat: 0,
+            Lucio: 1,
+            McCree: 0,
+            Mei: 1,
+            Mercy: -2,
+            Pharah: 0,
+            Reaper: 2,
+            Reinhardt: 0,
+            Roadhog: 0,
+            Soldier76: 1,
+            Sombra: 0,
+            Symmetra: -2,
+            Torbjorn: -1,
+            Tracer: 2,
+            Widowmaker: 1,
+            Winston: -2,
+            Zarya: 1,
+            Zenyatta: 2
+        },
         score: 0,
         proScore: 0
     },
     {
         name: "Soldier76",
         actualName: "Soldier: 76",
-        role: 'Offense',
+        role: "Offense",
         healer: false,
         sniper: false,
         builder: false,
-        strengths: ["Pharah", "Widowmaker"],
-        weaknesses: ["Mei", "Hanzo", "Reinhardt", "Zenyatta"],
+        counterScores: {
+            Ana: 1,
+            Bastion: 0,
+            Dva: 1,
+            Genji: 1,
+            Hanzo: 0,
+            Junkrat: 1,
+            Lucio: 1,
+            McCree: 1,
+            Mei: 1,
+            Mercy: -2,
+            Pharah: -1,
+            Reaper: 0,
+            Reinhardt: 2,
+            Roadhog: 2,
+            Soldier76: 0,
+            Sombra: 0,
+            Symmetra: -1,
+            Torbjorn: 0,
+            Tracer: 0,
+            Widowmaker: 0,
+            Winston: 0,
+            Zarya: 0,
+            Zenyatta: 0
+        },
         score: 0,
         proScore: -2
     },
     {
+        name: "Sombra",
+        actualName: "Sombra",
+        role: "Offense",
+        healer: false,
+        sniper: false,
+        builder: false,
+        counterScores: {
+            Ana: 0,
+            Bastion: 0,
+            Dva: 0,
+            Genji: 0,
+            Hanzo: 0,
+            Junkrat: 0,
+            Lucio: 0,
+            McCree: 0,
+            Mei: 0,
+            Mercy: 0,
+            Pharah: 0,
+            Reaper: 0,
+            Reinhardt: 0,
+            Roadhog: 0,
+            Soldier76: 0,
+            Sombra: 0,
+            Symmetra: 0,
+            Torbjorn: 0,
+            Tracer: 0,
+            Widowmaker: 0,
+            Winston: 0,
+            Zarya: 0,
+            Zenyatta: 0
+        },
+        score: 0,
+        proScore: 0
+    },
+    {
         name: "Symmetra",
         actualName: "Symmetra",
-        role: 'Support',
+        role: "Support",
         healer: false,
         sniper: false,
         builder: true,
-        strengths: ["Genji", "Reinhardt"],
-        weaknesses: ["Tracer", "Winston", "Junkrat", "Pharah"],
+        counterScores: {
+            Ana: 0,
+            Bastion: 0,
+            Dva: 1,
+            Genji: -2,
+            Hanzo: 0,
+            Junkrat: 1,
+            Lucio: 0,
+            McCree: 1,
+            Mei: 2,
+            Mercy: -2,
+            Pharah: 2,
+            Reaper: 1,
+            Reinhardt: -1,
+            Roadhog: 1,
+            Soldier76: 2,
+            Sombra: 0,
+            Symmetra: 0,
+            Torbjorn: 0,
+            Tracer: -1,
+            Widowmaker: -1,
+            Winston: 2,
+            Zarya: 2,
+            Zenyatta: 0
+        },
         score: 0,
         proScore: -2
     },
     {
         name: "Torbjorn",
         actualName: "Torbjorn",
-        role: 'Defense',
+        role: "Defense",
         healer: false,
         sniper: false,
         builder: true,
-        strengths: ["Tracer"],
-        weaknesses: ["Widowmaker", "Reinhardt", "McCree", "Mei", "Junkrat", "Pharah", "Roadhog", "Hanzo"],
+        counterScores: {
+            Ana: 1,
+            Bastion: 1,
+            Dva: 2,
+            Genji: 0,
+            Hanzo: 2,
+            Junkrat: 2,
+            Lucio: 2,
+            McCree: 0,
+            Mei: 1,
+            Mercy: -1,
+            Pharah: 2,
+            Reaper: 0,
+            Reinhardt: 2,
+            Roadhog: 2,
+            Soldier76: 2,
+            Sombra: 0,
+            Symmetra: 0,
+            Torbjorn: 0,
+            Tracer: -1,
+            Widowmaker: 2,
+            Winston: 1,
+            Zarya: 1,
+            Zenyatta: 2
+        },
         score: 0,
         proScore: -2
     },
     {
         name: "Tracer",
         actualName: "Tracer",
-        role: 'Offense',
+        role: "Offense",
         healer: false,
         sniper: false,
         builder: false,
-        strengths: ["Ana", "Bastion", "Dva", "Hanzo", "Mercy", "Roadhog", "Symmetra", "Widowmaker", "Zarya", "Zenyatta"],
-        weaknesses: ["Genji", "McCree", "Torbjorn", "Bastion", "Roadhog"],
+        counterScores: {
+            Ana: -1,
+            Bastion: -1,
+            Dva: 0,
+            Genji: 0,
+            Hanzo: 0,
+            Junkrat: 1,
+            Lucio: 0,
+            McCree: 2,
+            Mei: 0,
+            Mercy: -2,
+            Pharah: 1,
+            Reaper: 0,
+            Reinhardt: -1,
+            Roadhog: 2,
+            Soldier76: 1,
+            Sombra: 0,
+            Symmetra: 0,
+            Torbjorn: 2,
+            Tracer: 0,
+            Widowmaker: 0,
+            Winston: 1,
+            Zarya: 0,
+            Zenyatta: -1
+        },
         score: 0,
-        proScore: 0
+        proScore: -1
     },
     {
         name: "Widowmaker",
         actualName: "Widowmaker",
-        role: 'Defense',
+        role: "Defense",
         healer: false,
         sniper: true,
         builder: false,
-        strengths: ["Bastion", "Junkrat", "McCree", "Mei", "Mercy", "Pharah", "Torbjorn", "Zarya", "Zenyatta"],
-        weaknesses: ["Mei", "Hanzo", "Genji", "Tracer", "Reaper", "Soldier76", "Dva", "Winston", "Roadhog", "Reinhardt"],
+        counterScores: {
+            Ana: 0,
+            Bastion: -1,
+            Dva: 2,
+            Genji: 2,
+            Hanzo: 0,
+            Junkrat: -2,
+            Lucio: 0,
+            McCree: -1,
+            Mei: 0,
+            Mercy: -2,
+            Pharah: -1,
+            Reaper: -1,
+            Reinhardt: 1,
+            Roadhog: 0,
+            Soldier76: 1,
+            Sombra: 0,
+            Symmetra: 0,
+            Torbjorn: -1,
+            Tracer: 1,
+            Widowmaker: 0,
+            Winston: 2,
+            Zarya: -1,
+            Zenyatta: 0
+        },
         score: 0,
         proScore: -2
     },
     {
         name: "Winston",
         actualName: "Winston",
-        role: 'Tank',
+        role: "Tank",
         healer: false,
         sniper: false,
         builder: false,
-        strengths: ["Genji", "Hanzo", "McCree", "Mercy", "Reinhardt", "Symmetra", "Widowmaker", "Zenyatta"],
-        weaknesses: ["Reaper", "Bastion", "Reinhardt", "Zenyatta"],
+        counterScores: {
+            Ana: -1,
+            Bastion: 2,
+            Dva: 2,
+            Genji: -2,
+            Hanzo: -1,
+            Junkrat: 1,
+            Lucio: 1,
+            McCree: 0,
+            Mei: 2,
+            Mercy: -2,
+            Pharah: 0,
+            Reaper: 2,
+            Reinhardt: 2,
+            Roadhog: 2,
+            Soldier76: 2,
+            Sombra: 0,
+            Symmetra: -1,
+            Torbjorn: 1,
+            Tracer: 0,
+            Widowmaker: -1,
+            Winston: 0,
+            Zarya: 1,
+            Zenyatta: 2
+        },
         score: 0,
         proScore: 0
     },
     {
         name: "Zarya",
         actualName: "Zarya",
-        role: 'Tank',
+        role: "Tank",
         healer: false,
         sniper: false,
         builder: false,
-        strengths: ["Dva", "Genji", "Junkrat", "McCree", "Mei", "Reaper", "Roadhog"],
-        weaknesses: ["Tracer", "Reaper", "Mei", "Widowmaker"],
+        counterScores: {
+            Ana: -1,
+            Bastion: 1,
+            Dva: -2,
+            Genji: -1,
+            Hanzo: 1,
+            Junkrat: -1,
+            Lucio: 1,
+            McCree: 0,
+            Mei: 2,
+            Mercy: -1,
+            Pharah: 1,
+            Reaper: 1,
+            Reinhardt: 1,
+            Roadhog: 0,
+            Soldier76: 1,
+            Sombra: 0,
+            Symmetra: -1,
+            Torbjorn: -1,
+            Tracer: 2,
+            Widowmaker: 1,
+            Winston: 0,
+            Zarya: 0,
+            Zenyatta: 1
+        },
         score: 0,
         proScore: 2
     },
     {
         name: "Zenyatta",
         actualName: "Zenyatta",
-        role: 'Support',
+        role: "Support",
         healer: true,
         sniper: false,
-        strengths: ["Dva", "Soldier76", "Winston"],
-        weaknesses: ["Genji", "Tracer", "Reaper", "Reinhardt", "Widowmaker", "Winston"],
+        builder: false,
+        counterScores: {
+            Ana: 2,
+            Bastion: -1,
+            Dva: 1,
+            Genji: 2,
+            Hanzo: 2,
+            Junkrat: 1,
+            Lucio: 1,
+            McCree: 2,
+            Mei: 1,
+            Mercy: -2,
+            Pharah: 1,
+            Reaper: 1,
+            Reinhardt: 0,
+            Roadhog: 1,
+            Soldier76: 2,
+            Sombra: 0,
+            Symmetra: 0,
+            Torbjorn: 1,
+            Tracer: 2,
+            Widowmaker: 2,
+            Winston: 0,
+            Zarya: 0,
+            Zenyatta: 0
+        },
         score: 0,
-        proScore: 0
-    }
-];
+        proScore: -2
+}];
+
+
 
 //All Data for the maps is stored here
 //name: Name of the map with no spaces or special characters, for use in logic.js
@@ -1111,7 +1655,6 @@ var mapData = [
     }
 ];
 
-
 //Increments by 1 the Hero by the counterWeight
 function incrementHeroByName(_hero, amount) {
     heroData.filter(function (val, index, array) {
@@ -1119,19 +1662,6 @@ function incrementHeroByName(_hero, amount) {
     })[0].score = heroData.filter(function (val, index, array) {
         return val.name === _hero;
     })[0].score + amount;
-}
-
-//Decrements by 1 the hero by the counterWeight
-function decrementHeroByName(_hero, amount) {
-    heroData.filter(function (val, index, array) {
-        return val.name === _hero;
-    })[0].score = heroData.filter(function (val, index, array) {
-        return val.name === _hero;
-    })[0].score - amount;
-
-    var heroScore = heroData.filter(function (val, index, array) {
-        return val.name === _hero;
-    })[0].score;
 }
 
 //Returns an array of strings of all the hero weaknesses
@@ -1155,8 +1685,8 @@ function getMapTypeByName(_map) {
     })[0].mapType;
 }
 
+//Get all the heroes good on the map
 var previousMap = ""
-    //Get all the heroes good on the map
 function getMapHeroesByName(_map) {
     if (_map != null) { //If map is not null
         var mapType = getMapTypeByName(_map);
@@ -1167,7 +1697,7 @@ function getMapHeroesByName(_map) {
         var subMapLength = document.getElementById("subMapDropdown").length;
         var subMapDropdown = document.getElementById("subMapDropdown");
         var selectedSubMap = subMapDropdown.options[subMapDropdown.selectedIndex].value;
-        $('#subMapDropdown').empty();
+        $("#subMapDropdown").empty();
         $("#subMapDropdown").append("<option value=\"NoSubMap\">Average of all maps</option>");
         for (var subMap in subMaps) {
             var option = document.createElement("option");
@@ -1175,7 +1705,7 @@ function getMapHeroesByName(_map) {
             option.text = subMaps[subMap].subActualName;
             subMapDropdown.add(option);
         }
-
+        $("#subMapDropdown").val(selectedSubMap);
         previousMap = _map
         if (mapType == "Control") { //If map is control return the heroes for the subtype
             $("#subMapDropdownContainer").css("display", "block");
@@ -1198,15 +1728,14 @@ function getMapHeroesByName(_map) {
                     averageArray[score] = averageArray[score] / 3
                 return averageArray;
             }
-        }
-        else if (mapIsAttack) //If attack is selected
+        } else if (mapIsAttack) //If attack is selected
             return mapData.filter(function (val, index, array) {
-                return val.name === _map;
-            })[0].attackHeroes;
+            return val.name === _map;
+        })[0].attackHeroes;
         else //If defense.
             return mapData.filter(function (val, index, array) {
-                return val.name === _map;
-            })[0].defenseHeroes;
+            return val.name === _map;
+        })[0].defenseHeroes;
     } else
         return [];
 }
@@ -1233,11 +1762,11 @@ function getHeroByName(_hero) {
 }
 
 //Returns all heroes of a given role as an array of objects
-function getSortedRoleByName(roleToSearch){
+function getSortedRoleByName(roleToSearch) {
     var tempArray = new Array();
     if (roleToSearch)
-        heroData.forEach(function (hero, index){
-            if(hero.role == roleToSearch)
+        heroData.forEach(function (hero, index) {
+            if (hero.role == roleToSearch)
                 tempArray.push(hero)
         });
     return tempArray;
@@ -1246,16 +1775,26 @@ function getSortedRoleByName(roleToSearch){
 //Returns an array of objects of all heroes marked as healers
 function getHealersArray() {
     var tempArray = new Array();
-    heroData.forEach(function (hero, index){
-        if(hero.healer)
+    heroData.forEach(function (hero, index) {
+        if (hero.healer)
             tempArray.push(hero)
     });
     return tempArray;
 }
 
 //Testing, logs to the console all the hero's scores
-function printEachHeroScore(){
-    console.log("");
+function printEachHeroScore() {
+    console.log("New List:");
+    heroData.sort(compare);
     for (var i = 0; i < heroData.length; i++)
         console.log(heroData[i].name + "'s score: " + heroData[i].score);
+    console.log("");
+}
+
+function compare(a, b) {
+    if (a.score < b.score)
+        return 1;
+    if (a.score > b.score)
+        return -1;
+    return 0;
 }

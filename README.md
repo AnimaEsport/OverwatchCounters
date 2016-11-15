@@ -1,9 +1,7 @@
 ## Overwatch Counters
 
 #### Sources
-- [Combos](https://www.youtube.com/watch?v=KNtKdOLxilU) Removed, might add back in
-- [Heroes](http://overwatch.gamepedia.com/)
-- [Maps](http://overwatchcountersguide.com/maps)
+- [Maps and heroes](http://overwatchcountersguide.com)
 - [Meta Report](https://www.overbuff.com)
 
 #### Changes
@@ -16,14 +14,14 @@
 - [x] Min one meta + Best heros meta
 - [x] Add a sniper property to make sure there is only one sniper
 - [x] When making sure there is one of each role, shift the order over so the hero added in is added to the end
-- [ ] Add who on your team is countered by the enemy team
-- [ ] Set custom number of each role
+- [x] Add Sombra
+- [x] Use FoxBarrington's Counter Data
+- [x] For maps with submaps (Ilios and Nepal) selecting a submap from the drop down immediately resets to "Average of all submaps"
 
 #### New Features
-- [ ] Manual option entry
+- [ ] Add who counters who and who is countered by who to UI
+- [ ] Set custom number of each role
+- [ ] Manually enter recommended team members option (Lock icon)
 - [ ] Synergies
-- [ ] Lock Heroes in (Class + lock icon, remove icon to )
-- [ ] Use FoxBarrington's Synergy and Counter Data
 - [ ] Option to permit 2 of the same hero
-- [ ] Android and iOS versions (Free or Pay?)
-- [ ] Option to enter the enemy team and your team to see who on your team is being hard countered
+- [ ] Android and iOS App Ports
