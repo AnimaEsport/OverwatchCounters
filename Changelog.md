@@ -1,0 +1,19 @@
+New changes:
+- Doesn't allow for multiple snipers
+- Doesn't allow for multiple builders
+- Doesn't count Symmetra as a healer
+- Uses Fox's hero data to calculate counters
+- Factors in hard and soft counters
+- Improved Mobile website
+- Clarify that attack/defense is for your team
+- Change default meta to Two-Two-Two
+- Round corners of recommended + enemy team
+- Add Zarya as counter for Junkrat
+- Minimize icon CSS
+- Factor in attack and defense
+- Min one meta + Best heros meta
+- When making sure there is one of each role, shift the order over so the hero added in is added to the end
+- Add Sombra
+- For maps with submaps (Ilios and Nepal) selecting a submap from the drop down immediately resets to "Average of all submaps"
+- Add Sombra to Map Data
+- Scores now display in UI

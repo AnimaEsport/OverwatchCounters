@@ -25,7 +25,9 @@ function mapClicked(e) {
     if (!$("#" + map).hasClass("selected")) {
         $(".mapIcon.selected").removeClass("selected");
         $("#" + map).addClass("selected");
-    }
+    } else
+        $(".mapIcon.selected").removeClass("selected");
+
 
     //If the clicked map is not control show the attack & defense radio buttons
     if (mapType !== 'Control')
@@ -65,6 +67,11 @@ function removeRecommendations() {
         $(obj).addClass("empty");
     });
 
+    $(".score").each(function (index, obj) {
+        $(obj).html("");
+        $(obj).addClass("noScore");
+    });
+
     //Hide Submap select
     $('#subMapDropdownContainer').css("display", "none");
 
@@ -100,7 +107,10 @@ function removeEnemy(clickedEnemy) {
 function pushRecommendedTeamtoUI() {
     //Loads the heroes in to the recommendedTeamIcon elements
     recommendedTeam.forEach(function (hero, index) {
-        var firstRecommendedTeamIcon = $(".recommendedTeamIcon.empty").first()
+        var firstRecommendedTeamIcon = $(".recommendedTeamIcon.empty").first();
+        var firstRecommendedTeamScore = $(".score.noScore").first();
+        firstRecommendedTeamScore.html( Math.round(hero.score));
+        firstRecommendedTeamScore.removeClass("noScore");
         firstRecommendedTeamIcon.css("background-image", "url(images/CharacterIcons/" + hero.name + ".png)");
         firstRecommendedTeamIcon.attr("hero", hero.name);
         //firstRecommendedTeamIcon.attr("data-balloon", generateCounterString(hero));
@@ -115,6 +125,7 @@ function pushRecommendedTeamtoUI() {
         firstRecommendedTeamIcon.removeClass("empty");
     });
     //Sets the balloons to be visible
+    $(".noScore").css("opacity", 1)
     $("[data-balloon]:hover:before, [data-balloon]:hover:after").css("-khtml-opacity", 1);
     $("[data-balloon]:hover:before, [data-balloon]:hover:after").css("-moz-opacity", 1);
     $("[data-balloon]:hover:before, [data-balloon]:hover:after").css("opacity", 1);
@@ -214,6 +225,18 @@ function adjustForMeta() {
             adjustTeamforMeta({"Offense": 2, "Tank": 2, "Support": 2});
         else
             adjustTeamforMeta({"Defense": 2, "Tank": 2, "Support": 2});
+    }
+    else if (selectedMeta == "hanzoMeta"){
+        recommendedTeam.forEach(function (hero, index) {
+            var firstRecommendedTeamIcon = $(".recommendedTeamIcon.empty").first();
+            var firstRecommendedTeamScore = $(".score.noScore").first();
+            firstRecommendedTeamScore.html( Math.round(10000));
+            firstRecommendedTeamScore.removeClass("noScore");
+            firstRecommendedTeamIcon.css("background-image", "url(images/CharacterIcons/Hanzo.png)");
+            firstRecommendedTeamIcon.attr("hero", "Hanzo");
+            //firstRecommendedTeamIcon.attr("data-balloon", generateCounterString(hero));
+            firstRecommendedTeamIcon.removeClass("empty");
+        });
     }
     //No else clause is needed. The team is valid if none of the previous if statements are true
 }

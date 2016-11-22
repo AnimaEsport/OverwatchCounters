@@ -26,7 +26,7 @@
             <div id="maps" ng-controller="MapIcons">
                 <div class="MapContainer" ng-repeat="map in maps">
                     <img class="mapIcon" id={{map.name}} ng-src=images/Maps/{{map.name}}.jpg map={{map.name}} onclick="mapClicked(this)">
-                    <p>{{map.name}}</p>
+                    <p>{{map.actualName}}</p>
                 </div>
                 <div id="checkboxContainer">
                     <p id="metaDropdownContainer">Select a meta:
@@ -36,6 +36,7 @@
                             <option value="attackDefenseMeta">2 Tank, 2 Healer, 2 Offense/Defense</option>
                             <option value="oneOfEachMeta">One of Each Role</option>
                             <option value="NoMeta">No Meta</option>
+                            <option value="hanzoMeta">Hanzo Meta</option>
                         </select>
                     </p>
                     <p id="subMapDropdownContainer">Select the submap:
@@ -62,7 +63,7 @@
             </div>
             <h4 class="teamLabel">Recommend Team:</h4>
             <div id="recommendTeamList">
-                <div ng-repeat="i in [1,2,3,4,5,6]" type="button" id="{{ 'recommendTeam' + i }}" data-balloon="" data-balloon-pos="top" hero="" class="recommendedTeamIcon empty" src=""></div>
+                <div ng-repeat="i in [1,2,3,4,5,6]" type="button" id="{{ 'recommendTeam' + i }}" data-balloon="" data-balloon-pos="top" hero="" class="recommendedTeamIcon empty" src=""><span id="{{ 'score' + i }}" class="score noScore">0</span></div>
             </div>
             <div id="footer">
                 <p>Tournament data from <a href="https://www.overbuff.com">Overbuff</a> | Hero weakness and map data from <a href="http://overwatchcountersguide.com">/u/foxbarrington</a>
