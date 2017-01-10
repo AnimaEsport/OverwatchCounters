@@ -17,3 +17,11 @@ New changes:
 - For maps with submaps (Ilios and Nepal) selecting a submap from the drop down immediately resets to "Average of all submaps"
 - Add Sombra to Map Data
 - Scores now display in UI
+- Option to just follow tournament meta
+- Reset Button
+- Synergies Pop up to UI
+- Synergies Data Script
+- Option to only allow entering one hero
+- Display removed Heroes (red background)
+- Uses 4 times as many datapoints as the original app
+- You can lock heroes

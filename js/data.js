@@ -1,21 +1,13 @@
 //File contains all the data used for the front end. Any new maps or heroes added here will automatically be added to the page
 //File also contains all functions used to retrieve and manipulate the data data.
-var mapWeight = 1; //Amount of points to give to a hero that's good on the map.
-var counterWeight = 1; //Amount of points to give to each hero that counters a hero on the enemy team
-var weaknessWeight = 1; //Amount of points to give to each hero that counters a hero on hte recommended team
+var mapWeight = 1;
+var counterWeight = 1;
+var synergiesWeight = 1;
+var tournamentWeight = 1;
 
-//Hero data, all data for each hero is stored
-//name: string - Name of the hero with no spaces or special character, for use in logic.js
-//actualName: string - Display name of the hero, contains spaces and special characters
-//role: string - That role the hero filles, can be Attack, Defense, Tank, or support
-//healer: Boolean - Is the hero a healer
-//sniper: Boolean - Is the hero a sniper
-//builder: Boolean - Is the hero a builder
-//counterScores: Associative Array - How well each hero does against the hero
-//score: Int - The current score of the hero based on counters, weaknesses, and map data
-//proScorew: Int - the score based on where the hero is in the current tournoment meta.  Heroes are graded A to F and get a score from 2 to -2 where A = 2 and F = -2
-
-var heroData = [ {
+//counterScores are how well each hero counters the hero
+var heroData = [
+    {
         name: "Ana",
         actualName: "Ana",
         role: "Support",
@@ -43,12 +35,39 @@ var heroData = [ {
             Torbjorn: 0,
             Tracer: 1,
             Widowmaker: 0,
-            Winston: 1,
+            Winston: 2,
             Zarya: 0,
             Zenyatta: 0
         },
+        synergies: {
+            Ana: 0,
+            Bastion: 0,
+            Dva: 1,
+            Genji: 2,
+            Hanzo: 0,
+            Junkrat: 0,
+            Lucio: 2,
+            McCree: 1,
+            Mei: 0,
+            Mercy: 0,
+            Pharah: 1,
+            Reaper: 2,
+            Reinhardt: 2,
+            Roadhog: 1,
+            Soldier76: 1,
+            Sombra: 1,
+            Symmetra: 1,
+            Torbjorn: 0,
+            Tracer: 0,
+            Widowmaker: 0,
+            Winston: 2,
+            Zarya: 2,
+            Zenyatta: 1
+        },
         score: 0,
-        proScore: 3
+        proScore: 1,
+        locked: false,
+        removed: false
     }, {
         name: "Bastion",
         actualName: "Bastion",
@@ -66,7 +85,7 @@ var heroData = [ {
             Lucio: -1,
             McCree: 1,
             Mei: 1,
-            Mercy: -1,
+            Mercy: -2,
             Pharah: 2,
             Reaper: 0,
             Reinhardt: -1,
@@ -81,8 +100,35 @@ var heroData = [ {
             Zarya: 0,
             Zenyatta: 1
         },
+        synergies: {
+            Ana: 2,
+            Bastion: 0,
+            Dva: -2,
+            Genji: 2,
+            Hanzo: -2,
+            Junkrat: 2,
+            Lucio: -1,
+            McCree: -2,
+            Mei: -2,
+            Mercy: 2,
+            Pharah: 1,
+            Reaper: -2,
+            Reinhardt: 2,
+            Roadhog: -2,
+            Soldier76: -2,
+            Sombra: -1,
+            Symmetra: -2,
+            Torbjorn: -2,
+            Tracer: -2,
+            Widowmaker: -2,
+            Winston: -2,
+            Zarya: 1,
+            Zenyatta: 2
+        },
         score: 0,
-        proScore: -2
+        proScore: -2,
+        locked: false,
+        removed: false
     }, {
         name: "Dva",
         actualName: "D.Va",
@@ -100,11 +146,11 @@ var heroData = [ {
             Lucio: 0,
             McCree: 0,
             Mei: 2,
-            Mercy: -1,
+            Mercy: -2,
             Pharah: -1,
             Reaper: 1,
             Reinhardt: 1,
-            Roadhog: 1,
+            Roadhog: 0,
             Soldier76: 1,
             Sombra: 1,
             Symmetra: 0,
@@ -115,8 +161,35 @@ var heroData = [ {
             Zarya: 2,
             Zenyatta: 2
         },
+        synergies: {
+            Ana: 0,
+            Bastion: -2,
+            Dva: 0,
+            Genji: -2,
+            Hanzo: -2,
+            Junkrat: -2,
+            Lucio: 2,
+            McCree: -2,
+            Mei: -2,
+            Mercy: 1,
+            Pharah: 1,
+            Reaper: -2,
+            Reinhardt: -2,
+            Roadhog: -2,
+            Soldier76: -2,
+            Sombra: 0,
+            Symmetra: -2,
+            Torbjorn: -2,
+            Tracer: 0,
+            Widowmaker: 2,
+            Winston: 1,
+            Zarya: 2,
+            Zenyatta: -1
+        },
         score: 0,
-        proScore: -2
+        proScore: 1,
+        locked: false,
+        removed: false
     }, {
         name: "Genji",
         actualName: "Genji",
@@ -125,7 +198,7 @@ var heroData = [ {
         sniper: false,
         builder: false,
         counterScores: {
-            Ana: 1,
+            Ana: 0,
             Bastion: -1,
             Dva: 0,
             Genji: 0,
@@ -138,19 +211,46 @@ var heroData = [ {
             Pharah: 0,
             Reaper: 0,
             Reinhardt: 0,
-            Roadhog: 1,
+            Roadhog: 2,
             Soldier76: 1,
             Sombra: 1,
             Symmetra: 2,
-            Torbjorn: 1,
+            Torbjorn: 0,
             Tracer: 1,
             Widowmaker: 0,
             Winston: 2,
-            Zarya: 1,
+            Zarya: 2,
+            Zenyatta: 1
+        },
+        synergies: {
+            Ana: 1,
+            Bastion: -2,
+            Dva: -2,
+            Genji: 0,
+            Hanzo: 1,
+            Junkrat: 2,
+            Lucio: 2,
+            McCree: -1,
+            Mei: -2,
+            Mercy: -2,
+            Pharah: 2,
+            Reaper: 0,
+            Reinhardt: -2,
+            Roadhog: -2,
+            Soldier76: 2,
+            Sombra: 0,
+            Symmetra: -2,
+            Torbjorn: -2,
+            Tracer: 2,
+            Widowmaker: 1,
+            Winston: 2,
+            Zarya: 0,
             Zenyatta: 1
         },
         score: 0,
-        proScore: 0
+        proScore: -1,
+        locked: false,
+        removed: false
     }, {
         name: "Hanzo",
         actualName: "Hanzo",
@@ -183,8 +283,35 @@ var heroData = [ {
             Zarya: 0,
             Zenyatta: -1
         },
+        synergies: {
+            Ana: -2,
+            Bastion: -2,
+            Dva: -2,
+            Genji: 2,
+            Hanzo: 0,
+            Junkrat: -2,
+            Lucio: 1,
+            McCree: 2,
+            Mei: -2,
+            Mercy: 0,
+            Pharah: 1,
+            Reaper: -2,
+            Reinhardt: 1,
+            Roadhog: -2,
+            Soldier76: -2,
+            Sombra: 0,
+            Symmetra: -2,
+            Torbjorn: -2,
+            Tracer: -2,
+            Widowmaker: 0,
+            Winston: -2,
+            Zarya: 2,
+            Zenyatta: -2
+        },
         score: 0,
-        proScore: -2
+        proScore: -2,
+        locked: false,
+        removed: false
     }, {
         name: "Junkrat",
         actualName: "Junkrat",
@@ -202,7 +329,7 @@ var heroData = [ {
             Lucio: 0,
             McCree: 1,
             Mei: 1,
-            Mercy: -1,
+            Mercy: -2,
             Pharah: 2,
             Reaper: 0,
             Reinhardt: -1,
@@ -214,11 +341,38 @@ var heroData = [ {
             Tracer: 1,
             Widowmaker: 2,
             Winston: 0,
-            Zarya: 1,
+            Zarya: 2,
             Zenyatta: 0
         },
+        synergies: {
+            Ana: 1,
+            Bastion: 2,
+            Dva: -1,
+            Genji: 2,
+            Hanzo: 1,
+            Junkrat: 0,
+            Lucio: 1,
+            McCree: 0,
+            Mei: -2,
+            Mercy: 2,
+            Pharah: -1,
+            Reaper: 0,
+            Reinhardt: 2,
+            Roadhog: 2,
+            Soldier76: 1,
+            Sombra: 0,
+            Symmetra: 1,
+            Torbjorn: 1,
+            Tracer: 0,
+            Widowmaker: -2,
+            Winston: 1,
+            Zarya: 2,
+            Zenyatta: 2
+        },
         score: 0,
-        proScore: -2
+        proScore: -2,
+        locked: false,
+        removed: false
     }, {
         name: "Lucio",
         actualName: "Lucio",
@@ -237,7 +391,7 @@ var heroData = [ {
             McCree: 2,
             Mei: 2,
             Mercy: -1,
-            Pharah: 1,
+            Pharah: 2,
             Reaper: 0,
             Reinhardt: 1,
             Roadhog: 2,
@@ -251,8 +405,35 @@ var heroData = [ {
             Zarya: 1,
             Zenyatta: 0
         },
+        synergies: {
+            Ana: 2,
+            Bastion: 0,
+            Dva: 1,
+            Genji: 2,
+            Hanzo: 0,
+            Junkrat: 0,
+            Lucio: 0,
+            McCree: 2,
+            Mei: 2,
+            Mercy: 2,
+            Pharah: 2,
+            Reaper: 2,
+            Reinhardt: 2,
+            Roadhog: 2,
+            Soldier76: 2,
+            Sombra: 1,
+            Symmetra: -2,
+            Torbjorn: 0,
+            Tracer: 2,
+            Widowmaker: 0,
+            Winston: 2,
+            Zarya: 2,
+            Zenyatta: 2
+        },
         score: 0,
-        proScore: 2
+        proScore: 3,
+        locked: false,
+        removed: false
     }, {
         name: "McCree",
         actualName: "McCree",
@@ -280,13 +461,40 @@ var heroData = [ {
             Symmetra: -1,
             Torbjorn: 0,
             Tracer: -1,
-            Widowmaker: 1,
+            Widowmaker: 2,
             Winston: 0,
             Zarya: 0,
             Zenyatta: -1
         },
+        synergies: {
+            Ana: 1,
+            Bastion: -2,
+            Dva: -2,
+            Genji: -1,
+            Hanzo: -2,
+            Junkrat: 2,
+            Lucio: 2,
+            McCree: 0,
+            Mei: -2,
+            Mercy: 2,
+            Pharah: 1,
+            Reaper: 2,
+            Reinhardt: 2,
+            Roadhog: 2,
+            Soldier76: 2,
+            Sombra: 0,
+            Symmetra: -2,
+            Torbjorn: -2,
+            Tracer: -2,
+            Widowmaker: 2,
+            Winston: -2,
+            Zarya: 2,
+            Zenyatta: 1
+        },
         score: 0,
-        proScore: 0
+        proScore: -1,
+        locked: false,
+        removed: false
     }, {
         name: "Mei",
         actualName: "Mei",
@@ -298,7 +506,7 @@ var heroData = [ {
             Ana: 1,
             Bastion: 0,
             Dva: -1,
-            Genji: -2,
+            Genji: -1,
             Hanzo: 1,
             Junkrat: 1,
             Lucio: 0,
@@ -306,7 +514,7 @@ var heroData = [ {
             Mei: 0,
             Mercy: -2,
             Pharah: 1,
-            Reaper: 1,
+            Reaper: 0,
             Reinhardt: 0,
             Roadhog: 0,
             Soldier76: 0,
@@ -319,8 +527,35 @@ var heroData = [ {
             Zarya: 1,
             Zenyatta: 0
         },
+        synergies: {
+            Ana: 2,
+            Bastion: -1,
+            Dva: 1,
+            Genji: 0,
+            Hanzo: 1,
+            Junkrat: 1,
+            Lucio: 2,
+            McCree: 1,
+            Mei: 0,
+            Mercy: 2,
+            Pharah: 1,
+            Reaper: 2,
+            Reinhardt: 2,
+            Roadhog: 2,
+            Soldier76: 1,
+            Sombra: -1,
+            Symmetra: 0,
+            Torbjorn: 0,
+            Tracer: 0,
+            Widowmaker: -1,
+            Winston: 0,
+            Zarya: 2,
+            Zenyatta: 1
+        },
         score: 0,
-        proScore: 0
+        proScore: 0,
+        locked: false,
+        removed: false
     }, {
         name: "Mercy",
         actualName: "Mercy",
@@ -345,7 +580,7 @@ var heroData = [ {
             Roadhog: 2,
             Soldier76: 2,
             Sombra: 2,
-            Symmetra: 1,
+            Symmetra: 2,
             Torbjorn: 1,
             Tracer: 2,
             Widowmaker: 2,
@@ -353,8 +588,35 @@ var heroData = [ {
             Zarya: 2,
             Zenyatta: 2
         },
+        synergies: {
+            Ana: -1,
+            Bastion: 2,
+            Dva: 2,
+            Genji: -1,
+            Hanzo: 2,
+            Junkrat: 2,
+            Lucio: 2,
+            McCree: 2,
+            Mei: 1,
+            Mercy: 0,
+            Pharah: 2,
+            Reaper: 1,
+            Reinhardt: 2,
+            Roadhog: 2,
+            Soldier76: 1,
+            Sombra: -1,
+            Symmetra: 2,
+            Torbjorn: 2,
+            Tracer: 2,
+            Widowmaker: 2,
+            Winston: 2,
+            Zarya: 2,
+            Zenyatta: 0
+        },
         score: 0,
-        proScore: -2
+        proScore: -2,
+        locked: false,
+        removed: false
     }, {
         name: "Pharah",
         actualName: "Pharah",
@@ -367,7 +629,7 @@ var heroData = [ {
             Bastion: 0,
             Dva: 1,
             Genji: 0,
-            Hanzo: 1,
+            Hanzo: 0,
             Junkrat: -2,
             Lucio: -2,
             McCree: 2,
@@ -375,7 +637,7 @@ var heroData = [ {
             Mercy: -2,
             Pharah: 0,
             Reaper: -1,
-            Reinhardt: 0,
+            Reinhardt: -1,
             Roadhog: 1,
             Soldier76: 2,
             Sombra: 1,
@@ -387,8 +649,35 @@ var heroData = [ {
             Zarya: -1,
             Zenyatta: 1
         },
+        synergies: {
+            Ana: 2,
+            Bastion: 0,
+            Dva: 0,
+            Genji: 0,
+            Hanzo: -1,
+            Junkrat: -1,
+            Lucio: 2,
+            McCree: 0,
+            Mei: 1,
+            Mercy: 2,
+            Pharah: 0,
+            Reaper: 0,
+            Reinhardt: 0,
+            Roadhog: 1,
+            Soldier76: 1,
+            Sombra: 2,
+            Symmetra: -1,
+            Torbjorn: -1,
+            Tracer: -1,
+            Widowmaker: -2,
+            Winston: 1,
+            Zarya: 2,
+            Zenyatta: 1
+        },
         score: 0,
-        proScore: -2
+        proScore: -2,
+        locked: false,
+        removed: false
     }, {
         name: "Reaper",
         actualName: "Reaper",
@@ -403,7 +692,7 @@ var heroData = [ {
             Genji: 0,
             Hanzo: 0,
             Junkrat: 1,
-            Lucio: 0,
+            Lucio: 1,
             McCree: 1,
             Mei: 1,
             Mercy: -2,
@@ -412,7 +701,7 @@ var heroData = [ {
             Reinhardt: 0,
             Roadhog: -1,
             Soldier76: 0,
-            Sombra: 0,
+            Sombra: 1,
             Symmetra: -1,
             Torbjorn: 0,
             Tracer: 1,
@@ -421,8 +710,35 @@ var heroData = [ {
             Zarya: -1,
             Zenyatta: 0
         },
+        synergies: {
+            Ana: 2,
+            Bastion: 1,
+            Dva: 0,
+            Genji: -1,
+            Hanzo: 2,
+            Junkrat: 0,
+            Lucio: 2,
+            McCree: 2,
+            Mei: 2,
+            Mercy: 1,
+            Pharah: 1,
+            Reaper: 0,
+            Reinhardt: 2,
+            Roadhog: 0,
+            Soldier76: 0,
+            Sombra: 0,
+            Symmetra: -1,
+            Torbjorn: 0,
+            Tracer: 0,
+            Widowmaker: 2,
+            Winston: -1,
+            Zarya: 2,
+            Zenyatta: 2
+        },
         score: 0,
-        proScore: 0
+        proScore: -2,
+        locked: false,
+        removed: false
     }, {
         name: "Reinhardt",
         actualName: "Reinhardt",
@@ -431,7 +747,7 @@ var heroData = [ {
         sniper: false,
         builder: false,
         counterScores: {
-            Ana: 0,
+            Ana: 1,
             Bastion: 2,
             Dva: 0,
             Genji: -1,
@@ -455,8 +771,35 @@ var heroData = [ {
             Zarya: 0,
             Zenyatta: 1
         },
+        synergies: {
+            Ana: 2,
+            Bastion: 2,
+            Dva: 1,
+            Genji: 1,
+            Hanzo: 1,
+            Junkrat: 0,
+            Lucio: 2,
+            McCree: 2,
+            Mei: -1,
+            Mercy: 2,
+            Pharah: 0,
+            Reaper: 2,
+            Reinhardt: 0,
+            Roadhog: 1,
+            Soldier76: 2,
+            Sombra: -1,
+            Symmetra: -1,
+            Torbjorn: -1,
+            Tracer: 0,
+            Widowmaker: 1,
+            Winston: 2,
+            Zarya: 2,
+            Zenyatta: 2
+        },
         score: 0,
-        proScore: 1
+        proScore: 2,
+        locked: false,
+        removed: false
     }, {
         name: "Roadhog",
         actualName: "Roadhog",
@@ -466,12 +809,12 @@ var heroData = [ {
         builder: false,
         counterScores: {
             Ana: 2,
-            Bastion: 2,
+            Bastion: -1,
             Dva: 1,
             Genji: 0,
-            Hanzo: 1,
+            Hanzo: -1,
             Junkrat: 0,
-            Lucio: 1,
+            Lucio: -1,
             McCree: 0,
             Mei: 1,
             Mercy: -2,
@@ -481,16 +824,43 @@ var heroData = [ {
             Roadhog: 0,
             Soldier76: 1,
             Sombra: 2,
-            Symmetra: -2,
+            Symmetra: -1,
             Torbjorn: -1,
-            Tracer: 2,
+            Tracer: 0,
             Widowmaker: 1,
-            Winston: -2,
+            Winston: -1,
             Zarya: 1,
             Zenyatta: 2
         },
+        synergies: {
+            Ana: 1,
+            Bastion: -2,
+            Dva: -2,
+            Genji: -2,
+            Hanzo: -2,
+            Junkrat: 2,
+            Lucio: 1,
+            McCree: -2,
+            Mei: 2,
+            Mercy: 2,
+            Pharah: 0,
+            Reaper: -2,
+            Reinhardt: -2,
+            Roadhog: 0,
+            Soldier76: -2,
+            Sombra: -1,
+            Symmetra: -2,
+            Torbjorn: -2,
+            Tracer: -2,
+            Widowmaker: -2,
+            Winston: -2,
+            Zarya: -2,
+            Zenyatta: -2
+        },
         score: 0,
-        proScore: 0
+        proScore: 1,
+        locked: false,
+        removed: false
     }, {
         name: "Soldier76",
         actualName: "Soldier: 76",
@@ -514,7 +884,7 @@ var heroData = [ {
             Reinhardt: 1,
             Roadhog: 1,
             Soldier76: 0,
-            Sombra: -2,
+            Sombra: -1,
             Symmetra: -1,
             Torbjorn: 0,
             Tracer: 0,
@@ -523,8 +893,35 @@ var heroData = [ {
             Zarya: 0,
             Zenyatta: 0
         },
+        synergies: {
+            Ana: 2,
+            Bastion: -1,
+            Dva: 2,
+            Genji: 2,
+            Hanzo: 0,
+            Junkrat: 1,
+            Lucio: 2,
+            McCree: -1,
+            Mei: 1,
+            Mercy: 2,
+            Pharah: 1,
+            Reaper: 1,
+            Reinhardt: 2,
+            Roadhog: 2,
+            Soldier76: 0,
+            Sombra: 1,
+            Symmetra: 2,
+            Torbjorn: -1,
+            Tracer: 0,
+            Widowmaker: 0,
+            Winston: 2,
+            Zarya: 2,
+            Zenyatta: 2
+        },
         score: 0,
-        proScore: -2
+        proScore: 0,
+        locked: false,
+        removed: false
     }, {
         name: "Sombra",
         actualName: "Sombra",
@@ -545,8 +942,8 @@ var heroData = [ {
             Mercy: -2,
             Pharah: 0,
             Reaper: 0,
-            Reinhardt: 1,
-            Roadhog: 1,
+            Reinhardt: -1,
+            Roadhog: 0,
             Soldier76: 2,
             Sombra: 0,
             Symmetra: 0,
@@ -557,8 +954,35 @@ var heroData = [ {
             Zarya: 1,
             Zenyatta: 0
         },
+        synergies: {
+            Ana: 0,
+            Bastion: 0,
+            Dva: 0,
+            Genji: 0,
+            Hanzo: 0,
+            Junkrat: 0,
+            Lucio: 0,
+            McCree: 0,
+            Mei: 0,
+            Mercy: 0,
+            Pharah: 0,
+            Reaper: 0,
+            Reinhardt: 0,
+            Roadhog: 0,
+            Soldier76: 0,
+            Sombra: 0,
+            Symmetra: 0,
+            Torbjorn: 0,
+            Tracer: 0,
+            Widowmaker: 0,
+            Winston: 0,
+            Zarya: 0,
+            Zenyatta: 0
+        },
         score: 0,
-        proScore: 0
+        proScore: -2,
+        locked: false,
+        removed: false
     }, {
         name: "Symmetra",
         actualName: "Symmetra",
@@ -569,10 +993,10 @@ var heroData = [ {
         counterScores: {
             Ana: 0,
             Bastion: 0,
-            Dva: 1,
+            Dva: -1,
             Genji: -2,
             Hanzo: 0,
-            Junkrat: 1,
+            Junkrat: 2,
             Lucio: 0,
             McCree: 1,
             Mei: 2,
@@ -584,15 +1008,42 @@ var heroData = [ {
             Soldier76: 2,
             Sombra: 2,
             Symmetra: 0,
-            Torbjorn: 0,
-            Tracer: -1,
+            Torbjorn: 1,
+            Tracer: 0,
             Widowmaker: -1,
             Winston: 2,
             Zarya: 2,
             Zenyatta: 0
         },
+        synergies: {
+            Ana: 1,
+            Bastion: -2,
+            Dva: -2,
+            Genji: -2,
+            Hanzo: -2,
+            Junkrat: -2,
+            Lucio: 1,
+            McCree: -2,
+            Mei: -2,
+            Mercy: 2,
+            Pharah: 1,
+            Reaper: -2,
+            Reinhardt: -2,
+            Roadhog: -2,
+            Soldier76: -2,
+            Sombra: -1,
+            Symmetra: 0,
+            Torbjorn: -1,
+            Tracer: -2,
+            Widowmaker: -2,
+            Winston: -2,
+            Zarya: -2,
+            Zenyatta: 2
+        },
         score: 0,
-        proScore: -2
+        proScore: -2,
+        locked: false,
+        removed: false
     }, {
         name: "Torbjorn",
         actualName: "Torbjorn",
@@ -604,15 +1055,15 @@ var heroData = [ {
             Ana: 1,
             Bastion: 1,
             Dva: 2,
-            Genji: 0,
+            Genji: 1,
             Hanzo: 1,
             Junkrat: 2,
             Lucio: 2,
             McCree: 0,
             Mei: 1,
-            Mercy: -1,
+            Mercy: -2,
             Pharah: 2,
-            Reaper: 0,
+            Reaper: -1,
             Reinhardt: 2,
             Roadhog: 2,
             Soldier76: 2,
@@ -625,8 +1076,34 @@ var heroData = [ {
             Zarya: 1,
             Zenyatta: 2
         },
-        score: 0,
-        proScore: -2
+        synergies: {
+            Ana: -2,
+            Bastion: -2,
+            Dva: -2,
+            Genji: -2,
+            Hanzo: 0,
+            Junkrat: -2,
+            Lucio: 1,
+            McCree: -2,
+            Mei: -2,
+            Mercy: -2,
+            Pharah: 1,
+            Reaper: -2,
+            Reinhardt: 0,
+            Roadhog: -2,
+            Soldier76: -2,
+            Sombra: -1,
+            Symmetra: 2,
+            Torbjorn: 0,
+            Tracer: -2,
+            Widowmaker: 2,
+            Winston: -2,
+            Zarya: 0,
+            Zenyatta: 2
+        },        score: 0,
+        proScore: -2,
+        locked: false,
+        removed: false
     }, {
         name: "Tracer",
         actualName: "Tracer",
@@ -650,7 +1127,7 @@ var heroData = [ {
             Reinhardt: -1,
             Roadhog: 1,
             Soldier76: 1,
-            Sombra: 2,
+            Sombra: 1,
             Symmetra: 0,
             Torbjorn: 2,
             Tracer: 0,
@@ -659,8 +1136,35 @@ var heroData = [ {
             Zarya: 0,
             Zenyatta: -1
         },
+        synergies: {
+            Ana: 0,
+            Bastion: 0,
+            Dva: 0,
+            Genji: 2,
+            Hanzo: 0,
+            Junkrat: 0,
+            Lucio: 2,
+            McCree: 0,
+            Mei: 1,
+            Mercy: -2,
+            Pharah: 2,
+            Reaper: -1,
+            Reinhardt: -1,
+            Roadhog: 1,
+            Soldier76: -1,
+            Sombra: 1,
+            Symmetra: -1,
+            Torbjorn: 1,
+            Tracer: 0,
+            Widowmaker: 1,
+            Winston: 2,
+            Zarya: 2,
+            Zenyatta: 1
+        },
         score: 0,
-        proScore: -1
+        proScore: 0,
+        locked: false,
+        removed: false
     }, {
         name: "Widowmaker",
         actualName: "Widowmaker",
@@ -677,24 +1181,51 @@ var heroData = [ {
             Junkrat: -2,
             Lucio: 0,
             McCree: -1,
-            Mei: 0,
+            Mei: -1,
             Mercy: -2,
             Pharah: -1,
             Reaper: -1,
             Reinhardt: 1,
             Roadhog: 0,
             Soldier76: 1,
-            Sombra: -1,
+            Sombra: 0,
             Symmetra: 0,
             Torbjorn: -1,
             Tracer: 1,
             Widowmaker: 0,
             Winston: 2,
             Zarya: -1,
-            Zenyatta: 0
+            Zenyatta: -1
+        },
+        synergies: {
+            Ana: -2,
+            Bastion: -2,
+            Dva: -2,
+            Genji: -2,
+            Hanzo: -2,
+            Junkrat: -2,
+            Lucio: 1,
+            McCree: -2,
+            Mei: -2,
+            Mercy: -2,
+            Pharah: 2,
+            Reaper: -2,
+            Reinhardt: -2,
+            Roadhog: -2,
+            Soldier76: -2,
+            Sombra: 0,
+            Symmetra: 1,
+            Torbjorn: 2,
+            Tracer: -2,
+            Widowmaker: 0,
+            Winston: -2,
+            Zarya: -2,
+            Zenyatta: -2
         },
         score: 0,
-        proScore: -2
+        proScore: -2,
+        locked: false,
+        removed: false
     }, {
         name: "Winston",
         actualName: "Winston",
@@ -710,7 +1241,7 @@ var heroData = [ {
             Hanzo: -1,
             Junkrat: 1,
             Lucio: 1,
-            McCree: 0,
+            McCree: 1,
             Mei: 2,
             Mercy: -2,
             Pharah: 0,
@@ -719,16 +1250,43 @@ var heroData = [ {
             Roadhog: 2,
             Soldier76: 2,
             Sombra: -1,
-            Symmetra: -1,
+            Symmetra: -2,
             Torbjorn: 1,
             Tracer: 0,
             Widowmaker: -1,
             Winston: 0,
-            Zarya: 1,
+            Zarya: 2,
             Zenyatta: 2
         },
+        synergies: {
+            Ana: 2,
+            Bastion: -2,
+            Dva: -2,
+            Genji: 2,
+            Hanzo: -2,
+            Junkrat: -2,
+            Lucio: 2,
+            McCree: -2,
+            Mei: -2,
+            Mercy: 2,
+            Pharah: 2,
+            Reaper: -2,
+            Reinhardt: -2,
+            Roadhog: -2,
+            Soldier76: -2,
+            Sombra: 0,
+            Symmetra: -2,
+            Torbjorn: -2,
+            Tracer: 2,
+            Widowmaker: 2,
+            Winston: 0,
+            Zarya: 1,
+            Zenyatta: -2
+        },
         score: 0,
-        proScore: 0
+        proScore: -1,
+        locked: false,
+        removed: false
     }, {
         name: "Zarya",
         actualName: "Zarya",
@@ -737,9 +1295,9 @@ var heroData = [ {
         sniper: false,
         builder: false,
         counterScores: {
-            Ana: -1,
+            Ana: 1,
             Bastion: 1,
-            Dva: -2,
+            Dva: -1,
             Genji: -1,
             Hanzo: 1,
             Junkrat: -1,
@@ -749,7 +1307,7 @@ var heroData = [ {
             Mercy: -1,
             Pharah: 1,
             Reaper: 1,
-            Reinhardt: 1,
+            Reinhardt: 0,
             Roadhog: 0,
             Soldier76: 1,
             Sombra: 2,
@@ -761,8 +1319,35 @@ var heroData = [ {
             Zarya: 0,
             Zenyatta: 1
         },
+        synergies: {
+            Ana: 2,
+            Bastion: 1,
+            Dva: 2,
+            Genji: 2,
+            Hanzo: 2,
+            Junkrat: 1,
+            Lucio: 2,
+            McCree: 2,
+            Mei: 1,
+            Mercy: 2,
+            Pharah: 2,
+            Reaper: 2,
+            Reinhardt: 2,
+            Roadhog: 2,
+            Soldier76: 1,
+            Sombra: -1,
+            Symmetra: 0,
+            Torbjorn: 0,
+            Tracer: 2,
+            Widowmaker: 1,
+            Winston: 2,
+            Zarya: 0,
+            Zenyatta: 2
+        },
         score: 0,
-        proScore: 2
+        proScore: 1,
+        locked: false,
+        removed: false
     }, {
         name: "Zenyatta",
         actualName: "Zenyatta",
@@ -773,7 +1358,7 @@ var heroData = [ {
         counterScores: {
             Ana: 2,
             Bastion: -1,
-            Dva: 1,
+            Dva: 0,
             Genji: 2,
             Hanzo: 2,
             Junkrat: 1,
@@ -782,7 +1367,7 @@ var heroData = [ {
             Mei: 1,
             Mercy: -2,
             Pharah: 1,
-            Reaper: 1,
+            Reaper: 2,
             Reinhardt: 0,
             Roadhog: 1,
             Soldier76: 2,
@@ -795,21 +1380,40 @@ var heroData = [ {
             Zarya: 0,
             Zenyatta: 0
         },
+        synergies: {
+            Ana: 1,
+            Bastion: 0,
+            Dva: 1,
+            Genji: 2,
+            Hanzo: 0,
+            Junkrat: -1,
+            Lucio: 2,
+            McCree: 2,
+            Mei: 1,
+            Mercy: 1,
+            Pharah: 2,
+            Reaper: 2,
+            Reinhardt: 0,
+            Roadhog: 1,
+            Soldier76: 2,
+            Sombra: 1,
+            Symmetra: 1,
+            Torbjorn: 1,
+            Tracer: 2,
+            Widowmaker: 2,
+            Winston: 2,
+            Zarya: 2,
+            Zenyatta: 0
+        },
         score: 0,
-        proScore: 0
+        proScore: 0,
+        locked: false,
+        removed: false
     }
-]
+];
 
-
-//All Data for the maps is stored here
-//name: Name of the map with no spaces or special characters, for use in logic.js
-//actualName: How the name is to be displayed
-//maptype: What the map type is, can be Escort, Hybrid, Assault, or Control - Control is used to deterime if the attack/defense radio buttons are to be displayed.
-//attackHeroes: Heroes that are good on attack, Control maps use this for map heroes
-//defenseHeroes: Heroes that are good on defense, Control maps don't use this (There is no defense on control, both teams attack)
-//icon: Location of the icon used to represent the map.
-//A = 2, B = 1, C = 0, D = -1, F = -2
-var mapData = [{
+var mapData = [
+    {
         name: "Hanamura",
         actualName: "Hanamura",
         mapType: "Assault",
@@ -1360,6 +1964,101 @@ var mapData = [{
             Zenyatta: 2,
             }
     }, {
+        name: "Oasis",
+        actualName: "Oasis",
+        mapType: "Control",
+        subMaps: {
+            CityCenter: {
+                name: "CityCenter",
+                subActualName: "CityCenter",
+                heroes: {
+                    Ana: 2,
+                    Bastion: 0,
+                    Dva: 2,
+                    Genji: 1,
+                    Hanzo: 0,
+                    Junkrat: 1,
+                    Lucio: 2,
+                    McCree: 2,
+                    Mei: 2,
+                    Mercy: 0,
+                    Pharah: 1,
+                    Reaper: 2,
+                    Reinhardt: 1,
+                    Roadhog: 2,
+                    Soldier76: 1,
+                    Sombra: 1,
+                    Symmetra: -2,
+                    Torbjorn: -1,
+                    Tracer: 2,
+                    Widowmaker: -1,
+                    Winston: 2,
+                    Zarya: 2,
+                    Zenyatta: 2
+                }
+            },
+            Gardens: {
+                name: "Gardens",
+                subActualName: "Gardens",
+                heroes: {
+                    Ana: 2,
+                    Bastion: -1,
+                    Dva: 2,
+                    Genji: 1,
+                    Hanzo: 0,
+                    Junkrat: 2,
+                    Lucio: 2,
+                    McCree: 2,
+                    Mei: 2,
+                    Mercy: 1,
+                    Pharah: 1,
+                    Reaper: 2,
+                    Reinhardt: 2,
+                    Roadhog: 2,
+                    Soldier76: 1,
+                    Sombra: 1,
+                    Symmetra: -1,
+                    Torbjorn: -1,
+                    Tracer: 2,
+                    Widowmaker: -1,
+                    Winston: 2,
+                    Zarya: 2,
+                    Zenyatta: 2
+                }
+            },
+            University: {
+                name: "University",
+                subActualName: "University",
+                heroes: {
+                    Ana: 2,
+                    Bastion: 0,
+                    Dva: 2,
+                    Genji: 1,
+                    Hanzo: 1,
+                    Junkrat: 1,
+                    Lucio: 2,
+                    McCree: 2,
+                    Mei: 2,
+                    Mercy: 1,
+                    Pharah: 1,
+                    Reaper: 2,
+                    Reinhardt: 1,
+                    Roadhog: 2,
+                    Soldier76: 1,
+                    Sombra: 2,
+                    Symmetra: -1,
+                    Torbjorn: -1,
+                    Tracer: 2,
+                    Widowmaker: -1,
+                    Winston: 2,
+                    Zarya: 2,
+                    Zenyatta: 2
+                }
+            }
+            },
+        attackHeroes: {},
+        defenseHeroes: {}
+    }, {
         name: "Ilios",
         actualName: "Ilios",
         mapType: "Control",
@@ -1646,6 +2345,17 @@ var mapData = [{
         defenseHeroes: {}
     }
 ];
+
+var metaData = [
+    {
+        name: "",
+        Support: 0,
+        Attack: 0,
+        Defense: 0,
+        Tank: 0
+    }
+];
+
 //Increments by 1 the Hero by the counterWeight
 function incrementHeroByName(_hero, amount) {
     heroData.filter(function (val, index, array) {
@@ -1677,11 +2387,11 @@ function getMapTypeByName(_map) {
 }
 
 //Get all the heroes good on the map
-var previousMap = ""
-function getMapHeroesByName(_map) {
-    if (_map != null) { //If map is not null
+function getMapHeroesByName() {
+    var _map = $(".selected").attr('map');
+    if (_map != null) {
         var mapType = getMapTypeByName(_map);
-        var mapIsAttack = document.getElementById("attack").checked;
+        var mapIsAttack = document.getElementById("attackCheckbox").checked;
         var subMaps = mapData.filter(function (val, index, array) {
             return val.name === _map;
         })[0].subMaps;
@@ -1697,9 +2407,8 @@ function getMapHeroesByName(_map) {
             subMapDropdown.add(option);
         }
         $("#subMapDropdown").val(selectedSubMap);
-        previousMap = _map
         if (mapType == "Control") { //If map is control return the heroes for the subtype
-            $("#subMapDropdownContainer").css("display", "block");
+            $("#subMapDropdownContainer").css("display", "inline-block");
             if (selectedSubMap != "NoSubMap")
                 return subMaps[selectedSubMap].heroes;
             else { //Figure out the average score for each hero
@@ -1732,16 +2441,30 @@ function getMapHeroesByName(_map) {
 
 //Returns an array of six heroes as objects sorted by score
 function getTopSixHeroesArray() {
-    return heroData.sort(function (a, b) {
+    var arrayToReturn = [];
+    var heroesAlreadyAdded = [];
+
+    heroData.forEach(function (obj, index) {
+        if (obj.locked) {
+            heroesAlreadyAdded.push(obj.name);
+            arrayToReturn.push(obj);
+        }
+    });
+    var tempArray = heroData.sort(function (a, b) {
         return a.score - b.score;
-    }).reverse().slice(0, 6);
+    }).reverse().slice(0);
+    tempArray.forEach(function(obj){
+       if (!obj.removed && !obj.locked)
+           arrayToReturn.push(obj)
+    });
+    return arrayToReturn.splice(0,6);
 }
 
 //Returns an array of objects filled with all heroes sorted by score from highest to lowest
 function getAllHeroesArray() {
     return heroData.sort(function (a, b) {
         return a.score - b.score;
-    }).reverse();
+    }).reverse().slice(0);
 }
 
 //Returns an object of the selected hero
@@ -1787,4 +2510,61 @@ function compare(a, b) {
     if (a.score > b.score)
         return -1;
     return 0;
+}
+
+function resetHeroScores() {
+    heroData.forEach(function (obj, index) {
+        if (document.getElementById("tournamentCheckbox").checked)
+            obj.score = obj.proScore*tournamentWeight;
+        else obj.score = 0;
+    });
+}
+
+function resetRemovedHeroes() {
+    heroData.forEach(function (obj, index) {
+        obj.removed = false;
+    });
+    resetRemovedHeroesBackgroundColor();
+}
+
+function removeHero(_hero) {
+    if (_hero != "")
+        heroData.filter(function (val, index, array) {
+            return val.name === _hero;
+        })[0].removed = true;
+}
+
+function lockHero(_hero, setting) {
+    if (_hero != "")
+        heroData.filter(function (val, index, array) {
+            return val.name === _hero;
+        })[0].locked = setting;
+}
+
+function getAllLockedHeroes() {
+    var tempArray = [];
+    heroData.forEach(function (obj, index) {
+        if (obj.locked)
+            tempArray.push(obj);
+    });
+    return tempArray;
+}
+
+function resetLockedHeroes() {
+    heroData.forEach(function (obj, index) {
+        obj.locked = false;
+    });
+    $(".fa-unlock").each(function(index, obj){
+        $(obj).removeClass("fa-unlock");
+        $(obj).addClass("fa-lock");
+    });
+}
+
+function countLockedHeroes(){
+    var x = 0;
+    heroData.forEach(function (obj, index) {
+        if (obj.locked)
+            x = x + 1;
+    });
+    return x;
 }

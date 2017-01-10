@@ -50,8 +50,38 @@ for hero in heroes:
     CountersString = ""
     for counter in heroes:
        CountersString += "\t\t\t" + counter + ": " + str(countersMatrix[hero][counter]) + ",\n"
-    outString += CountersString[:-2] + "\n\t\t},\n\t\tscore: 0,\n\t\tproScore: 0\n\t},"
+    outString += CountersString[:-2] + "\n\t\t},\n\t\tsynergies: {\n\t\t"
+    synergies = {"Ana": 0, "Bastion": 0, "Dva": 0, "Genji": 0, "Hanzo": 0, "Junkrat": 0, "Lucio": 0, "McCree": 0, "Mei": 0, "Mercy": 0, "Pharah": 0, "Reaper": 0, "Reinhardt": 0, "Roadhog": 0, "Soldier76": 0, "Sombra": 0, "Symmetra": 0, "Torbjorn": 0, "Tracer": 0, "Widowmaker": 0, "Winston": 0, "Zarya": 0, "Zenyatta": 0}
+    with open("synergy.csv", "r") as synergiesFile:
+        for line in synergiesFile:
+            if line.find("synergy,") != -1:
+                line = line.replace("synergy,", "").rstrip()
+                XHero = line[:line.find(",")]
+                line = line[line.find(",")+1:]
+                YHero = line[:line.find(",")]
+                line = line[line.find(",")+1:]
+                score = line[:line.find(",")]
+                line = line[line.find(",")+1:]
+                if score == '':
+                    score = 3
+                if XHero == "Soldier: 76":
+                    XHero = "Soldier76"
+                elif XHero == "D.Va":
+                    XHero = "Dva"
+                if YHero == "Soldier: 76":
+                    YHero = "Soldier76"
+                elif YHero == "D.Va":
+                    YHero = "Dva"
+                if XHero == hero:
+                    synergies[YHero] = int(score)-3
+    for tempHero in heroes:
+        outString += "\t" + tempHero + ": " + str(synergies[tempHero]) + ",\n\t\t"
+
+    outString = outString[:-4]
+
+    outString += "\n\t\t},\n\t\tscore: 0,\n\t\tproScore: 0,\n\t\tlocked: false,\n\t\tremoved: false\n\t},"
 
 with open("heroData.js", "a") as outFile:
     outFile.write(outString[:-1]+"\n]")
+
 

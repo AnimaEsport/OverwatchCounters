@@ -1,76 +1,121 @@
 <!DOCTYPE html>
 <html ng-app="overwatch">
-
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-    <script type="application/javascript" src="js/data.js"></script>
-    <script type="application/javascript" src="js/logic.js"></script>
-    <link href=css/style.css type="text/css" rel="stylesheet">
-    <link href="css/balloon.css" type="text/css" rel="stylesheet">
-    <link href="css/font-awesome.css" type="text/css" rel="stylesheet">
-    <title>Overwatch Team Generator</title>
-    <meta name="viewport" content="width=device-width">
-</head>
-
-<body ontouchstart="">
-    <div id="iconContainer">
-        <div id="headerContainer">
-            <h1 id="Header">Overwatch Team Generator</h1>
-        </div>
-        <div id="SubContainer">
-            <h5 id="Subheader">Enter your enemy team comp and the map</h5>
-            <div id="heroContainer" ng-controller="HeroIcons as hero">
-                <img class="heroIcon" ng-repeat="hero in hero.heroes" enemy="{{hero.name}}" ng-src=images/CharacterIcons/{{hero.name}}.png onclick="enemyIconClicked(this)">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        <script type="application/javascript" src="js/data.js"></script>
+        <script type="application/javascript" src="js/functions.js"></script>
+        <script type="application/javascript" src="js/logic.js"></script>
+        <script type="application/javascript" src="js/sweetalert.min.js"></script>
+        <link href="css/sweetalert.css" type="text/css" rel="stylesheet">
+        <link href=css/style.css type="text/css" rel="stylesheet">
+        <link href="css/font-awesome.css" type="text/css" rel="stylesheet">
+        <title>Overwatch Team Generator</title>
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body ontouchstart="">
+        <a href="https://github.com/andrewkarch/OverwatchCounters">
+            <img class="ribbon" style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png">
+        </a>
+        <div id="iconContainer">
+            <div id="headerContainer">
+                <h1 id="Header">Overwatch Team Generator</h1>
             </div>
-            <div id="maps" ng-controller="MapIcons">
-                <div class="MapContainer" ng-repeat="map in maps">
-                    <img class="mapIcon" id={{map.name}} ng-src=images/Maps/{{map.name}}.jpg map={{map.name}} onclick="mapClicked(this)">
-                    <p>{{map.actualName}}</p>
-                </div>
-                <div id="checkboxContainer">
-                    <p id="metaDropdownContainer">Select a meta:
-                        <select id="metaDropdown" onchange="determineTeamCounters()">
-                            <option value="TwoTwoTwoMeta">2 Tank, 2 Healer, 2 Offense</option>
-                            <option value="TankMeta">3 Tank, 3 Support</option>
-                            <option value="attackDefenseMeta">2 Tank, 2 Healer, 2 Offense/Defense</option>
-                            <option value="oneOfEachMeta">One of Each Role</option>
-                            <option value="NoMeta">No Meta</option>
-                            <option value="hanzoMeta">Hanzo Meta</option>
-                        </select>
-                    </p>
-                    <p id="subMapDropdownContainer">Select the submap:
-                        <select id="subMapDropdown" onchange="determineTeamCounters()">
-                            <option value="NoSubMap">Average of all maps</option>
-                        </select>
-                    </p>
-                    <p class="attackDefenseLabel">
-                        follow Tournament meta?
-                        <input id="tournamentCheckbox" type="checkbox" name="tournament" onclick="determineTeamCounters()">
-                    </p>
-                    <div id="AttackDefenseSelect">
-                        <div class="inputContainer">
-                            <p class="attackDefenseLabel">Is your team attacking?
-                                <input id="attack" onchange="determineTeamCounters()" type="checkbox" name="attackDefense" value="attack" checked>
-                            </p>
+            <div id="subContainer">
+                <h5 id="subheader">Enter your enemy team comp and the map</h5>
+                <div id="heroesContainer" ng-controller="HeroIcons as hero">
+                    <div ng-repeat="hero in hero.heroes" class="heroIconContainer">
+                        <div class="heroIcon"  hero="{{hero.name}}" id="{{hero.name}}" ng-style="{'background-image':'url(images/CharacterIcons/{{hero.name}}.png)'}" onclick="enemyIconClicked(this)"></div>
+                        <div class="lockContainer">
+                            <i class="lockIcon fa fa-lock" id="{{hero.name}}LockIcon" aria-hidden="true" hero="{{hero.name}}" onclick="lockHeroClicked(this)"></i>
                         </div>
                     </div>
                 </div>
-            </div>
-            <h4 class="teamLabel">Enemy Team (click to remove):</h4>
-            <div id="enemyTeamList">
-                <div ng-repeat="i in [1,2,3,4,5,6]" id="{{'enemyTeam' + i}}" data-balloon="" data-balloon-pos="top" hero="" class="enemyTeamIcon empty" src="" onclick="removeEnemy(this)"></div>
-            </div>
-            <h4 class="teamLabel">Recommend Team:</h4>
-            <div id="recommendTeamList">
-                <div ng-repeat="i in [1,2,3,4,5,6]" type="button" id="{{ 'recommendTeam' + i }}" data-balloon="" data-balloon-pos="top" hero="" class="recommendedTeamIcon empty" src=""><span id="{{ 'score' + i }}" class="score noScore">0</span></div>
-            </div>
-            <div id="footer">
-                <p>Tournament data from <a href="https://www.overbuff.com">Overbuff</a> | Hero weakness and map data from <a href="http://overwatchcountersguide.com">/u/foxbarrington</a>
-                    <br> An unofficial fan project built with <span id="heart">&hearts;</span> by <a href="https://andrewkar.ch/">Andrew</a></p>
+                <div id="maps" ng-controller="MapIcons">
+                    <div class="mapContainer" ng-repeat="map in maps">
+                        <div class="mapIcon" id="{{map.name + 'Icon'}}" map={{map.name}} ng-style="{'background-image':'url(images/Maps/{{map.name}}.jpg)'}" onclick="mapClicked(this)"></div>
+                        <p>{{map.actualName}}</p>
+                    </div>
+                </div>
+                    <div id="checkboxContainer">
+                        <div class="settingContainer" id="metaDropdownContainer">
+                            <p class="attackDefenseLabel">Select a meta:</p>
+                            <select id="metaDropdown" onchange="determineTeamCounters()">
+                                <option value="TwoTwoTwoMeta">2 Tank, 2 Healer, 2 Offense</option>
+                                <option value="TankMeta">3 Tank, 3 Support</option>
+                                <option value="attackDefenseMeta">2 Tank, 2 Healer, 2 Offense/Defense</option>
+                                <option value="oneOfEachMeta">One of Each Role</option>
+                                <option value="NoMeta">No Meta</option>
+                                <option value="hanzoMeta">Hanzo Meta</option>
+                            </select>
+                        </div>
+                        <div class="settingContainer" id="subMapDropdownContainer">
+                            <p class="attackDefenseLabel">Select the submap:</p>
+                            <select id="subMapDropdown" onchange="determineTeamCounters()">
+                                <option value="NoSubMap">Average of all maps</option>
+                            </select>
+                        </div>
+                        <div class="settingContainer" id="tournamentContainer">
+                            <p class="attackDefenseLabel">follow Tournament meta?</p>
+                            <input id="tournamentCheckbox" type="checkbox" name="tournament" onclick="determineTeamCounters()">
+                        </div>
+                        <div class="settingContainer" id="onlyOneContainer">
+                            <p class="attackDefenseLabel">only one of each hero?</p>
+                            <input id="onlyOneCheckbox" type="checkbox" name="onlyOne" onclick="onlyOneCheckboxClicked()" checked>
+                        </div>
+                        <div class="settingContainer" id="preserveRemovedContainer">
+                            <p class="attackDefenseLabel">preserve Removed Heroes</p>
+                            <input id="preservedCheckbox" type="checkbox" name="preserved" onclick="preservedCheckboxClicked()" checked>
+                        </div>
+                        <div class="settingContainer" id="attackDefenseContainer">
+                            <p class="attackDefenseLabel">Is your team attacking?</p>
+                            <input id="attackCheckbox" onchange="determineTeamCounters()" type="checkbox" name="attackDefense" value="attack" checked>
+                        </div>
+                        <div class="settingContainer" id="resetButtonContainer">
+                            <button id="resetButton" onclick="resetButtonClick()">Reset</button>
+                        </div>
+                    </div>
+                <h4 class="teamLabel">Enemy Team (click to remove):</h4>
+                <div id="enemyTeamList">
+                    <div ng-repeat="i in [1,2,3,4,5,6]" class="parentDiv">
+                        <div id="{{'enemyTeam' + i}}" hero="" team="enemy" class="enemyTeamIcon empty" src="" onclick="removeEnemy(this)"></div>
+                        <br>
+                        <div class="infoContainer">
+                            <i class="infoIcon fa fa-info" parent="{{ 'enemyTeam' + i }}" aria-hidden="true" id="{{ 'enemyTeamInfoIcon' + i }}" onclick="displayHeroInfo(this)"></i>
+                        </div>
+                    </div>
+                </div>
+                <h4 class="teamLabel">Recommend Team:</h4>
+                <div id="recommendTeamList">
+                    <div ng-repeat="i in [1,2,3,4,5,6]" class="parentDiv">
+                        <div id="{{ 'recommendedHero' + i }}" hero="" team="recommended" class="recommendedTeamIcon empty" src="" onclick="dropRecommended(this)"></div>
+                        <br>
+                        <div class="infoContainer">
+                            <i class="infoIcon fa fa-info" parent="{{ 'recommendedHero' + i }}" aria-hidden="true" id="{{ 'recommendedHeroInfoIcon' + i }}" onclick="displayHeroInfo(this)"></i>
+                            <span id="{{ 'score' + i }}" class="score noScore"></span>
+                        </div>
+                    </div>
+                </div>
+                <div id="footer">
+                    <p>Tournament data from <a href="https://www.overbuff.com">Overbuff</a> | Help improve hero weakness and map data at <a href="http://overwatchcountersguide.com">/u/foxbarrington's app</a>
+                        <br> An unofficial fan project built with <span id="heart">&hearts;</span> by <a href="https://andrewkar.ch/">Andrew</a></p>
+                </div>
             </div>
         </div>
-    </div>
-</body>
-
+        <!-- Piwik -->
+        <script type="text/javascript">
+          var _paq = _paq || [];
+          // tracker methods like "setCustomDimension" should be called before "trackPageView"
+          _paq.push(['trackPageView']);
+          _paq.push(['enableLinkTracking']);
+          (function() {
+            var u="//andrewkar.ch/piwik/";
+            _paq.push(['setTrackerUrl', u+'piwik.php']);
+            _paq.push(['setSiteId', '1']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+          })();
+        </script>
+        <!-- End Piwik Code -->
+    </body>
 </html>
