@@ -238,6 +238,8 @@ function adjustForMeta() {
     //If the three tank and three healer meta is selected
     else if (selectedMeta == "TankMeta")
         adjustTeamforMeta({"Tank": 3, "Support": 3});
+    else if (selectedMeta == "321Meta")
+        adjustTeamforMeta({"Tank": 3, "Support": 2, "Offense": 1});
     else if (selectedMeta == "attackDefenseMeta") {
         if (document.getElementById("attackCheckbox").checked)
             adjustTeamforMeta({"Offense": 2, "Tank": 2, "Support": 2});
@@ -293,7 +295,6 @@ function adjustTeamforMeta(roles) {
     //Gets all heroes sorted by score from highest to lowest
     var sortedAllHeroes = getAllHeroesArray();
     var hasHealer = false;
-    var supportCount = roles["Support"];
     var replacementHero;
     var hasSniper = false;
     var hasBuilder = false;
