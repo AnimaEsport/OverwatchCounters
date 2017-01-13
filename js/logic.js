@@ -1,7 +1,5 @@
-//This file contains all functions used to control logic and actions on the web page
 var recommendedTeam, enemyTeam, droppedHeroes = [];
 
-//AngularJS functions
 (function () {
     var app = angular.module('overwatch', []);
     app.controller('HeroIcons', function () {
@@ -10,27 +8,24 @@ var recommendedTeam, enemyTeam, droppedHeroes = [];
     app.controller('MapIcons', ['$scope', function ($scope) {
         $scope.maps = mapData;
     }]);
+    app.controller('MetaList', ['$scope', function ($scope) {
+        $scope.metas = metaData;
+    }]);
 })();
 
-//Adds the selected CSS class to the clicked map and if the map is not control show the attack/defense options
 function mapClicked(clickedMapElement) {
     var mapString = $(clickedMapElement).attr("map");
     var mapTypeString = getMapTypeByName(mapString);
     resetSubMapDropdownSelections();
-    if (mapTypeString !== 'Control')
-        $("#attackDefenseContainer").css("display", "inline-block");
-    else
-        $("#attackDefenseContainer").css("display", "none");
+    toggleAttackDefenseContainer(mapTypeString);
     toggleMapSelected(mapString);
     if (!document.getElementById("preservedCheckbox").checked)
         resetRemovedHeroes();
     determineTeamCounters();
 }
 
-//When an enemy icon is clicked add it to the list and redetermine counters
 function enemyIconClicked(inputEnemy) {
     var heroObject = getHeroByName($(inputEnemy).attr('hero'));
-
     if($(inputEnemy).hasClass("grey")){
         $(inputEnemy).removeClass("grey");
         $(".enemyTeamIcon").each(function(index, obj){
@@ -38,8 +33,7 @@ function enemyIconClicked(inputEnemy) {
                 $(obj).css("background-image", "");
                 $(obj).attr("hero", "");
                 $(obj).addClass("empty");
-                $("#enemyTeamInfoIcon"+(index+1)).css("opacity", 0);
-                $("#enemyTeamInfoIcon"+(index+1)).css("pointer-events", "none");
+                hideTeamIcon(index);
             }
         });
         determineTeamCounters();
@@ -57,7 +51,6 @@ function enemyIconClicked(inputEnemy) {
     }
 }
 
-//Displays Hero Weaknesses
 function displayHeroInfo(hero){
     var parentID = $(hero).attr("parent");
     var heroName = $("#"+parentID).attr("hero");
@@ -75,7 +68,6 @@ function displayHeroInfo(hero){
         targetTeam = enemyTeam;
         for (var x = 0; x < 6; x++)
             opposeTeam.push(recommendedTeam[x].name);
-        //oopposeTeam = recommendedTeam;
     }
     var textHTML = '<div id="popUpHeader"><img class="iconContainer popUpIcon" src=images/CharacterIcons/' + heroName + '.png></div>';
     var heroCountersArray = heroObject.counterScores;
@@ -120,20 +112,15 @@ function displayHeroInfo(hero){
     swal({title: titleString,text: textHTML,html: true });
 }
 
-//Clears the recommended team icons from the .recommendedTeamIcon elements and resets working data
 function removeRecommendations() {
-    //Reset global values
     droppedHeroes = [];
     enemyTeam = [];
     recommendedTeam = [];
-
-    //Remove recommendations from UI
     $(".recommendedTeamIcon").each(function (index, obj) {
         $(obj).css("background-image", "");
         $(obj).attr("hero", "");
         $(obj).addClass("empty");
     });
-
     $(".score").each(function (index, obj) {
         $(obj).html("");
         $(obj).addClass("noScore");
@@ -142,13 +129,11 @@ function removeRecommendations() {
     $(".infoIcon").css("pointer-events", "none");
     $('#subMapDropdownContainer').css("display", "none");
     resetHeroScores();
-
     $(".recommendedTeamIcon").each(function(index, obj){
         $(obj).css("border", "1px solid lightgrey");
     });
 }
 
-//Removes the enemy from an enemyTeamIcon when it is clicked
 function removeEnemy(clickedEnemy) {
     $("#"+$(clickedEnemy).attr("hero")).removeClass("grey");
     if (!($(clickedEnemy).hasClass('empty'))) {
@@ -159,9 +144,7 @@ function removeEnemy(clickedEnemy) {
     }
 }
 
-//Loads the recommendedTeam to the UI
 function pushRecommendedTeamtoUI() {
-    //Loads the heroes in to the recommendedTeamIcon elements
     recommendedTeam.forEach(function (hero, index) {
         if (hero != undefined) {
             var firstRecommendedTeamIcon = $(".recommendedTeamIcon.empty").first();
@@ -179,45 +162,28 @@ function pushRecommendedTeamtoUI() {
     $(".score").css("opacity", 1);
 }
 
-//Determine the team counters, this is the main function of the site
 function determineTeamCounters() {
-    //Clear the previous recommendations to create a clean slate
     removeRecommendations();
-
-    //For each enemy given, adjust the score to determine the recommended team
     $(".enemyTeamIcon").each(function (index, obj) {
         var enemyHero = $(obj).attr("hero");
         if (enemyHero !== "" && enemyHero !== null) {
-            //Add the hero to the enemy team Array
             enemyTeam.push(enemyHero);
             var newEnemy = getHeroByName(enemyHero);
             for (var counter in newEnemy.counterScores)
                 incrementHeroByName(counter, newEnemy.counterScores[counter]*counterWeight);
         }
     });
-
-    //Factor in what heroes are good on the selected map, if a map is selected
     var mapHeroes = getMapHeroesByName();
     if ($(".selected").length == 1)
         for(hero in mapHeroes )
             incrementHeroByName(hero, mapHeroes[hero]*mapWeight);
-
-    //Once all the data is factored in set the recommended team to the top six heroes
     recommendedTeam = getTopSixHeroesArray();
-
-    //Adjust the recommended composition to fit the meta
     adjustForMeta();
-    //Load the recommended team to the UI
     if ($(".enemyTeamIcon.empty").length !== 6 || $(".mapIcon.selected").length == 1 || document.getElementById("tournamentCheckbox").checked || countLockedHeroes() > 0)
         pushRecommendedTeamtoUI();
-
-
-    //printEachHeroScore();
 }
 
-//Adjusts the recommended team to make sure there is one of each role
 function adjustForMeta() {
-    //Count how many of each role is in the recommended team
     var classesMap = {Tank: 0, Healer: 0, Offense: 0, Defense: 0};
     recommendedTeam.forEach(function (hero, index) {
         if (hero.healer)
@@ -227,15 +193,10 @@ function adjustForMeta() {
     });
     var e = document.getElementById("metaDropdown");
     var selectedMeta = e.options[e.selectedIndex].value;
-    //If no meta is selected, and there are missing roles
     if (selectedMeta == "oneOfEachMeta" && !(classesMap["Tank"] !== 0 && classesMap["Healer"] !== 0 && classesMap["Offense"] !== 0 && classesMap["Defense"] !== 0))
         verifyOneOfEachRoleInRecommendedTeam(classesMap);
-
-    //If the two tank, two offense, and two healer meta is selected
     else if (selectedMeta == "TwoTwoTwoMeta")
         adjustTeamforMeta({"Offense": 2, "Tank": 2, "Support": 2});
-
-    //If the three tank and three healer meta is selected
     else if (selectedMeta == "TankMeta")
         adjustTeamforMeta({"Tank": 3, "Support": 3});
     else if (selectedMeta == "321Meta")
@@ -254,18 +215,13 @@ function adjustForMeta() {
         }
         pushRecommendedTeamtoUI();
     }
-    //No else clause is needed. The team is valid if none of the previous if statements are true
 }
 
-//Verifies that there is one of each role in the recommended team
 function verifyOneOfEachRoleInRecommendedTeam(_classesMap){
-    //Figure out what roles are missing
     var rolesToBeAdded = new Array();
     for (var i in _classesMap)
         if (_classesMap[i] == 0)
             rolesToBeAdded.push(i);
-
-    //Starting from the rear, find the lowest scoring hero with more than 1 other hero in it's role, and replace it with the highest scoring hero from the unfilled role
     rolesToBeAdded.forEach(function (role, index) {
         for (i = 5; i >= 0; i--) {
             var potentialHeroToReplace = recommendedTeam[i];
@@ -276,29 +232,23 @@ function verifyOneOfEachRoleInRecommendedTeam(_classesMap){
             if (_classesMap[potentialHeroToReplace.role] > 1 && !potentialHeroToReplace.locked) {
                 recommendedTeam.splice(i, 1);
                 recommendedTeam.push(getHeroByName(roleHeroes[0].name))
-                //recommendedTeam[i] = getHeroByName(roleHeroes[0].name);
-                i = -1; //Kill the loop since the missing role has been filed
+                i = -1;
             }
         }
     });
 }
 
-//Adjust the recommendedTeam based on the selected meta
 function adjustTeamforMeta(roles) {
-    //Reset the recommended team
     recommendedTeam = [];
     var lockedHeroes = getAllLockedHeroes();
-
     lockedHeroes.forEach(function(obj){
         recommendedTeam.push(obj);
     });
-    //Gets all heroes sorted by score from highest to lowest
     var sortedAllHeroes = getAllHeroesArray();
     var hasHealer = false;
     var replacementHero;
     var hasSniper = false;
     var hasBuilder = false;
-    //Loop through the sorted heroes then return the tanks and healers with the highest score
     sortedAllHeroes.forEach(function (hero, index) {
         if (recommendedTeam.length < 6 && roles[hero.role] > 0) {
             if (hero.sniper && !hasSniper && !hero.removed && !hero.locked && !heroInRecommended(hero.name)) {
@@ -309,20 +259,20 @@ function adjustTeamforMeta(roles) {
                 recommendedTeam.push(getHeroByName(hero.name));
                 roles[hero.role]--;
             }
-
         }
     });
 }
 
-//Removes a recommended hero from the UI
 function dropRecommended(obj){
     var heroToDrop = $("#"+obj.id).attr("hero");
-    $('#'+heroToDrop).css("background-color", "red");
-    removeHero(heroToDrop);
-    determineTeamCounters();
+    var heroObject = getHeroByName(heroToDrop);
+    if (!heroObject.locked) {
+        $('#'+heroToDrop).css("background-color", "red");
+        removeHero(heroToDrop);
+        determineTeamCounters();
+    }
 }
 
-//Removes all recommended heroes, map, and resets scores
 function resetButtonClick() {
     $(".mapIcon.selected").removeClass("selected");
     $(".enemyTeamIcon").each(function (index, obj) {
@@ -348,8 +298,7 @@ function onlyOneCheckboxClicked(){
                 $(obj).css("background-image", "");
                 $(obj).attr("hero", "");
                 $(obj).addClass("empty");
-                $("#enemyTeamInfoIcon"+(index+1)).css("opacity", 0);
-                $("#enemyTeamInfoIcon"+(index+1)).css("pointer-events", "none");
+                hideTeamIcon(index);
             } else {
                 enemyTeamDuplicates.push(heroToRemove);
             }
@@ -376,12 +325,10 @@ function lockHeroClicked(heroElement){
     if ($(heroElement).hasClass("fa-lock") && $(".enemyTeamIcon.empty").length !== 0 && $(".fa-unlock").length !== 6) {
         $(heroElement).removeClass("fa-lock");
         $(heroElement).addClass("fa-unlock");
-        //$("#"+heroToLock).addClass("grey");
         lockHero(heroToLock, true);
     } else if ($(".enemyTeamIcon.empty").length !== 0) {
         $(heroElement).removeClass("fa-unlock");
         $(heroElement).addClass("fa-lock");
-        //$("#"+heroToLock).removeClass("grey");
         lockHero(heroToLock, false);
     }
     determineTeamCounters();
@@ -423,4 +370,45 @@ function resetRecommendedTeam() {
         $(obj).addClass("empty");
         $(obj).css("border", "1px solid lightgrey");
     });
+}
+
+function hideInfoIcons(){
+        $(".infoIcon").each(function(index, obj){
+        var parent = $(obj).attr("parent");
+        var test =$("#"+parent).attr("hero");
+        if ($("#"+parent).attr("hero") != ""){
+            $(obj).css("opacity", 1);
+            $(obj).css("pointer-events", "all");
+        } else {
+            $(obj).css("opacity", 0);
+            $(obj).css("pointer-events", "none");
+        }
+    });
+}
+
+function resetSubMapDropdownSelections() {
+    $('#subMapDropdown').empty();
+    $("#subMapDropdown").append("<option value=\"NoSubMap\">Average of all maps</option>");
+}
+
+function toggleMapSelected(_mapString) {
+    if ($("#" + _mapString + "Icon").hasClass("selected")) {
+        $("#attackDefenseContainer").css("display", "none");
+        $("#" + _mapString + "Icon").removeClass("selected");
+    } else {
+        $(".mapIcon.selected").removeClass("selected");
+        $("#" + _mapString + "Icon").addClass("selected");
+    }
+}
+
+function toggleAttackDefenseContainer(_mapTypeString) {
+    if (_mapTypeString !== 'Control')
+        $("#attackDefenseContainer").css("display", "inline-block");
+    else
+        $("#attackDefenseContainer").css("display", "none");
+}
+
+function hideTeamIcon(_index) {
+    $("#enemyTeamInfoIcon"+(_index+1)).css("opacity", 0);
+    $("#enemyTeamInfoIcon"+(_index+1)).css("pointer-events", "none");
 }

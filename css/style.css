@@ -285,7 +285,8 @@ h3 {
         background-color: blue;
         display: inline-block;
     }
-    .ribbon {
+    .ribbon,
+    #subheader {
         display: none;
     }
     #iconContainer {
@@ -350,9 +351,5 @@ h3 {
     .infoContainer {
         width: 84px;
         top: -46px;
-    }
-    .lockContainer
-    #subheader {
-        display: none;
     }
 }

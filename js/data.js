@@ -2348,11 +2348,54 @@ var mapData = [
 
 var metaData = [
     {
-        name: "",
+        name: "2 Tank, 2 Healers, 2 Offense",
+        value: "TwoTwoTwoMeta",
         Support: 0,
         Attack: 0,
         Defense: 0,
         Tank: 0
+    }, {
+        name: "3 Tank, 3 Support",
+        value: "TankMeta",
+        Support: 3,
+        Attack: 0,
+        Defense: 0,
+        Tank: 3
+    }, {
+        name: "3 Tank, 2 Healers, 1 Offense",
+        value: "321Meta",
+        Support: 2,
+        Attack: 1,
+        Defense: 0,
+        Tank: 3
+    }, {
+        name: "2 Tank, 2 Healer, 2 Offense/Defense",
+        value: "attackDefenseMeta",
+        Support: 2,
+        Attack: 2,
+        Defense: 2,
+        Tank: 2
+    }, {
+        name: "No Meta",
+        value: "NoMeta",
+        Support: 6,
+        Attack: 6,
+        Defense: 6,
+        Tank: 6
+    }, {
+        name: "One of Each Role",
+        value: "oneOfEachMeta",
+        Support: 6,
+        Attack: 6,
+        Defense: 6,
+        Tank: 6
+    }, {
+        name: "Hanzo Meta",
+        value: "hanzoMeta",
+        Support: 6,
+        Attack: 6,
+        Defense: 6,
+        Tank: 6
     }
 ];
 
