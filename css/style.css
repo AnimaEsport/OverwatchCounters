@@ -286,10 +286,6 @@ h3 {
     font-size: 1.5em;
 }
 @media only screen and (max-width: 1024px) {
-    body {
-        background-color: blue;
-        display: inline-block;
-    }
     .ribbon,
     #subheader {
         display: none;

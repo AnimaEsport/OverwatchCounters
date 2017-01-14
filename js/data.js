@@ -5,7 +5,7 @@ var counterWeight = 1;
 var synergiesWeight = 1;
 var tournamentWeight = 1;
 
-var lastUpdateDate = "January 12th, 2017";
+var lastUpdateDate = "January 14th, 2017";
 
 //counterScores are how well each hero counters the hero
 var heroData = [
