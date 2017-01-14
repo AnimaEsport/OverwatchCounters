@@ -312,10 +312,6 @@ h3 {
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
     }
-    .enemyTeamIcon:active,
-    .heroIcon:active {
-        background-color: red;
-    }
     .recommendedTeamIcon,
     .enemyTeamIcon {
         border: black 1px solid;
