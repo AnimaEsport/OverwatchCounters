@@ -97,7 +97,7 @@ ul {
     top: 0px;
     left: 0px;
 }
-
+.mapContainer,
 .parentDiv {
     padding: 0px;
     display: inline-block;
@@ -312,10 +312,6 @@ h3 {
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
     }
-    .recommendedTeamIcon,
-    .enemyTeamIcon {
-        border: black 1px solid;
-    }
     .mapContainer,
     .heroIcon,
     .recommendedTeamIcon,
@@ -337,9 +333,18 @@ h3 {
     .infoContainer {
         width: 84px;
         top: -42px;
-        font-size: .8em !important;
+        font-size: 1em !important;
     }
     .teamLabel {
         font-size: .76em !important;
+    }
+    .popUpSubHeader {
+        font-size: .7em;
+    }
+    .popUpMapHeader {
+        font-size: 1em;
+    }
+    .popUpList {
+        font-size: .45em;
     }
 }

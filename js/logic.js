@@ -76,10 +76,10 @@ function displayHeroInfo(hero){
     var mapHeroes = getMapHeroesByName();
     if ($(".selected").length == 1) {
         if (mapHeroes[heroName] == 2)
-            textHTML += '<h3 class="popUpSubHeader">Strong on map</h3>';
+            textHTML += '<h3 class="popUpMapHeader">Strong on map</h3>';
     }
 
-    textHTML += '<div class="popUpDiv"><h3 class="popUpSubHeader">Strong Vs.</h3><ul>';
+    textHTML += '<div class="popUpDiv"><h3 class="popUpSubHeader">Strong Vs.</h3><ul class="popUpList">';
     for(enemy in targetTeam){
         var enemyObject = getHeroByName(targetTeam[enemy]);
         if (enemyObject.counterScores[heroName] == 2)
@@ -90,7 +90,7 @@ function displayHeroInfo(hero){
         if (enemyObject.counterScores[heroName] == 1)
             textHTML += "<li>" + targetTeam[enemy] + "</li>";
     }
-    textHTML += '</ul></div><div class="popUpDiv"><h3 class="popUpSubHeader">Weak Vs.</h3><ul>'
+    textHTML += '</ul></div><div class="popUpDiv"><h3 class="popUpSubHeader">Weak Vs.</h3><ul class="popUpList">'
 
     for(enemy in targetTeam){
         var enemyObject = getHeroByName(targetTeam[enemy]);
@@ -103,7 +103,7 @@ function displayHeroInfo(hero){
             textHTML += "<li>" + targetTeam[enemy] + "</li>";
     }
     textHTML += '</ul></div>'
-    textHTML += '<div class="popUpDiv"><h3 class="popUpSubHeader">Synergy with</h3><ul>'
+    textHTML += '<div class="popUpDiv"><h3 class="popUpSubHeader">Synergy</h3><ul class="popUpList">'
     for (var synergy in heroObject.synergies)
         if (heroObject.synergies[synergy] == 2 && opposeTeam.indexOf(synergy) != -1)
             textHTML += "<li><strong>" + synergy + "</strong></li>";
