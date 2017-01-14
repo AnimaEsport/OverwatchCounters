@@ -4,7 +4,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
         <script type="application/javascript" src="js/data.js"></script>
-        <script type="application/javascript" src="js/functions.js"></script>
         <script type="application/javascript" src="js/logic.js"></script>
         <script type="application/javascript" src="js/sweetalert.min.js"></script>
         <link href="css/sweetalert.css" type="text/css" rel="stylesheet">
@@ -24,7 +23,7 @@
             <div id="subContainer">
                 <h5 id="subheader">Enter your enemy team comp and the map</h5>
                 <div id="heroesContainer" ng-controller="HeroIcons as hero">
-                    <div ng-repeat="hero in hero.heroes" class="heroIconContainer">
+                    <div ng-repeat="hero in hero.heroes" class="parentDiv">
                         <div class="heroIcon"  hero="{{hero.name}}" id="{{hero.name}}" ng-style="{'background-image':'url(images/CharacterIcons/{{hero.name}}.png)'}" onclick="enemyIconClicked(this)"></div>
                         <div class="lockContainer">
                             <i class="lockIcon fa fa-lock" id="{{hero.name}}LockIcon" aria-hidden="true" hero="{{hero.name}}" onclick="lockHeroClicked(this)"></i>
@@ -92,6 +91,7 @@
                     </div>
                 </div>
                 <div id="footer">
+                    <p>Last Updated <span id="lastUpdate"></span></p>
                     <p>Tournament data from <a href="https://www.overbuff.com">Overbuff</a> | Help improve hero weakness and map data at <a href="http://overwatchcountersguide.com">/u/foxbarrington's app</a>
                         <br> An unofficial fan project built with <span id="heart">&hearts;</span> by <a href="https://andrewkar.ch/">Andrew</a></p>
                 </div>

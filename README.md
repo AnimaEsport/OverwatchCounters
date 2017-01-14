@@ -5,8 +5,6 @@
 - [Meta Report](https://www.overbuff.com)
 
 #### Post Release
-- Tweak Mobile site
-- Update responsive design
 - Refactor to use consistent datatypes and minimize code
 - Clean CSS
 - Recomment
@@ -23,11 +21,12 @@
 - http://stackoverflow.com/questions/13064816/jquery-mobile-slide-in-menu-solution
 - Swipe -> to show heroes
 - Swipe <- to show maps and options
+- Long press for info
 - Unremove heroes options
 - Complete list of hero scores
 - Change weights
 - Tutorial
 - Auto updating app
-Last updated
-https://www.heropicker.com/
-All one paragraph instructions
+- https://www.heropicker.com/
+- All one paragraph instructions
+- Sweet alert to direct to app stores

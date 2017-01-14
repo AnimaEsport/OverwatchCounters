@@ -12,7 +12,9 @@ var recommendedTeam, enemyTeam, droppedHeroes = [];
         $scope.metas = metaData;
     }]);
 })();
-
+window.onload = function() {
+    document.getElementById("lastUpdate").innerHTML = lastUpdateDate;
+};
 function mapClicked(clickedMapElement) {
     var mapString = $(clickedMapElement).attr("map");
     var mapTypeString = getMapTypeByName(mapString);
