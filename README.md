@@ -6,9 +6,7 @@
 
 #### Post Release
 - Refactor to use consistent datatypes and minimize code
-- Clean CSS
 - Recomment
-- Refactor for consistent use of enemyteam and recommendedteam
 - Resubmit to Reddit
 - Dedicated website
 - Message Mods to get on /r/Overwatch Sidebar

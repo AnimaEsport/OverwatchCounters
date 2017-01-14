@@ -37,6 +37,8 @@ a {
     width: 70px;
     margin-top: 25px;
     font-size: .5em;
+    font-family: "BigNoodle", sans-serif;
+    font-size: .7em;
     border-radius: 16px;
     border: none;
     background-color: orange;
@@ -73,11 +75,11 @@ ul {
 .heroIcon,
 .recommendedTeamIcon,
 .mapIcon,
+.parentDiv,
 .popUpIcon,
 .enemyTeamIcon {
     border-radius: 16px;
     display: inline-block;
-    margin: 0px 2.5px 0px 2.5px;
     height: 80px;
     /* Original: 100 */
     width: 90px;
@@ -215,6 +217,9 @@ input {
 .popUpSubHeader{
     margin: 0px 0px 0px 0px !important;
 }
+.heroIcon,
+.recommendedTeamIcon {
+}
 .score,
 .lockIcon,
 .infoIcon {
@@ -304,11 +309,6 @@ h3 {
         margin-top: 0;
         font-size: .65em;
     }
-    html {
-        min-width: 100%;
-        font-size: 3em;
-        font-size: 3em;
-    }
     #headerContainer {
         margin: 0px;
         background: orange;
@@ -328,28 +328,26 @@ h3 {
     .heroIcon,
     .recommendedTeamIcon,
     .mapIcon,
+    .parentDiv,
     .enemyTeamIcon {
         height: 75px;
         width: 84px;
-        font-size: .75em;
-    }
-    .recommendedTeamIcon,
-    .enemyTeamIcon {
-        margin: 0px 7.5px 0px 7.5px;
     }
     .score {
         left: 10px;
-        top: 37px;
-        font-size: .8em;
+        font-size: 1.2em;
     }
     .infoIcon {
         left: 0px;
         top: 40px;
-        font-size: .8em;
     }
     .lockContainer,
     .infoContainer {
         width: 84px;
-        top: -46px;
+        top: -42px;
+        font-size: .8em !important;
+    }
+    .teamLabel {
+        font-size: .76em !important;
     }
 }
