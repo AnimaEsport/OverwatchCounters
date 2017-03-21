@@ -27,6 +27,7 @@ var heroData = [
             McCree: 1,
             Mei: 1,
             Mercy: -2,
+            Orisa: 0,
             Pharah: 0,
             Reaper: 1,
             Reinhardt: 0,
@@ -52,6 +53,7 @@ var heroData = [
             McCree: 1,
             Mei: 0,
             Mercy: 0,
+            Orisa: 0,
             Pharah: 1,
             Reaper: 2,
             Reinhardt: 2,
@@ -67,6 +69,7 @@ var heroData = [
             Zenyatta: 1
         },
         score: 0,
+        color: "298eff",
         proScore: 1,
         locked: false,
         removed: false
@@ -88,6 +91,7 @@ var heroData = [
             McCree: 1,
             Mei: 1,
             Mercy: -2,
+            Orisa: 0,
             Pharah: 2,
             Reaper: 0,
             Reinhardt: -1,
@@ -113,6 +117,7 @@ var heroData = [
             McCree: -2,
             Mei: -2,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 1,
             Reaper: -2,
             Reinhardt: 2,
@@ -128,6 +133,7 @@ var heroData = [
             Zenyatta: 2
         },
         score: 0,
+        color: "ebd9b3",
         proScore: -2,
         locked: false,
         removed: false
@@ -149,6 +155,7 @@ var heroData = [
             McCree: 0,
             Mei: 2,
             Mercy: -2,
+            Orisa: 0,
             Pharah: -1,
             Reaper: 1,
             Reinhardt: 1,
@@ -174,6 +181,7 @@ var heroData = [
             McCree: -2,
             Mei: -2,
             Mercy: 1,
+            Orisa: 0,
             Pharah: 1,
             Reaper: -2,
             Reinhardt: -2,
@@ -189,6 +197,7 @@ var heroData = [
             Zenyatta: -1
         },
         score: 0,
+        color: "feabe6",
         proScore: 1,
         locked: false,
         removed: false
@@ -210,6 +219,7 @@ var heroData = [
             McCree: 1,
             Mei: 2,
             Mercy: -2,
+            Orisa: 0,
             Pharah: 0,
             Reaper: 0,
             Reinhardt: 0,
@@ -235,6 +245,7 @@ var heroData = [
             McCree: -1,
             Mei: -2,
             Mercy: -2,
+            Orisa: 0,
             Pharah: 2,
             Reaper: 0,
             Reinhardt: -2,
@@ -250,6 +261,7 @@ var heroData = [
             Zenyatta: 1
         },
         score: 0,
+        color: "b6ef13",
         proScore: -1,
         locked: false,
         removed: false
@@ -271,6 +283,7 @@ var heroData = [
             McCree: 0,
             Mei: 1,
             Mercy: -2,
+            Orisa: 0,
             Pharah: 0,
             Reaper: 0,
             Reinhardt: 1,
@@ -296,6 +309,7 @@ var heroData = [
             McCree: 2,
             Mei: -2,
             Mercy: 0,
+            Orisa: 0,
             Pharah: 1,
             Reaper: -2,
             Reinhardt: 1,
@@ -311,6 +325,7 @@ var heroData = [
             Zenyatta: -2
         },
         score: 0,
+        color: "ffeb96",
         proScore: -2,
         locked: false,
         removed: false
@@ -332,6 +347,7 @@ var heroData = [
             McCree: 1,
             Mei: 1,
             Mercy: -2,
+            Orisa: 0,
             Pharah: 2,
             Reaper: 0,
             Reinhardt: -1,
@@ -357,6 +373,7 @@ var heroData = [
             McCree: 0,
             Mei: -2,
             Mercy: 2,
+            Orisa: 0,
             Pharah: -1,
             Reaper: 0,
             Reinhardt: 2,
@@ -372,6 +389,7 @@ var heroData = [
             Zenyatta: 2
         },
         score: 0,
+        color: "ffdc44",
         proScore: -2,
         locked: false,
         removed: false
@@ -393,6 +411,7 @@ var heroData = [
             McCree: 2,
             Mei: 2,
             Mercy: -1,
+            Orisa: 0,
             Pharah: 2,
             Reaper: 0,
             Reinhardt: 1,
@@ -418,6 +437,7 @@ var heroData = [
             McCree: 2,
             Mei: 2,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 2,
             Reaper: 2,
             Reinhardt: 2,
@@ -433,6 +453,7 @@ var heroData = [
             Zenyatta: 2
         },
         score: 0,
+        color: "b8ff45",
         proScore: 3,
         locked: false,
         removed: false
@@ -454,6 +475,7 @@ var heroData = [
             McCree: 0,
             Mei: 1,
             Mercy: -2,
+            Orisa: 0,
             Pharah: -1,
             Reaper: -1,
             Reinhardt: 0,
@@ -479,6 +501,7 @@ var heroData = [
             McCree: 0,
             Mei: -2,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 1,
             Reaper: 2,
             Reinhardt: 2,
@@ -494,6 +517,7 @@ var heroData = [
             Zenyatta: 1
         },
         score: 0,
+        color: "c23f46",
         proScore: -1,
         locked: false,
         removed: false
@@ -515,6 +539,7 @@ var heroData = [
             McCree: 1,
             Mei: 0,
             Mercy: -2,
+            Orisa: 0,
             Pharah: 1,
             Reaper: 0,
             Reinhardt: 0,
@@ -540,6 +565,7 @@ var heroData = [
             McCree: 1,
             Mei: 0,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 1,
             Reaper: 2,
             Reinhardt: 2,
@@ -555,6 +581,7 @@ var heroData = [
             Zenyatta: 1
         },
         score: 0,
+        color: "87d7f6",
         proScore: 0,
         locked: false,
         removed: false
@@ -576,6 +603,7 @@ var heroData = [
             McCree: 2,
             Mei: 2,
             Mercy: 0,
+            Orisa: 0,
             Pharah: 2,
             Reaper: 2,
             Reinhardt: 2,
@@ -601,6 +629,7 @@ var heroData = [
             McCree: 2,
             Mei: 1,
             Mercy: 0,
+            Orisa: 0,
             Pharah: 2,
             Reaper: 1,
             Reinhardt: 2,
@@ -616,7 +645,72 @@ var heroData = [
             Zenyatta: 0
         },
         score: 0,
+        color: "fedc57",
         proScore: -2,
+        locked: false,
+        removed: false
+    }, {
+        name: "Orisa",
+        actualName: "Orisa",
+        role: "Tank",
+        healer: false,
+        sniper: false,
+        builder: false,
+        counterScores: {
+            Ana: 0,
+            Bastion: 0,
+            Dva: 0,
+            Genji: 0,
+            Hanzo: 0,
+            Junkrat: 0,
+            Lucio: 0,
+            McCree: 0,
+            Mei: 0,
+            Mercy: 0,
+            Orisa: 0,
+            Pharah: 0,
+            Reaper: 0,
+            Reinhardt: 0,
+            Roadhog: 0,
+            Soldier76: 0,
+            Sombra: 0,
+            Symmetra: 0,
+            Torbjorn: 0,
+            Tracer: 0,
+            Widowmaker: 0,
+            Winston: 0,
+            Zarya: 0,
+            Zenyatta: 0
+        },
+        synergies: {
+            Ana: 0,
+            Bastion: 0,
+            Dva: 0,
+            Genji: 0,
+            Hanzo: 0,
+            Junkrat: 0,
+            Lucio: 0,
+            McCree: 0,
+            Mei: 0,
+            Mercy: 0,
+            Orisa: 0,
+            Pharah: 0,
+            Reaper: 0,
+            Reinhardt: 0,
+            Roadhog: 0,
+            Soldier76: 0,
+            Sombra: 0,
+            Symmetra: 0,
+            Torbjorn: 0,
+            Tracer: 0,
+            Widowmaker: 0,
+            Winston: 0,
+            Zarya: 0,
+            Zenyatta: 0
+        },
+        score: 0,
+        color: "efeae0",
+        proScore: 0,
         locked: false,
         removed: false
     }, {
@@ -637,6 +731,7 @@ var heroData = [
             McCree: 2,
             Mei: -1,
             Mercy: -2,
+            Orisa: 0,
             Pharah: 0,
             Reaper: -1,
             Reinhardt: -1,
@@ -662,6 +757,7 @@ var heroData = [
             McCree: 0,
             Mei: 1,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 0,
             Reaper: 0,
             Reinhardt: 0,
@@ -677,6 +773,7 @@ var heroData = [
             Zenyatta: 1
         },
         score: 0,
+        color: "3461a4",
         proScore: -2,
         locked: false,
         removed: false
@@ -698,6 +795,7 @@ var heroData = [
             McCree: 1,
             Mei: 1,
             Mercy: -2,
+            Orisa: 0,
             Pharah: 2,
             Reaper: 0,
             Reinhardt: 0,
@@ -723,6 +821,7 @@ var heroData = [
             McCree: 2,
             Mei: 2,
             Mercy: 1,
+            Orisa: 0,
             Pharah: 1,
             Reaper: 0,
             Reinhardt: 2,
@@ -738,6 +837,7 @@ var heroData = [
             Zenyatta: 2
         },
         score: 0,
+        color: "333333 ",
         proScore: -2,
         locked: false,
         removed: false
@@ -759,6 +859,7 @@ var heroData = [
             McCree: 1,
             Mei: 1,
             Mercy: -2,
+            Orisa: 0,
             Pharah: 1,
             Reaper: 2,
             Reinhardt: 0,
@@ -784,6 +885,7 @@ var heroData = [
             McCree: 2,
             Mei: -1,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 0,
             Reaper: 2,
             Reinhardt: 0,
@@ -799,6 +901,7 @@ var heroData = [
             Zenyatta: 2
         },
         score: 0,
+        color: "b9b5ad",
         proScore: 2,
         locked: false,
         removed: false
@@ -820,6 +923,7 @@ var heroData = [
             McCree: 0,
             Mei: 1,
             Mercy: -2,
+            Orisa: 0,
             Pharah: 0,
             Reaper: 2,
             Reinhardt: 0,
@@ -845,6 +949,7 @@ var heroData = [
             McCree: -2,
             Mei: 2,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 0,
             Reaper: -2,
             Reinhardt: -2,
@@ -860,6 +965,7 @@ var heroData = [
             Zenyatta: -2
         },
         score: 0,
+        color: "eedbb0",
         proScore: 1,
         locked: false,
         removed: false
@@ -881,6 +987,7 @@ var heroData = [
             McCree: 1,
             Mei: 1,
             Mercy: -2,
+            Orisa: 0,
             Pharah: -1,
             Reaper: 0,
             Reinhardt: 1,
@@ -906,6 +1013,7 @@ var heroData = [
             McCree: -1,
             Mei: 1,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 1,
             Reaper: 1,
             Reinhardt: 2,
@@ -921,6 +1029,7 @@ var heroData = [
             Zenyatta: 2
         },
         score: 0,
+        color: "525d9b",
         proScore: 0,
         locked: false,
         removed: false
@@ -942,6 +1051,7 @@ var heroData = [
             McCree: 2,
             Mei: 2,
             Mercy: -2,
+            Orisa: 0,
             Pharah: 0,
             Reaper: 0,
             Reinhardt: -1,
@@ -967,6 +1077,7 @@ var heroData = [
             McCree: 0,
             Mei: 0,
             Mercy: 0,
+            Orisa: 0,
             Pharah: 0,
             Reaper: 0,
             Reinhardt: 0,
@@ -982,6 +1093,7 @@ var heroData = [
             Zenyatta: 0
         },
         score: 0,
+        color: "bd7bf5",
         proScore: -2,
         locked: false,
         removed: false
@@ -1003,6 +1115,7 @@ var heroData = [
             McCree: 1,
             Mei: 2,
             Mercy: -2,
+            Orisa: 0,
             Pharah: 2,
             Reaper: 1,
             Reinhardt: -1,
@@ -1028,6 +1141,7 @@ var heroData = [
             McCree: -2,
             Mei: -2,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 1,
             Reaper: -2,
             Reinhardt: -2,
@@ -1043,6 +1157,7 @@ var heroData = [
             Zenyatta: 2
         },
         score: 0,
+        color: "3cffff",
         proScore: -2,
         locked: false,
         removed: false
@@ -1064,6 +1179,7 @@ var heroData = [
             McCree: 0,
             Mei: 1,
             Mercy: -2,
+            Orisa: 0,
             Pharah: 2,
             Reaper: -1,
             Reinhardt: 2,
@@ -1089,6 +1205,7 @@ var heroData = [
             McCree: -2,
             Mei: -2,
             Mercy: -2,
+            Orisa: 0,
             Pharah: 1,
             Reaper: -2,
             Reinhardt: 0,
@@ -1102,7 +1219,9 @@ var heroData = [
             Winston: -2,
             Zarya: 0,
             Zenyatta: 2
-        },        score: 0,
+        },
+        score: 0,
+        color: "b04a33",
         proScore: -2,
         locked: false,
         removed: false
@@ -1124,6 +1243,7 @@ var heroData = [
             McCree: 2,
             Mei: 0,
             Mercy: -2,
+            Orisa: 0,
             Pharah: 1,
             Reaper: 0,
             Reinhardt: -1,
@@ -1149,6 +1269,7 @@ var heroData = [
             McCree: 0,
             Mei: 1,
             Mercy: -2,
+            Orisa: 0,
             Pharah: 2,
             Reaper: -1,
             Reinhardt: -1,
@@ -1164,6 +1285,7 @@ var heroData = [
             Zenyatta: 1
         },
         score: 0,
+        color: "ffcf35",
         proScore: 0,
         locked: false,
         removed: false
@@ -1185,6 +1307,7 @@ var heroData = [
             McCree: -1,
             Mei: -1,
             Mercy: -2,
+            Orisa: 0,
             Pharah: -1,
             Reaper: -1,
             Reinhardt: 1,
@@ -1210,6 +1333,7 @@ var heroData = [
             McCree: -2,
             Mei: -2,
             Mercy: -2,
+            Orisa: 0,
             Pharah: 2,
             Reaper: -2,
             Reinhardt: -2,
@@ -1225,6 +1349,7 @@ var heroData = [
             Zenyatta: -2
         },
         score: 0,
+        color: "b1b4db",
         proScore: -2,
         locked: false,
         removed: false
@@ -1246,6 +1371,7 @@ var heroData = [
             McCree: 1,
             Mei: 2,
             Mercy: -2,
+            Orisa: 0,
             Pharah: 0,
             Reaper: 2,
             Reinhardt: 2,
@@ -1271,6 +1397,7 @@ var heroData = [
             McCree: -2,
             Mei: -2,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 2,
             Reaper: -2,
             Reinhardt: -2,
@@ -1286,6 +1413,7 @@ var heroData = [
             Zenyatta: -2
         },
         score: 0,
+        color: "e9d53e",
         proScore: -1,
         locked: false,
         removed: false
@@ -1307,6 +1435,7 @@ var heroData = [
             McCree: 0,
             Mei: 1,
             Mercy: -1,
+            Orisa: 0,
             Pharah: 1,
             Reaper: 1,
             Reinhardt: 0,
@@ -1332,6 +1461,7 @@ var heroData = [
             McCree: 2,
             Mei: 1,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 2,
             Reaper: 2,
             Reinhardt: 2,
@@ -1347,6 +1477,7 @@ var heroData = [
             Zenyatta: 2
         },
         score: 0,
+        color: "ff73c1",
         proScore: 1,
         locked: false,
         removed: false
@@ -1368,6 +1499,7 @@ var heroData = [
             McCree: 2,
             Mei: 1,
             Mercy: -2,
+            Orisa: 0,
             Pharah: 1,
             Reaper: 2,
             Reinhardt: 0,
@@ -1393,6 +1525,7 @@ var heroData = [
             McCree: 2,
             Mei: 1,
             Mercy: 1,
+            Orisa: 0,
             Pharah: 2,
             Reaper: 2,
             Reinhardt: 0,
@@ -1408,6 +1541,7 @@ var heroData = [
             Zenyatta: 0
         },
         score: 0,
+        color: "6f241e",
         proScore: 0,
         locked: false,
         removed: false
@@ -1431,6 +1565,7 @@ var mapData = [
             McCree: 2,
             Mei: 2,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 1,
             Reaper: 1,
             Reinhardt: 2,
@@ -1456,6 +1591,7 @@ var mapData = [
             McCree: 2,
             Mei: 2,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 1,
             Reaper: 1,
             Reinhardt: 2,
@@ -1469,7 +1605,7 @@ var mapData = [
             Winston: 0,
             Zarya: 2,
             Zenyatta: 2,
-            }
+        }
     }, {
         name: "TempleofAnubis",
         actualName: "Anubis",
@@ -1486,6 +1622,7 @@ var mapData = [
             McCree: 1,
             Mei: 1,
             Mercy: 1,
+            Orisa: 0,
             Pharah: 2,
             Reaper: 2,
             Reinhardt: 2,
@@ -1511,6 +1648,7 @@ var mapData = [
             McCree: 2,
             Mei: 2,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 1,
             Reaper: 1,
             Reinhardt: 2,
@@ -1524,7 +1662,7 @@ var mapData = [
             Winston: 1,
             Zarya: 2,
             Zenyatta: 2,
-            }
+        }
     }, {
         name: "VolskayaIndustries",
         actualName: "Volskaya",
@@ -1541,6 +1679,7 @@ var mapData = [
             McCree: 2,
             Mei: 1,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 1,
             Reaper: 2,
             Reinhardt: 2,
@@ -1566,6 +1705,7 @@ var mapData = [
             McCree: 2,
             Mei: 2,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 1,
             Reaper: 1,
             Reinhardt: 2,
@@ -1579,7 +1719,7 @@ var mapData = [
             Winston: 2,
             Zarya: 2,
             Zenyatta: 2,
-            }
+        }
     }, {
         name: "Dorado",
         actualName: "Dorado",
@@ -1596,6 +1736,7 @@ var mapData = [
             McCree: 2,
             Mei: 1,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 2,
             Reaper: 2,
             Reinhardt: 2,
@@ -1621,6 +1762,7 @@ var mapData = [
             McCree: 2,
             Mei: 1,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 1,
             Reaper: 1,
             Reinhardt: 2,
@@ -1634,7 +1776,7 @@ var mapData = [
             Winston: 2,
             Zarya: 2,
             Zenyatta: 2,
-            }
+        }
     }, {
         name: "Route66",
         actualName: "Route 66",
@@ -1651,6 +1793,7 @@ var mapData = [
             McCree: 2,
             Mei: 1,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 1,
             Reaper: 2,
             Reinhardt: 2,
@@ -1676,6 +1819,7 @@ var mapData = [
             McCree: 2,
             Mei: 2,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 1,
             Reaper: 2,
             Reinhardt: 2,
@@ -1689,7 +1833,7 @@ var mapData = [
             Winston: 2,
             Zarya: 2,
             Zenyatta: 2,
-            }
+        }
     }, {
         name: "WatchpointGibraltar",
         actualName: "Gibraltar",
@@ -1706,6 +1850,7 @@ var mapData = [
             McCree: 2,
             Mei: 1,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 2,
             Reaper: 2,
             Reinhardt: 2,
@@ -1731,6 +1876,7 @@ var mapData = [
             McCree: 2,
             Mei: 1,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 1,
             Reaper: 1,
             Reinhardt: 2,
@@ -1744,7 +1890,7 @@ var mapData = [
             Winston: 1,
             Zarya: 2,
             Zenyatta: 2,
-            }
+        }
     }, {
         name: "Hollywood",
         actualName: "Hollywood",
@@ -1761,6 +1907,7 @@ var mapData = [
             McCree: 2,
             Mei: 1,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 2,
             Reaper: 2,
             Reinhardt: 2,
@@ -1786,6 +1933,7 @@ var mapData = [
             McCree: 2,
             Mei: 2,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 1,
             Reaper: 2,
             Reinhardt: 2,
@@ -1799,7 +1947,7 @@ var mapData = [
             Winston: 2,
             Zarya: 2,
             Zenyatta: 2,
-            }
+        }
     }, {
         name: "KingsRow",
         actualName: "KingsRow",
@@ -1816,6 +1964,7 @@ var mapData = [
             McCree: 2,
             Mei: 1,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 2,
             Reaper: 2,
             Reinhardt: 2,
@@ -1841,6 +1990,7 @@ var mapData = [
             McCree: 2,
             Mei: 2,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 1,
             Reaper: 2,
             Reinhardt: 2,
@@ -1854,7 +2004,7 @@ var mapData = [
             Winston: 2,
             Zarya: 2,
             Zenyatta: 2,
-            }
+        }
     }, {
         name: "Numbani",
         actualName: "Numbani",
@@ -1871,6 +2021,7 @@ var mapData = [
             McCree: 2,
             Mei: 2,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 2,
             Reaper: 2,
             Reinhardt: 2,
@@ -1896,6 +2047,7 @@ var mapData = [
             McCree: 2,
             Mei: 2,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 1,
             Reaper: 1,
             Reinhardt: 2,
@@ -1909,7 +2061,7 @@ var mapData = [
             Winston: 2,
             Zarya: 2,
             Zenyatta: 2,
-            }
+        }
     }, {
         name: "Eichenwalde",
         actualName: "Eichenwalde",
@@ -1926,6 +2078,7 @@ var mapData = [
             McCree: 1,
             Mei: 1,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 2,
             Reaper: 2,
             Reinhardt: 2,
@@ -1951,6 +2104,7 @@ var mapData = [
             McCree: 2,
             Mei: 2,
             Mercy: 2,
+            Orisa: 0,
             Pharah: 2,
             Reaper: 2,
             Reinhardt: 2,
@@ -1964,7 +2118,7 @@ var mapData = [
             Winston: 1,
             Zarya: 2,
             Zenyatta: 2,
-            }
+        }
     }, {
         name: "Oasis",
         actualName: "Oasis",
@@ -1984,6 +2138,7 @@ var mapData = [
                     McCree: 2,
                     Mei: 2,
                     Mercy: 0,
+                    Orisa: 0,
                     Pharah: 1,
                     Reaper: 2,
                     Reinhardt: 1,
@@ -2013,6 +2168,7 @@ var mapData = [
                     McCree: 2,
                     Mei: 2,
                     Mercy: 1,
+                    Orisa: 0,
                     Pharah: 1,
                     Reaper: 2,
                     Reinhardt: 2,
@@ -2042,6 +2198,7 @@ var mapData = [
                     McCree: 2,
                     Mei: 2,
                     Mercy: 1,
+                    Orisa: 0,
                     Pharah: 1,
                     Reaper: 2,
                     Reinhardt: 1,
@@ -2057,7 +2214,7 @@ var mapData = [
                     Zenyatta: 2
                 }
             }
-            },
+        },
         attackHeroes: {},
         defenseHeroes: {}
     }, {
@@ -2079,6 +2236,7 @@ var mapData = [
                     McCree: 2,
                     Mei: 2,
                     Mercy: 1,
+                    Orisa: 0,
                     Pharah: 1,
                     Reaper: 2,
                     Reinhardt: 1,
@@ -2108,6 +2266,7 @@ var mapData = [
                     McCree: 2,
                     Mei: 2,
                     Mercy: 0,
+                    Orisa: 0,
                     Pharah: 1,
                     Reaper: 2,
                     Reinhardt: 2,
@@ -2137,6 +2296,7 @@ var mapData = [
                     McCree: 2,
                     Mei: 2,
                     Mercy: 1,
+                    Orisa: 0,
                     Pharah: 2,
                     Reaper: 2,
                     Reinhardt: 2,
@@ -2152,7 +2312,7 @@ var mapData = [
                     Zenyatta: 2
                 }
             }
-            },
+        },
         attackHeroes: {},
         defenseHeroes: {}
     }, {
@@ -2174,6 +2334,7 @@ var mapData = [
                     McCree: 2,
                     Mei: 2,
                     Mercy: 1,
+                    Orisa: 0,
                     Pharah: 1,
                     Reaper: 2,
                     Reinhardt: 2,
@@ -2203,6 +2364,7 @@ var mapData = [
                     McCree: 1,
                     Mei: 2,
                     Mercy: 0,
+                    Orisa: 0,
                     Pharah: 2,
                     Reaper: 2,
                     Reinhardt: 1,
@@ -2232,6 +2394,7 @@ var mapData = [
                     McCree: 1,
                     Mei: 2,
                     Mercy: 1,
+                    Orisa: 0,
                     Pharah: 2,
                     Reaper: 2,
                     Reinhardt: 1,
@@ -2247,7 +2410,7 @@ var mapData = [
                     Zenyatta: 2
                 }
             }
-            },
+        },
         attackHeroes: {},
         defenseHeroes: {}
     }, {
@@ -2269,6 +2432,7 @@ var mapData = [
                     McCree: 2,
                     Mei: 2,
                     Mercy: 0,
+                    Orisa: 0,
                     Pharah: 1,
                     Reaper: 2,
                     Reinhardt: 1,
@@ -2298,6 +2462,7 @@ var mapData = [
                     McCree: 2,
                     Mei: 2,
                     Mercy: 1,
+                    Orisa: 0,
                     Pharah: 1,
                     Reaper: 2,
                     Reinhardt: 2,
@@ -2327,6 +2492,7 @@ var mapData = [
                     McCree: 2,
                     Mei: 2,
                     Mercy: 1,
+                    Orisa: 0,
                     Pharah: 1,
                     Reaper: 2,
                     Reinhardt: 1,
@@ -2342,7 +2508,7 @@ var mapData = [
                     Zenyatta: 2
                 }
             }
-            },
+        },
         attackHeroes: {},
         defenseHeroes: {}
     }
@@ -2400,7 +2566,6 @@ var metaData = [
         Tank: 6
     }
 ];
-
 //Increments by 1 the Hero by the counterWeight
 function incrementHeroByName(_hero, amount) {
     heroData.filter(function (val, index, array) {
