@@ -77,7 +77,8 @@ ul {
 .mapIcon,
 .parentDiv,
 .popUpIcon,
-.enemyTeamIcon {
+.enemyTeamIcon,
+.socialMediaButton {
     border-radius: 16px;
     display: inline-block;
     height: 80px;
@@ -87,6 +88,24 @@ ul {
     display: inline-block;
     background-size: cover;
 }
+
+.socialMediaButton {
+    font-size: 2em;
+    text-align:center;
+    line-height:80px;
+    color: white;
+    width:80px;
+    height:80px;
+}
+
+#facebook {
+    background-color: #3b5998;
+}
+
+#twitter {
+   background-color: #55acee;
+}
+
 .popUpIcon {
     height: 100px;
     width: 112px;

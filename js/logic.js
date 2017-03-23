@@ -414,3 +414,9 @@ function hideTeamIcon(_index) {
     $("#enemyTeamInfoIcon"+(_index+1)).css("opacity", 0);
     $("#enemyTeamInfoIcon"+(_index+1)).css("pointer-events", "none");
 }
+function shareButtonClicked(element) {
+    if ($(element).attr('id') == "twitter")
+        window.open("https://twitter.com/home?status=https%3A//andrewkarch.github.io/OverwatchCounters");
+    else
+        window.open("https://www.facebook.com/sharer/sharer.php?u=https%3A//andrewkarch.github.io/OverwatchCounters");
+}
