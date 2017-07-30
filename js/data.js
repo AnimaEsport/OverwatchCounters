@@ -45,6 +45,7 @@ var heroData = [
         synergies: {
             Ana: 0,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 1,
             Genji: 2,
             Hanzo: 0,
@@ -83,6 +84,7 @@ var heroData = [
         counterScores: {
             Ana: 1,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 1,
             Genji: 2,
             Hanzo: 2,
@@ -109,6 +111,7 @@ var heroData = [
         synergies: {
             Ana: 2,
             Bastion: 0,
+            Doomfist: 0,
             Dva: -2,
             Genji: 2,
             Hanzo: -2,
@@ -147,6 +150,7 @@ var heroData = [
         counterScores: {
             Ana: 0,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 0,
             Genji: 0,
             Hanzo: 0,
@@ -173,6 +177,7 @@ var heroData = [
         synergies: {
             Ana: 0,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 0,
             Genji: 0,
             Hanzo: 0,
@@ -211,6 +216,7 @@ var heroData = [
         counterScores: {
             Ana: 0,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 0,
             Genji: 0,
             Hanzo: 0,
@@ -493,6 +499,7 @@ var heroData = [
         synergies: {
             Ana: 2,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 1,
             Genji: 2,
             Hanzo: 0,
@@ -595,6 +602,7 @@ var heroData = [
         counterScores: {
             Ana: 1,
             Bastion: 0,
+            Doomfist: 0,
             Dva: -1,
             Genji: -1,
             Hanzo: 1,
@@ -723,6 +731,7 @@ var heroData = [
         counterScores: {
             Ana: 0,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 0,
             Genji: 0,
             Hanzo: 0,
@@ -749,6 +758,7 @@ var heroData = [
         synergies: {
             Ana: 0,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 0,
             Genji: 0,
             Hanzo: 0,
@@ -787,6 +797,7 @@ var heroData = [
         counterScores: {
             Ana: 1,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 1,
             Genji: 0,
             Hanzo: 0,
@@ -813,6 +824,7 @@ var heroData = [
         synergies: {
             Ana: 2,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 0,
             Genji: 0,
             Hanzo: -1,
@@ -1043,6 +1055,7 @@ var heroData = [
         counterScores: {
             Ana: 1,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 1,
             Genji: 1,
             Hanzo: 0,
@@ -1107,6 +1120,7 @@ var heroData = [
         counterScores: {
             Ana: 0,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 1,
             Genji: 0,
             Hanzo: 1,
@@ -1133,6 +1147,7 @@ var heroData = [
         synergies: {
             Ana: 0,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 0,
             Genji: 0,
             Hanzo: 0,
@@ -1171,6 +1186,7 @@ var heroData = [
         counterScores: {
             Ana: 0,
             Bastion: 0,
+            Doomfist: 0,
             Dva: -1,
             Genji: -2,
             Hanzo: 0,
@@ -1325,6 +1341,7 @@ var heroData = [
         synergies: {
             Ana: 0,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 0,
             Genji: 2,
             Hanzo: 0,
@@ -1581,6 +1598,7 @@ var heroData = [
         synergies: {
             Ana: 1,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 1,
             Genji: 2,
             Hanzo: 0,
@@ -1678,6 +1696,7 @@ var mapData = [
         attackHeroes: {
             Ana: 0,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 0,
             Genji: 0,
             Hanzo: 0,
@@ -1704,6 +1723,7 @@ var mapData = [
         defenseHeroes: {
             Ana: 0,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 0,
             Genji: 0,
             Hanzo: 0,
@@ -1849,6 +1869,7 @@ var mapData = [
         attackHeroes: {
             Ana: 2,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 1,
             Genji: 1,
             Hanzo: 0,
@@ -1875,6 +1896,7 @@ var mapData = [
         defenseHeroes: {
             Ana: 2,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 1,
             Genji: 0,
             Hanzo: 2,
@@ -1906,6 +1928,7 @@ var mapData = [
         attackHeroes: {
             Ana: 2,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 2,
             Genji: 1,
             Hanzo: 1,
@@ -1932,6 +1955,7 @@ var mapData = [
         defenseHeroes: {
             Ana: 2,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 2,
             Genji: 0,
             Hanzo: 2,
@@ -1963,6 +1987,7 @@ var mapData = [
         attackHeroes: {
             Ana: 2,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 1,
             Genji: 1,
             Hanzo: 0,
@@ -2103,6 +2128,7 @@ var mapData = [
         defenseHeroes: {
             Ana: 2,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 1,
             Genji: 0,
             Hanzo: 2,
@@ -2134,6 +2160,7 @@ var mapData = [
         attackHeroes: {
             Ana: 2,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 2,
             Genji: 1,
             Hanzo: 1,
@@ -2191,6 +2218,7 @@ var mapData = [
         attackHeroes: {
             Ana: 2,
             Bastion: 0,
+            Doomfist: 0,
             Dva: 2,
             Genji: 1,
             Hanzo: 1,
@@ -2251,6 +2279,7 @@ var mapData = [
                 heroes: {
                     Ana: 2,
                     Bastion: 0,
+                    Doomfist: 0,
                     Dva: 2,
                     Genji: 1,
                     Hanzo: 0,
@@ -2311,6 +2340,7 @@ var mapData = [
                 heroes: {
                     Ana: 2,
                     Bastion: 0,
+                    Doomfist: 0,
                     Dva: 2,
                     Genji: 1,
                     Hanzo: 1,
@@ -2379,6 +2409,7 @@ var mapData = [
                 heroes: {
                     Ana: 2,
                     Bastion: 0,
+                    Doomfist: 0,
                     Dva: 2,
                     Genji: 1,
                     Hanzo: 0,
@@ -2447,6 +2478,7 @@ var mapData = [
                 heroes: {
                     Ana: 2,
                     Bastion: 0,
+                    Doomfist: 0,
                     Dva: 1,
                     Genji: 1,
                     Hanzo: 0,
@@ -2545,6 +2577,7 @@ var mapData = [
                 heroes: {
                     Ana: 2,
                     Bastion: 0,
+                    Doomfist: 0,
                     Dva: 2,
                     Genji: 1,
                     Hanzo: 0,
@@ -2605,6 +2638,7 @@ var mapData = [
                 heroes: {
                     Ana: 2,
                     Bastion: 0,
+                    Doomfist: 0,
                     Dva: 2,
                     Genji: 1,
                     Hanzo: 1,
@@ -2760,12 +2794,12 @@ function getMapHeroesByName() {
             }
         } else if (mapIsAttack) //If attack is selected
             return mapData.filter(function (val, index, array) {
-            return val.name === _map;
-        })[0].attackHeroes;
+                return val.name === _map;
+            })[0].attackHeroes;
         else //If defense.
             return mapData.filter(function (val, index, array) {
-            return val.name === _map;
-        })[0].defenseHeroes;
+                return val.name === _map;
+            })[0].defenseHeroes;
     } else
         return [];
 }
@@ -2784,11 +2818,11 @@ function getTopSixHeroesArray() {
     var tempArray = heroData.sort(function (a, b) {
         return a.score - b.score;
     }).reverse().slice(0);
-    tempArray.forEach(function(obj){
-       if (!obj.removed && !obj.locked)
-           arrayToReturn.push(obj)
+    tempArray.forEach(function (obj) {
+        if (!obj.removed && !obj.locked)
+            arrayToReturn.push(obj)
     });
-    return arrayToReturn.splice(0,6);
+    return arrayToReturn.splice(0, 6);
 }
 
 //Returns an array of objects filled with all heroes sorted by score from highest to lowest
@@ -2846,7 +2880,7 @@ function compare(a, b) {
 function resetHeroScores() {
     heroData.forEach(function (obj, index) {
         if (document.getElementById("tournamentCheckbox").checked)
-            obj.score = obj.proScore*tournamentWeight;
+            obj.score = obj.proScore * tournamentWeight;
         else obj.score = 0;
     });
 }
@@ -2885,13 +2919,13 @@ function resetLockedHeroes() {
     heroData.forEach(function (obj, index) {
         obj.locked = false;
     });
-    $(".fa-unlock").each(function(index, obj){
+    $(".fa-unlock").each(function (index, obj) {
         $(obj).removeClass("fa-unlock");
         $(obj).addClass("fa-lock");
     });
 }
 
-function countLockedHeroes(){
+function countLockedHeroes() {
     var x = 0;
     heroData.forEach(function (obj, index) {
         if (obj.locked)
